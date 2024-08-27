@@ -1,0 +1,151 @@
+<div class="row mb-5">
+
+	<div class="col-lg-3">
+		<div class="card position-sticky top-1">
+			<ul class="nav flex-column bg-gradient-light border-radius-lg p-3">
+				<li class="nav-item">
+					<a class="nav-link text-body" data-scroll href="#basic-info">
+						<div class="icon me-2">
+							<i class="bx bx-user"></i>
+						</div>
+						<span class="text-sm">Customer Details</span>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link text-body" data-scroll href="#docs">
+						<div class="icon me-2">
+							<i class="bx bx-file"></i>
+						</div>
+						<span class="text-sm">Documents</span>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link text-body" data-scroll href="#submit-claim">
+						<div class="icon me-2">
+							<i class="bx bx-share"></i>
+						</div>
+						<span class="text-sm">Submit Claim</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="col-lg-9 mt-lg-0 mt-4">
+
+		<div class="card card-body bg-gradient-info" id="profile">
+			<div class="row justify-content-center align-items-center">
+				
+				<div class="col-sm-auto col-8 my-auto">
+					<div class="h-100">
+						<h5 class="mb-1 font-weight-bolder text-white text-center">
+							Policy Claim
+						</h5>
+						<p class="mb-0 font-weight-bold text-sm text-white text-center">
+							Enter the required information to make your claim
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="card mt-4" id="basic-info">
+			<div class="card-header"> <h5>Basic Info</h5> </div>
+
+			<div class="card-body pt-0">
+				<div class="row">
+					<div class="col-lg-6 col-md-6 col-sm-12">
+						<label class="form-label">First Name</label>
+						<div class="input-group">
+							<input id="firstName" name="firstName" class="form-control" type="text" placeholder="Alec" required="required">
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-12">
+						<label class="form-label">Last Name</label>
+						<div class="input-group">
+							<input id="lastName" name="lastName" class="form-control" type="text" placeholder="Thompson" required="required">
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-6 col-md-6 col-sm-12">
+						<label class="form-label">Phone Number</label>
+						<div class="input-group">
+							<input id="c-phone" class="form-control" type="text" placeholder="Phone number" required="required">
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-12">
+						<label class="form-label">National ID</label>
+						<div class="input-group">
+							<input id="c-nationalID" class="form-control" type="text" placeholder="National ID" required="required">
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-6 col-md-6 col-sm-12">
+						<label class="form-label">Date of Birth</label>
+						<div class="input-group">
+							<input id="c-dob" class="form-control" type="date" required="required">
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-12">
+						<label class="form-label">Relationship</label>
+						<div class="input-group">
+							<select class="multisteps-form__input form-control">
+								<option>Child</option>
+								<option>Spouse</option>
+								<option>Sibling</option>
+								<option>Parent</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="card mt-4" id="docs">
+			<div class="card-header"> <h5>Claims Documents</h5> </div>
+			<div class="card-body pt-0">
+				<div class="row">
+					<div class="col-12">
+						<label class="form-label">ID of Deceased</label>
+						<div class="input-group">
+							<input id="id-doc" class="form-control" type="file" required="required">
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-12">
+						<label class="form-label">Death Certificate</label>
+						<div class="input-group">
+							<input id="certificate" class="form-control" type="file" required="required">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="card mt-4" id="submit-claim">
+			<div class="card-header">
+				<h5>Submit Caim</h5>
+				<p class="text-sm mb-0">Please be certain the entered information is correct.</p>
+			</div>
+
+			<div class="card-body d-sm-flex pt-0">
+				<div class="d-flex align-items-center mb-sm-0 mb-4">
+					<div>
+						<div class="form-check form-switch mb-0">
+						<input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault0">
+						</div>
+					</div>
+					<div class="ms-2">
+						<span class="text-dark font-weight-bold d-block text-sm">Confirm</span>
+						<span class="text-xs d-block">I have verifired that the information is correct.</span>
+					</div>
+				</div>
+				<button class="btn bg-gradient-info mb-0 ms-auto" type="button" name="button">Submit Claim</button>
+			</div>
+		</div>
+
+	</div>
+</div>
