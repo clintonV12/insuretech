@@ -1,5 +1,5 @@
 export function AgentLogin() {
-    return fetch('/insuretech/pages/agent/agent-login.html')
+    return fetch(BASE_URL + 'pages/agent/agent-login.html')
         .then(response => response.text())
         .then(data => data);
 }

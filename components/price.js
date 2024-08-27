@@ -1,5 +1,5 @@
 export function Price() {
-    return fetch('/insuretech/pages/price.html')
+    return fetch(BASE_URL + 'pages/price.html')
         .then(response => response.text())
         .then(data => data);
 }

@@ -174,6 +174,10 @@ async function router() {
             content = await Login();
     }
 
+    pageSelector(pagename, content);
+}
+
+function pageSelector(pagename, content) {
     switch (pagename) {
         case 'login':
         case 'logout':

@@ -1,5 +1,5 @@
 export function Login() {
-    return fetch('/insuretech/pages/client/login.html')
+    return fetch(BASE_URL + 'pages/client/login.html')
         .then(response => response.text())
         .then(data => data);
 }

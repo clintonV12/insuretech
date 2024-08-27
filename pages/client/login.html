@@ -46,4 +46,12 @@
         </div>
       </div>
     </section>
-  </main>
+</main>
+
+<script type="text/javascript">
+  const signInButton = document.getElementById('login-otp');
+  signInButton.addEventListener('click', (event) => {
+    event.preventDefault(); // Prevent default form submission behavior
+    console.log("I was clicked");
+  });
+</script>
