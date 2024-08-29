@@ -25,7 +25,12 @@ import { AgentSideBar } from './components/agent/agent-sidebar.js';
 import { AgentDashboard } from './components/agent/agent-dashboard.js';
 import { OnBoardNewUser } from './components/agent/agent-onboarding.js';
 
-let pagename  = 'home'; // Default to 'home' page
+import { ClientLoginAjax } from './controllers/client/login.js';
+import { ClientLoginOTPAjax } from './controllers/client/login-otp.js';
+import { ClientSignupAjax } from './controllers/client/signup.js';
+import { ClientSignupOTPAjax } from './controllers/client/signup-otp.js';
+import { NewUserAjax } from './controllers/client/new-user.js';
+
 let pageTitle = 'Home';
 
 function setPageName(page) {
@@ -53,6 +58,8 @@ function renderAuthPage(content) {
             router();
         });
     });
+
+    getControllerFunctions(pagename);
 }
 
 // Function to render the full page
@@ -87,7 +94,6 @@ function renderPage(content) {
             router();
         });
     });
-
     
     if (pagename == 'new-user' || pagename == 'agent-onboarding') {
         if (pagename == 'new-user') {
@@ -99,6 +105,8 @@ function renderPage(content) {
     } else {
         document.getElementById(pagename).classList.add('active');
     }
+
+    getControllerFunctions(pagename);
 }
 
 function getMultiStepScript() {
@@ -119,7 +127,7 @@ function getMultiStepScript() {
 }
 
 // Function to load the correct content based on pagename
-async function router() {
+export async function router() {
     let content = '';
 
     switch (pagename) {
@@ -229,3 +237,24 @@ document.addEventListener('DOMContentLoaded', () => {
     router();
 });
 
+function getControllerFunctions(pagename) {
+    switch (pagename) {
+        case 'login':
+        case 'logout':
+        case 'home':
+            ClientLoginAjax();
+            break;
+        case 'login-otp':
+            ClientLoginOTPAjax();
+            break;
+        case 'signup':
+            ClientSignupAjax();
+            break;
+        case 'otp':
+            ClientSignupOTPAjax();
+            break;
+        case 'new-user':
+            NewUserAjax();
+            break;
+    }
+}

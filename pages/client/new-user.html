@@ -5,13 +5,13 @@
 			<div class="row">
 				<div class="col-12 col-lg-8 mx-auto my-5">
 					<div class="multisteps-form__progress">
-						<button class="multisteps-form__progress-btn js-active" type="button" title="User Info">
+						<button id="step1" class="multisteps-form__progress-btn js-active" type="button" title="User Info">
 						<span>User Info</span>
 						</button>
-						<button class="multisteps-form__progress-btn" type="button" title="Policy Plans">Policy Plans</button>
-						<button class="multisteps-form__progress-btn" type="button" title="Beneficiary">Beneficiary</button>
-						<button class="multisteps-form__progress-btn" type="button" title="Profile">Payment</button>
-						<button class="multisteps-form__progress-btn" type="button" title="Confirmation">Confirmation</button>
+						<button id="step2" class="multisteps-form__progress-btn" type="button" title="Policy Plans">Policy Plans</button>
+						<button id="step3" class="multisteps-form__progress-btn" type="button" title="Beneficiary">Beneficiary</button>
+						<button id="step4" class="multisteps-form__progress-btn" type="button" title="Profile">Payment</button>
+						<button id="step5" class="multisteps-form__progress-btn" type="button" title="Confirmation">Confirmation</button>
 					</div>
 				</div>
 			</div>
@@ -23,52 +23,58 @@
 						<div class="card multisteps-form__panel p-3 border-radius-xl bg-white js-active" data-animation="FadeIn">
 							<h5 class="font-weight-bolder mb-0">About me</h5>
 							<p class="mb-0 text-sm">Mandatory information</p>
+							<p class="mb-0 text-sm text-danger" id="errorMsg1"></p>
+
 							<div class="multisteps-form__content">
 							<div class="row mt-3">
 							<div class="col-12 col-sm-6">
 							<label>First Name</label>
-							<input class="multisteps-form__input form-control" type="text" placeholder="eg. Lusanda" />
+							<input id="new-user-fn" class="multisteps-form__input form-control" type="text" placeholder="eg. Lusanda" />
 							</div>
 							<div class="col-12 col-sm-6 mt-3 mt-sm-0">
 							<label>Last Name</label>
-							<input class="multisteps-form__input form-control" type="text" placeholder="eg. Zwane" />
+							<input id="new-user-ln" class="multisteps-form__input form-control" type="text" placeholder="eg. Zwane" />
 							</div>
 							</div>
 
 							<div class="row mt-3">
 							<div class="col-12 col-sm-6">
 							<label>Date of Birth</label>
-							<input class="multisteps-form__input form-control" type="date" placeholder="" />
+							<input id="new-user-dob" class="multisteps-form__input form-control" type="date" placeholder="" />
 							</div>
 							<div class="col-12 col-sm-6 mt-3 mt-sm-0">
 							<label>National ID</label>
-							<input class="multisteps-form__input form-control" type="number" placeholder="eg. 0000 0000 0000" />
+							<input id="new-user-nid" class="multisteps-form__input form-control" type="number" placeholder="eg. 0000 0000 0000" />
 							</div>
 							</div>
 
 							<div class="row mt-3">
 							<div class="col-12 col-sm-6">
 							<label>Gender</label>
-							<select  class="multisteps-form__input form-control">
-								<option>Male</option>
-								<option>Female</option>
+							<select id="new-user-g" class="multisteps-form__input form-control">
+								<option value="">Please Select</option>
+								<option value="Male">Male</option>
+								<option value="Female">Female</option>
 							</select>
 							</div>
 							<div class="col-12 col-sm-6 mt-3 mt-sm-0">
 							<label>Marital Status</label>
-							<select  class="multisteps-form__input form-control">
-								<option>Married</option>
-								<option>Single</option>
+							<select id="new-user-ms" class="multisteps-form__input form-control">
+								<option value="">Please Select</option>
+								<option value="Married">Married</option>
+								<option value="Single">Single</option>
+								<option value="Widowed">Widowed</option>
 							</select>
 							</div>
 							</div>
 							<div class="button-row d-flex mt-4">
-							<button class="btn bg-gradient-dark ms-auto mb-0 js-btn-next" type="button" title="Next">Next</button>
+							<button class="btn bg-gradient-dark ms-auto mb-0 js-btn-next" type="button" title="Next" id="next_btn1">Next</button>
 							</div>
 							</div>
 						</div>
 
 						<div class="card multisteps-form__panel p-3 border-radius-xl bg-gradient-light" data-animation="FadeIn">
+							<p class="mb-0 text-sm text-danger" id="errorMsg2"></p>
 							<div class="multisteps-form__content">
 					
 								<div class="row">
@@ -106,10 +112,14 @@
 														<span class="ps-3">Extended Family</span>
 													</div>
 												</div>
-												<a href="javascript:;" class="btn btn-icon bg-gradient-info d-lg-block mt-3 mb-0 js-btn-next">
-													Select
-													<i class="bx bx-caret-right ms-1"></i>
-												</a>
+
+												<div class="d-flex justify-content-lg-start justify-content-center p-2">
+													<div class="form-check form-switch">
+			                      <input class="form-check-input" name="plan-choice" type="radio" id="radio1" value="Basic">
+			                      <label class="form-check-label text-bolder" for="radio1">Choose Plan.</label>
+			                    </div>
+		                    </div>
+
 											</div>
 										</div>
 									</div>
@@ -148,10 +158,14 @@
 														<span class="ps-3">Extended Family</span>
 													</div>
 												</div>
-												<a href="javascript:;" class="btn btn-icon bg-gradient-info d-lg-block mt-3 mb-0 js-btn-next">
-													Select
-													<i class="bx bx-caret-right ms-1"></i>
-												</a>
+
+												<div class="d-flex justify-content-lg-start justify-content-center p-2">
+													<div class="form-check form-switch">
+			                      <input class="form-check-input" name="plan-choice" type="radio" id="radio2" value="Flex">
+			                      <label class="form-check-label text-bolder" for="radio2">Choose Plan.</label>
+			                    </div>
+		                    </div>
+
 											</div>
 										</div>
 									</div>
@@ -190,10 +204,14 @@
 														<span class="ps-3">Extended Family</span>
 													</div>
 												</div>
-												<a href="javascript:;" class="btn btn-icon bg-gradient-info d-lg-block mt-3 mb-0 js-btn-next">
-													Select
-													<i class="bx bx-caret-right ms-1"></i>
-												</a>
+
+												<div class="d-flex justify-content-lg-start justify-content-center p-2">
+													<div class="form-check form-switch">
+			                      <input class="form-check-input" name="plan-choice" type="radio" id="radio3" id="Premium">
+			                      <label class="form-check-label text-bolder" for="radio3">Choose Plan.</label>
+			                    </div>
+		                    </div>
+
 											</div>
 										</div>
 									</div>
@@ -201,77 +219,82 @@
 
 								<div class="button-row d-flex mt-4">
 									<button class="btn bg-gradient-light mb-0 js-btn-prev" type="button" title="Prev">Prev</button>
-									<button class="btn bg-gradient-dark ms-auto mb-0 js-btn-next" type="button" title="Next">Next</button>
+									<button class="btn bg-gradient-dark ms-auto mb-0 js-btn-next" type="button" title="Next" id="next_btn2">Next</button>
 								</div>
 							</div>
 						</div>
 
-						<div class="card multisteps-form__panel p-3 border-radius-xl bg-white js-active" data-animation="FadeIn">
+						<div class="card multisteps-form__panel p-3 border-radius-xl bg-white" data-animation="FadeIn">
 							<h5 class="font-weight-bolder mb-0">Beneficiary Details</h5>
 							<p class="mb-0 text-sm">Mandatory information</p>
+							<p class="mb-0 text-sm text-danger" id="errorMsg3"></p>
+
 							<div class="multisteps-form__content">
 							<div class="row mt-3">
 							<div class="col-12 col-sm-6">
 							<label>First Name</label>
-							<input class="multisteps-form__input form-control" type="text" placeholder="eg. Lusanda" />
+							<input id="b-fn" class="multisteps-form__input form-control" type="text" placeholder="eg. Lusanda" />
 							</div>
 							<div class="col-12 col-sm-6 mt-3 mt-sm-0">
 							<label>Last Name</label>
-							<input class="multisteps-form__input form-control" type="text" placeholder="eg. Zwane" />
+							<input id="b-ln" class="multisteps-form__input form-control" type="text" placeholder="eg. Zwane" />
 							</div>
 							</div>
 
 							<div class="row mt-3">
 							<div class="col-12 col-sm-6">
 							<label>Date of Birth</label>
-							<input class="multisteps-form__input form-control" type="date" placeholder="" />
+							<input id="b-dob" class="multisteps-form__input form-control" type="date" placeholder="" />
 							</div>
 							<div class="col-12 col-sm-6 mt-3 mt-sm-0">
 							<label>National ID</label>
-							<input class="multisteps-form__input form-control" type="number" placeholder="eg. 0000 0000 0000" />
+							<input id="b-nid" class="multisteps-form__input form-control" type="number" placeholder="eg. 0000 0000 0000" />
 							</div>
 							</div>
 
 							<div class="row mt-3">
 							<div class="col-12 col-sm-6">
 							<label>Phone Number</label>
-							<input class="multisteps-form__input form-control" type="number" placeholder="Phone number" />
+							<input id="b-phone" class="multisteps-form__input form-control" type="number" placeholder="Phone number" />
 							</div>
 							<div class="col-12 col-sm-6 mt-3 mt-sm-0">
 							<label>Relationship</label>
-							<select class="multisteps-form__input form-control">
-								<option>Child</option>
-								<option>Spouse</option>
-								<option>Sibling</option>
-								<option>Parent</option>
+							<select id="b-rel" class="multisteps-form__input form-control">
+								<option value="">Please select</option>
+								<option value="Child">Child</option>
+								<option value="Spouse">Spouse</option>
+								<option value="Sibling">Sibling</option>
+								<option value="Parent">Parent</option>
 							</select>
 							</div>
 							</div>
 							<div class="button-row d-flex mt-4">
 								<button class="btn bg-gradient-light mb-0 js-btn-prev" type="button" title="Prev">Prev</button>
-								<button class="btn bg-gradient-dark ms-auto mb-0 js-btn-next" type="button" title="Next">Next</button>
+								<button class="btn bg-gradient-dark ms-auto mb-0 js-btn-next" type="button" title="Next" id="next_btn3">Next</button>
 							</div>
 							</div>
 						</div>
 
 						<div class="card multisteps-form__panel p-3 border-radius-xl bg-white h-100" data-animation="FadeIn">
 							<h5 class="font-weight-bolder">Payment Details</h5>
+							<p class="mb-0 text-sm text-danger" id="errorMsg4"></p>
+
 							<div class="multisteps-form__content mt-3">
 								<div class="row mt-3">
 								<div class="col-12 col-sm-6">
 								<label>Payment Method</label>
-								<select id="payment" class="multisteps-form__input form-control">
+								<select id="payment-method" class="multisteps-form__input form-control">
 									<option value="MOMO">MOMO</option>
 								</select>
 								</div>
 								<div class="col-12 col-sm-6 mt-3 mt-sm-0">
 								<label>Payment Date</label>
-								<input class="multisteps-form__input form-control" type="date" />
+								<input id="payment-date" class="multisteps-form__input form-control" type="date" />
 								</div>
 								</div>
 								<div class="button-row d-flex mt-4">
 									<button class="btn bg-gradient-light mb-0 js-btn-prev" type="button" title="Prev">Prev</button>
-									<button class="btn bg-gradient-dark ms-auto mb-0 js-btn-next" type="button" title="Next">Next</button>
+									<button class="btn bg-gradient-dark ms-auto mb-0 js-btn-next" type="button" title="Next" id="next_btn4">Next</button>
 								</div>
 							</div>
 						</div>
@@ -279,6 +302,7 @@
 						<div class="card multisteps-form__panel p-3 border-radius-xl bg-white h-150" data-animation="FadeIn">
 							<h5 class="font-weight-bolder">Confirmation</h5>
 							<p class="mb-0 text-sm">Confirm if the given information is correct</p>
+							<p class="mb-0 text-sm text-danger" id="errorMsg5"></p>
 
 							<div class="multisteps-form__content mt-3">
 								<h6 class="font-weight-bold"><i>Policy Holder</i></h6>
@@ -344,7 +368,7 @@
 
 								<div class="button-row d-flex mt-4">
 									<button class="btn bg-gradient-light mb-0 js-btn-prev" type="button" title="Prev">Prev</button>
-									<button data-bs-toggle="modal" data-bs-target="#terms" class="btn bg-gradient-dark ms-auto mb-0" type="button">Information is Correct, Continue</button>
+									<button data-bs-toggle="modal" data-bs-target="#terms" class="btn bg-gradient-dark ms-auto mb-0" type="button" id="next_btn5">Information is Correct, Continue</button>
 								</div>
 							</div>
 						</div>
@@ -386,7 +410,7 @@
 
           </div>
           <div class="modal-footer">
-            <button type="button" style="width: 100%;" data-bs-dismiss="modal" aria-label="Close" class="btn bg-gradient-success" onclick="soft.showSwal('success-message')">Complete Registration</button>
+            <button type="button" style="width: 100%;" data-bs-dismiss="modal" aria-label="Close" class="btn bg-gradient-success" id="complete_signup">Complete Registration</button>
           </div>
         </div>
       </div>

@@ -25,8 +25,11 @@
                     </div>
 
                     <div class="text-center">
-                      <button type="button" class="btn bg-gradient-info w-100 mt-4 mb-0 nav-page" id="login-otp">Sign in</button>
+                      <button type="button" class="btn bg-gradient-info w-100 mt-4 mb-0" id="client-login">Sign in</button>
                     </div>
+
+                    <div class="text-center mt-4" id="spinner"></div>
+
                   </form>
                 </div>
                 <div class="card-footer text-center pt-0 px-lg-2 px-1">
@@ -47,11 +50,3 @@
       </div>
     </section>
 </main>
-
-<script type="text/javascript">
-  const signInButton = document.getElementById('login-otp');
-  signInButton.addEventListener('click', (event) => {
-    event.preventDefault(); // Prevent default form submission behavior
-    console.log("I was clicked");
-  });
-</script>
