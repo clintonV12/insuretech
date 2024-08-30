@@ -21,6 +21,7 @@ import { ClaimSideBar } from './components/client/claim-sidebar.js';
 import { Claim } from './components/client/claim.js';
 
 import { AgentLogin } from './components/agent/agent-login.js';
+import { AgentPasswordRecovery } from './components/agent/agent-password-recover.js';
 import { AgentSideBar } from './components/agent/agent-sidebar.js';
 import { AgentDashboard } from './components/agent/agent-dashboard.js';
 import { OnBoardNewUser } from './components/agent/agent-onboarding.js';
@@ -30,6 +31,10 @@ import { ClientLoginOTPAjax } from './controllers/client/login-otp.js';
 import { ClientSignupAjax } from './controllers/client/signup.js';
 import { ClientSignupOTPAjax } from './controllers/client/signup-otp.js';
 import { NewUserAjax } from './controllers/client/new-user.js';
+import { RequestBillingInfo, SaveNewPhoneNumber } from './controllers/client/billing.js';
+
+import { AgentLoginAjax } from './controllers/agent/agent-login.js';
+import { RequestMyClientInfo } from './controllers/agent/agent-dashboard.js';
 
 let pageTitle = 'Home';
 
@@ -172,6 +177,9 @@ export async function router() {
         case 'agent-login':
             content = await AgentLogin();
             break;
+        case 'agent-password-recover':
+            content = await AgentPasswordRecovery();
+            break;
         case 'agent-dashboard':
             content = await AgentDashboard();
             break;
@@ -196,6 +204,7 @@ function pageSelector(pagename, content) {
         case 'login-otp':
         case 'welcome':
         case 'agent-login':
+        case 'agent-password-recover':
             renderAuthPage(content);
             break;
         default:
@@ -255,6 +264,16 @@ function getControllerFunctions(pagename) {
             break;
         case 'new-user':
             NewUserAjax();
+            break;
+        case 'billing':
+            RequestBillingInfo();
+            SaveNewPhoneNumber();
+            break;
+        case 'agent-login':
+            AgentLoginAjax();
+            break;
+        case 'agent-dashboard':
+            RequestMyClientInfo();
             break;
     }
 }
