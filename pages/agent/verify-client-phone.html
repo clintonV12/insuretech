@@ -1,0 +1,106 @@
+<div class="row mt-4">
+  <div class="col-lg-7 mb-lg-0 mb-4">
+    <div class="card">
+      <div class="card-body p-3">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="d-flex flex-column h-100">
+              <p class="mb-1 pt-2 text-bold">Built for convinience</p>
+              <h5 class="font-weight-bolder">Oracle Agent Portal</h5>
+              <p class="mb-5">Using the Oracle agent portal you can register clients and system will automatically keep track of commision payments due to you. Get started with the system now.</p>
+              <a class="text-body text-sm font-weight-bold mb-0 icon-move-right mt-auto" href="javascript:;">
+                Read More
+                <i class="bx bx-caret-right text-sm ms-1" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+          <div class="col-lg-5 ms-auto text-center mt-5 mt-lg-0">
+            <div class="bg-gradient-info border-radius-lg h-100">
+              <img src="assets/img/shapes/waves-white.svg" class="position-absolute h-100 w-50 top-0 d-lg-block d-none" alt="waves">
+              <div class="position-relative d-flex align-items-center justify-content-center h-100">
+                <img class="w-100 position-relative z-index-2 pt-4" src="assets/img/illustrations/momo.jpg" alt="rocket">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-5">
+    <div class="card h-100 p-3">
+      <div class="overflow-hidden position-relative border-radius-lg bg-cover h-100" style="background-image: url('assets/img/illustrations/agent.jpg');">
+        <span class="mask bg-gradient-dark"></span>
+        <div class="card-body position-relative z-index-1 d-flex flex-column h-100 p-3">
+          <h5 class="text-white font-weight-bolder mb-4 pt-2">Oracle Funeral Cover Onboarding</h5>
+          <p class="text-white">Please ensure that the client has their mobile device close-by to start the onboarding process since the number will need to be verified.</p>
+          
+          <a class="btn bg-gradient-success mb-5" href="javascript:;" data-bs-toggle="modal" data-bs-target="#client_phone">
+            <i class="bx bx-plus"></i>&nbsp;&nbsp;Start Onboarding Now
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="client_phone" tabindex="-1" role="dialog" aria-labelledby="input-title" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="input-title">Verify Client Phone</h5>
+        <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true"><i class="bx bx-x"></i></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <p class="mb-0 text-sm text-danger" id="error1"></p>
+          <div class="form-group">
+            <label for="phone_num" class="col-form-label">Phone Number</label>
+            <div class="mb-3 input-group input-group-merge">
+              <span class="input-group-text">+268</span>
+              <input
+                type="tel"
+                class="form-control"
+                id="phone_num"
+                maxlength="8"
+                placeholder="Enter client phone number"
+                autofocus />
+            </div>
+          </div>
+          <div class="text-center mt-4" id="spinner"></div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn bg-gradient-dark" data-bs-dismiss="modal">Close</button>
+        <button type="button" id="verify_client_phone" class="btn bg-gradient-info">Enter</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="client_otp" tabindex="-1" role="dialog" aria-labelledby="input-title" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="input-title">Verify Client Phone</h5>
+        <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true"><i class="bx bx-x"></i></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <p class="mb-0 text-sm text-danger" id="error2"></p>
+          <div class="form-group">
+            <label for="phone_otp" class="col-form-label">Received OTP</label>
+            <input type="text" class="form-control" placeholder="Enter the received otp number" id="phone_otp">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn bg-gradient-dark" data-bs-dismiss="modal">Close</button>
+        <button type="button" id="verify_client_otp" class="btn bg-gradient-info">Verify</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -50,8 +50,10 @@ function requestLogin(username, password) {
   req.done(function(data){
       //if the call is successful
       if (data.token) {
-        TOKEN = data.token;
+        USER_TYPE      = "AGENT";
+        TOKEN          = data.token;
         AGENT_USERNAME = data.username;
+        AGENT_ID       = data.id;
         
         pagename = 'agent-dashboard';
         router();

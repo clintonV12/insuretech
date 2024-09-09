@@ -25,6 +25,7 @@ import { AgentPasswordRecovery } from './components/agent/agent-password-recover
 import { AgentSideBar } from './components/agent/agent-sidebar.js';
 import { AgentDashboard } from './components/agent/agent-dashboard.js';
 import { OnBoardNewUser } from './components/agent/agent-onboarding.js';
+import { VerifyClientPhone } from './components/agent/verify-client-phone.js';
 
 import { ClientLoginAjax } from './controllers/client/login.js';
 import { ClientLoginOTPAjax } from './controllers/client/login-otp.js';
@@ -35,6 +36,7 @@ import { RequestBillingInfo, SaveNewPhoneNumber } from './controllers/client/bil
 
 import { AgentLoginAjax } from './controllers/agent/agent-login.js';
 import { RequestMyClientInfo } from './controllers/agent/agent-dashboard.js';
+import { VerifyClientPhoneAjax } from './controllers/agent/verify-client-phone.js';
 
 let pageTitle = 'Home';
 
@@ -73,7 +75,7 @@ function renderPage(content) {
 
     if (pagename == 'claim') {
         sideBarContent = ClaimSideBar();
-    } else if(pagename == 'agent-dashboard' || pagename == 'agent-onboarding') {
+    } else if(pagename == 'agent-dashboard' || pagename == 'agent-onboarding' || pagename == 'onboarding') {
         sideBarContent = AgentSideBar();
     } else {
         sideBarContent = SideBar()
@@ -104,7 +106,7 @@ function renderPage(content) {
         if (pagename == 'new-user') {
             document.getElementById("policy").classList.add('active');    
         } else {
-            document.getElementById(pagename).classList.add('active');
+            document.getElementById("onboarding").classList.add('active');
         }
         getMultiStepScript();
     } else {
@@ -183,6 +185,9 @@ export async function router() {
         case 'agent-dashboard':
             content = await AgentDashboard();
             break;
+        case 'onboarding':
+            content = await VerifyClientPhone();
+            break;
         case 'agent-onboarding':
             content = await OnBoardNewUser();
             break;
@@ -231,6 +236,7 @@ function setPageTitle() {
             break;
         case 'agent-dashboard':
         case 'agent-onboarding':
+        case 'onboarding':
             pageTitle = 'Agent Dashboard'
             break;
         default:
@@ -274,6 +280,12 @@ function getControllerFunctions(pagename) {
             break;
         case 'agent-dashboard':
             RequestMyClientInfo();
+            break;
+        case 'onboarding':
+            VerifyClientPhoneAjax();
+            break;
+        case 'agent-onboarding':
+            NewUserAjax();
             break;
     }
 }

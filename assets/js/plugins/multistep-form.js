@@ -75,9 +75,12 @@ DOMstrings.stepsBar.addEventListener('click', e => {
   	if (!newUserForm2Valid()) {return;}
   }
   else if (eventTarget.id == "step4") {
-  	if (!newUserForm3Valid()) {return;}
+    if (!newUserForm3Valid()) {return;}
   }
   else if (eventTarget.id == "step5") {
+  	
+  }
+  else if (eventTarget.id == "step6") {
   	if (!newUserForm4Valid()) {return;}
   }
 

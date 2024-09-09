@@ -38,8 +38,9 @@ function verifyOTP(phone, code) {
         //manual entry of form
       }*/
       if (data.token) {
-        TOKEN = data.token;
-        pagename = 'new-user';
+        USER_TYPE = "CLIENT";
+        TOKEN     = data.token;
+        pagename  = 'new-user';
         router();
       } else {
         showInfoMsg("Alert", data.error);
