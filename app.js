@@ -27,6 +27,7 @@ import { AgentDashboard } from './components/agent/agent-dashboard.js';
 import { OnBoardNewUser } from './components/agent/agent-onboarding.js';
 import { VerifyClientPhone } from './components/agent/verify-client-phone.js';
 
+import { ClaimAjax } from './controllers/client/claims.js';
 import { ClientLoginAjax } from './controllers/client/login.js';
 import { ClientLoginOTPAjax } from './controllers/client/login-otp.js';
 import { ClientSignupAjax } from './controllers/client/signup.js';
@@ -97,8 +98,12 @@ function renderPage(content) {
     // Attach event listeners to the navigation links
     document.querySelectorAll('.nav-page').forEach(link => {
         link.addEventListener('click', (event) => {
-            setPageName(event.target.id);
-            router();
+            if (USER_TYPE == "CLIENT" && pagename == "new-user" && event.target.id != "login") {
+                showWarningMsg("Not allowed","You are not allowed to navigate to another page until you finish the registration process.");
+            } else {
+                setPageName(event.target.id);
+                router();
+            }
         });
     });
     
@@ -286,6 +291,9 @@ function getControllerFunctions(pagename) {
             break;
         case 'agent-onboarding':
             NewUserAjax();
+            break;
+        case 'claim':
+            ClaimAjax();
             break;
     }
 }

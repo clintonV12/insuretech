@@ -1,4 +1,4 @@
-const DOMstrings = {
+DOMstrings = {
   stepsBtnClass:'multisteps-form__progress-btn',
   stepsBtns:document.querySelectorAll(`.multisteps-form__progress-btn`),
   stepsBar:document.querySelector('.multisteps-form__progress'),
@@ -10,11 +10,11 @@ const DOMstrings = {
   stepNextBtnClass:'js-btn-next'
 };
 
-const removeClasses = (elemSet,className) => {
+removeClasses = (elemSet,className) => {
   elemSet.forEach(elem => {elem.classList.remove(className);});
 };
 
-const findParent = (elem,parentClass) => {
+findParent = (elem,parentClass) => {
   let currentNode = elem;
   while(!currentNode.classList.contains(parentClass)) {
     currentNode = currentNode.parentNode;
@@ -22,18 +22,18 @@ const findParent = (elem,parentClass) => {
   return currentNode;
 };
 
-const getActiveStep = elem => {
+getActiveStep = elem => {
   return Array.from(DOMstrings.stepsBtns).indexOf(elem);
 };
 
-const setActiveStep = activeStepNum => {
+setActiveStep = activeStepNum => {
   removeClasses(DOMstrings.stepsBtns,'js-active');
   DOMstrings.stepsBtns.forEach((elem,index) => {
     if(index <= activeStepNum){elem.classList.add('js-active');}
   });
 };
 
-const getActivePanel = () => {
+getActivePanel = () => {
   let activePanel;
   DOMstrings.stepFormPanels.forEach( elem=> {
     if(elem.classList.contains('js-active')){
@@ -43,7 +43,7 @@ const getActivePanel = () => {
   return activePanel;
 };
 
-const setActivePanel = activePanelNum => {
+setActivePanel = activePanelNum => {
   removeClasses(DOMstrings.stepFormPanels,'js-active');
   DOMstrings.stepFormPanels.forEach((elem,index) => {
     if(index === activePanelNum){
@@ -52,12 +52,12 @@ const setActivePanel = activePanelNum => {
   });
 };
 
-const formHeight = activePanel => {
+formHeight = activePanel => {
   const activePanelHeight = activePanel.offsetHeight;
   DOMstrings.stepsForm.style.height =`${activePanelHeight}px`;
 };
 
-const setFormHeight = () => {
+setFormHeight = () => {
   const activePanel = getActivePanel();
   formHeight(activePanel);
 };

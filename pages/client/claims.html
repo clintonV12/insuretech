@@ -49,103 +49,105 @@
 			</div>
 		</div>
 
-		<div class="card mt-4" id="basic-info">
-			<div class="card-header"> <h5>Basic Info</h5> </div>
+		<form id="claim-form" enctype="multipart/form-data">
+			<div class="card mt-4" id="basic-info">
+				<div class="card-header"> <h5>Basic Info</h5> </div>
 
-			<div class="card-body pt-0">
-				<div class="row">
-					<div class="col-lg-6 col-md-6 col-sm-12">
-						<label class="form-label">First Name</label>
-						<div class="input-group">
-							<input id="firstName" name="firstName" class="form-control" type="text" placeholder="Alec" required="required">
+				<div class="card-body pt-0">
+					<div class="row">
+						<div class="col-lg-6 col-md-6 col-sm-12">
+							<label class="form-label">First Name</label>
+							<div class="input-group">
+								<input id="firstName" name="firstName" class="form-control" type="text" placeholder="Alec" required="required">
+							</div>
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-12">
+							<label class="form-label">Last Name</label>
+							<div class="input-group">
+								<input id="lastName" name="lastName" class="form-control" type="text" placeholder="Thompson" required="required">
+							</div>
 						</div>
 					</div>
-					<div class="col-lg-6 col-md-6 col-sm-12">
-						<label class="form-label">Last Name</label>
-						<div class="input-group">
-							<input id="lastName" name="lastName" class="form-control" type="text" placeholder="Thompson" required="required">
+					<div class="row">
+						<div class="col-lg-6 col-md-6 col-sm-12">
+							<label class="form-label">Phone Number</label>
+							<div class="input-group">
+								<input id="c-phone" name="c-phone" class="form-control" type="text" placeholder="Phone number" required="required">
+							</div>
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-12">
+							<label class="form-label">National ID</label>
+							<div class="input-group">
+								<input id="c-nationalID" name="c-nationalID" class="form-control" type="text" placeholder="National ID" required="required">
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="row">
-					<div class="col-lg-6 col-md-6 col-sm-12">
-						<label class="form-label">Phone Number</label>
-						<div class="input-group">
-							<input id="c-phone" class="form-control" type="text" placeholder="Phone number" required="required">
+					<div class="row">
+						<div class="col-lg-6 col-md-6 col-sm-12">
+							<label class="form-label">Date of Birth</label>
+							<div class="input-group">
+								<input id="c-dob" name="c-dob" class="form-control" type="date" required="required">
+							</div>
 						</div>
-					</div>
-					<div class="col-lg-6 col-md-6 col-sm-12">
-						<label class="form-label">National ID</label>
-						<div class="input-group">
-							<input id="c-nationalID" class="form-control" type="text" placeholder="National ID" required="required">
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-lg-6 col-md-6 col-sm-12">
-						<label class="form-label">Date of Birth</label>
-						<div class="input-group">
-							<input id="c-dob" class="form-control" type="date" required="required">
-						</div>
-					</div>
-					<div class="col-lg-6 col-md-6 col-sm-12">
-						<label class="form-label">Relationship</label>
-						<div class="input-group">
-							<select class="multisteps-form__input form-control">
-								<option>Child</option>
-								<option>Spouse</option>
-								<option>Sibling</option>
-								<option>Parent</option>
-							</select>
+						<div class="col-lg-6 col-md-6 col-sm-12">
+							<label class="form-label">Relationship</label>
+							<div class="input-group">
+								<select name="relationship" class="multisteps-form__input form-control">
+									<option>Child</option>
+									<option>Spouse</option>
+									<option>Sibling</option>
+									<option>Parent</option>
+								</select>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
 
-		<div class="card mt-4" id="docs">
-			<div class="card-header"> <h5>Claims Documents</h5> </div>
-			<div class="card-body pt-0">
-				<div class="row">
-					<div class="col-12">
-						<label class="form-label">ID of Deceased</label>
-						<div class="input-group">
-							<input id="id-doc" class="form-control" type="file" required="required">
+			<div class="card mt-4" id="docs">
+				<div class="card-header"> <h5>Claims Documents</h5> </div>
+				<div class="card-body pt-0">
+					<div class="row">
+						<div class="col-12">
+							<label class="form-label">ID of Deceased</label>
+							<div class="input-group">
+								<input id="id-doc" name="id-doc" class="form-control" type="file" accept="image/*">
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="row">
-					<div class="col-12">
-						<label class="form-label">Death Certificate</label>
-						<div class="input-group">
-							<input id="certificate" class="form-control" type="file" required="required">
+					<div class="row">
+						<div class="col-12">
+							<label class="form-label">Death Certificate</label>
+							<div class="input-group">
+								<input id="certificate" name="certificate" class="form-control" type="file" accept="image/*">
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
 
-		<div class="card mt-4" id="submit-claim">
-			<div class="card-header">
-				<h5>Submit Caim</h5>
-				<p class="text-sm mb-0">Please be certain the entered information is correct.</p>
-			</div>
+			<div class="card mt-4" id="submit-claim">
+				<div class="card-header">
+					<h5>Submit Caim</h5>
+					<p class="text-sm mb-0">Please be certain the entered information is correct.</p>
+				</div>
 
-			<div class="card-body d-sm-flex pt-0">
-				<div class="d-flex align-items-center mb-sm-0 mb-4">
-					<div>
-						<div class="form-check form-switch mb-0">
-						<input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault0">
+				<div class="card-body d-sm-flex pt-0">
+					<div class="d-flex align-items-center mb-sm-0 mb-4">
+						<div>
+							<div class="form-check form-switch mb-0">
+							<input class="form-check-input" type="checkbox" id="confirm-btn">
+							</div>
+						</div>
+						<div class="ms-2">
+							<span class="text-dark font-weight-bold d-block text-sm">Confirm</span>
+							<span class="text-xs d-block">I have verifired that the information is correct.</span>
 						</div>
 					</div>
-					<div class="ms-2">
-						<span class="text-dark font-weight-bold d-block text-sm">Confirm</span>
-						<span class="text-xs d-block">I have verifired that the information is correct.</span>
-					</div>
+					<button class="btn bg-gradient-info mb-0 ms-auto" id="submit_claim">Submit Claim</button>
 				</div>
-				<button class="btn bg-gradient-info mb-0 ms-auto" type="button" name="button">Submit Claim</button>
 			</div>
-		</div>
+		</form>
 
 	</div>
 </div>

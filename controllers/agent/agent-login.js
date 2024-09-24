@@ -6,6 +6,8 @@ export function AgentLoginAjax() {
       event.preventDefault(); // Prevent default form submission behavior
       getLoginInput();
   });
+
+  initGlobalVars();
 }
 
 function getLoginInput(){

@@ -1,7 +1,7 @@
 import { router } from '../../app.js';
 
 export function NewUserAjax() {
-  console.log("new user");
+
   const verifyButton = document.getElementById('complete_signup');
   verifyButton.addEventListener('click', (event) => {
       event.preventDefault(); // Prevent default form submission behavior
@@ -11,6 +11,18 @@ export function NewUserAjax() {
   const addBtn = document.getElementById("add_person_btn");
   addBtn.addEventListener('click', (event) => {
     addPerson();
+  });
+
+  const btn4 = document.getElementById('next_btn4');
+  btn4.addEventListener('click', (event) => {
+      event.preventDefault(); // Prevent default form submission behavior
+      confirmInfo();
+  });
+
+  const step6 = document.getElementById('step6');
+  step6.addEventListener('click', (event) => {
+      event.preventDefault(); // Prevent default form submission behavior
+      confirmInfo();
   });
 }
 
@@ -63,8 +75,14 @@ export function requestSignup() {
         //if the call is successful
         showInfoMsg("Alert", data.message);
         if (data.message == "Success" || data.message == "success") {
-          pagename = 'dashboard';
-          router();
+          if (USER_TYPE == "AGENT") {
+            pagename = 'agent-dashboard';
+            router();
+          }
+          else if(USER_TYPE == "CLIENT"){
+            pagename = 'dashboard';
+            router();
+          }
         }
       });
 
@@ -138,8 +156,6 @@ function showCoveredList() {
   }
 }
 
-var coveredPeople = [];
-
 function selfRegisterInfo() {
   return {
       //general info
@@ -198,3 +214,47 @@ function agentRegisterInfo() {
       "payment_date": document.getElementById("payment-date").value
     }
 }
+
+function confirmInfo() {
+  
+  document.getElementById("c1").innerText = document.getElementById("new-user-fn").value;
+  document.getElementById("c2").innerText = document.getElementById("new-user-ln").value;
+  document.getElementById("c3").innerText = document.getElementById("new-user-dob").value;
+  document.getElementById("c4").innerText = document.getElementById("new-user-nid").value;
+  document.getElementById("c5").innerText = document.getElementById("new-user-g").value;
+  document.getElementById("c6").innerText = document.getElementById("new-user-ms").value;
+  
+  //Beneficiary details
+  document.getElementById("c7").innerText = document.getElementById("b-fn").value;
+  document.getElementById("c8").innerText = document.getElementById("b-ln").value;
+  document.getElementById("c9").innerText = document.getElementById("b-dob").value;
+  document.getElementById("c10").innerText = document.getElementById("b-nid").value;
+  document.getElementById("c11").innerText = document.getElementById("b-phone").value;
+  document.getElementById("c12").innerText = document.getElementById("b-rel").value;
+  //covered people
+  confirmCoveredList();
+  //Plan details
+  document.getElementById("c14").innerText = getValueOfCheckedPlan();
+  //Payment details
+  document.getElementById("c15").innerText = document.getElementById("payment-method").value;
+  document.getElementById("c16").innerText = document.getElementById("payment-date").value;
+    
+}
+
+function confirmCoveredList() {
+  let cList = document.getElementById("c13");
+  cList.innerHTML = '';
+
+  for (var i = coveredPeople.length - 1; i >= 0; i--) { 
+    let index = i;
+    cList.insertAdjacentHTML('beforeend', 
+      `<li>
+        ${coveredPeople[i].fullname}
+        ${coveredPeople[i].national_id}
+      </li>`);
+ 
+  }
+}
+
+
+

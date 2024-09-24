@@ -17,6 +17,10 @@ function showErrorMsg(title, msg) {
   Swal.fire(title, msg,"error");
 }
 
+function showWarningMsg(title, msg) {
+  Swal.fire(title, msg,"warning");
+}
+
 function showSuccessMsg(title, msg) {
   Swal.fire(title, msg,"success");
 }
