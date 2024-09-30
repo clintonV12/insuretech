@@ -1,10 +1,18 @@
+import { router } from '../../app.js';
+
 let timeout;
-const inactivityTime = 30 * 60 * 1000; // 30 minutes in milliseconds
+const inactivityTime = 10 * 60 * 1000; // 30 minutes in milliseconds
 
 // Function to run after 30 minutes of inactivity
 function runAfterInactivity() {
     console.log("Running function due to inactivity.");
     // Your logic here
+    if (USER_TYPE == "AGENT" || USER_TYPE == "CLIENT") {
+        initGlobalVars();
+        showInfoMsg("Alert", "Sorry your session has timed-out.");
+        pagename = 'welcome';
+        router();
+    }
 }
 
 // Reset the inactivity timer

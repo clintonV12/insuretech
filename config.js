@@ -7,7 +7,6 @@ let KYC_CONSENT    = false;
 let AGENT_USERNAME = null;
 let AGENT_ID       = null;
 let USER_TYPE      = null; //AGENT or CLIENT
-let coveredPeople  = [];
 
 function initGlobalVars() {
 	pagename       = 'home'; // Default to 'home' page
@@ -17,5 +16,4 @@ function initGlobalVars() {
 	AGENT_USERNAME = null;
 	AGENT_ID       = null;
 	USER_TYPE      = null; //AGENT or CLIENT
-	coveredPeople = [];	
 }

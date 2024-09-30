@@ -1,7 +1,7 @@
 export function ClaimAjax() {
   $("#submit_claim").on("click", (function(e) {
     e.preventDefault();
-    if (checkIdFileSelected() && checkCertiicateFileSelected() && checkIfVerificationBtn()) {
+    if (checkIdFileSelected() && checkCertificateFileSelected() && checkIfVerificationBtn()) {
       let myForm = document.getElementById("claim-form");
 
       var req = $.ajax({
@@ -53,7 +53,7 @@ function checkIdFileSelected() {
   }
 }
 
-function checkCertiicateFileSelected() {
+function checkCertificateFileSelected() {
   let file1 = document.getElementById("certificate");
 
   if(file1.files.length == 0) {

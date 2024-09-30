@@ -33,6 +33,7 @@ function verifyOTP(phone, code) {
   req.done(function(data){
       //if the call is successful
       if (data.token) {
+        USER_TYPE = "CLIENT";
         TOKEN = data.token;
         pagename = 'dashboard';
         router();

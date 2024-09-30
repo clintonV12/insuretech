@@ -29,62 +29,16 @@ function isOTPValid(otp) {
 function newUserForm1Valid() {
   let fname    = document.getElementById("new-user-fn").value;
   let lname    = document.getElementById("new-user-ln").value;
-  let dob      = document.getElementById("new-user-dob").value;
+  let mail     = document.getElementById("new-user-email").value;
   let pin      = document.getElementById("new-user-nid").value;
-  let gender   = document.getElementById("new-user-g").value;
-  let maritalS = document.getElementById("new-user-ms").value;
 
   let error    = document.getElementById("errorMsg1");
   let invalid  = "Fields";
 
   if (fname == ""){invalid = invalid + ", First Name";}
   if (lname == ""){invalid = invalid + ", Last Name";}
-  if (dob == "yyyy-mm-dd"){invalid = invalid + ", Date of Birth";}
+  if (mail == ""){invalid = invalid + ", Email";}
   if (pin == ""){invalid = invalid + ", National ID";}
-  if (gender == ""){invalid = invalid + ", Gender";}
-  if (maritalS == ""){invalid = invalid + ", Marital Status";}
-
-  if (invalid != "Fields") {
-    error.innerText = "Please enter the following " + invalid;
-    return false;
-  } else {
-    error.innerText = "";
-    return true;
-  }
-}
-
-function newUserForm2Valid() {
-  let radio1 = document.getElementById("radio1").checked;
-  let radio2 = document.getElementById("radio2").checked;
-  let radio3 = document.getElementById("radio3").checked;
-  let error  = document.getElementById("errorMsg2");
-
-  if (radio1 == radio2 == radio3 == false) {
-    error.innerText = "Please select one of the plans to continue";
-    return false;
-  } else {
-    error.innerText = "";
-    return true;
-  }
-}
-
-function newUserForm3Valid() {
-  let fname    = document.getElementById("b-fn").value;
-  let lname    = document.getElementById("b-ln").value;
-  let dob      = document.getElementById("b-dob").value;
-  let pin      = document.getElementById("b-nid").value;
-  let phone    = document.getElementById("b-phone").value;
-  let relation = document.getElementById("b-rel").value;
-
-  let error    = document.getElementById("errorMsg3");
-  let invalid  = "Fields";
-
-  if (fname == ""){invalid = invalid + ", First Name";}
-  if (lname == ""){invalid = invalid + ", Last Name";}
-  if (dob == "yyyy-mm-dd"){invalid = invalid + ", Date of Birth";}
-  if (pin == ""){invalid = invalid + ", National ID";}
-  if (phone.length != 8){invalid = invalid + ", Phone number";}
-  if (relation == ""){invalid = invalid + ", Relationship";}
 
   if (invalid != "Fields") {
     error.innerText = "Please enter the following " + invalid;

@@ -19,13 +19,6 @@ export function SideBar() {
           </li>
 
           <li class="nav-item">
-            <a class="nav-link nav-page " href="#" id="billing">
-              <i class="bx bx-money"></i>
-              <span class="nav-link-text ms-1">Billing</span>
-            </a>
-          </li>
-
-          <li class="nav-item">
             <a class="nav-link nav-page " href="#" id="policy">
               <i class="bx bx-user"></i>
               <span class="nav-link-text ms-1">Policy</span>

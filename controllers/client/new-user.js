@@ -1,4 +1,6 @@
 import { router } from '../../app.js';
+let coveredPeople  = [];
+let beneficiaries  = [];
 
 export function NewUserAjax() {
 
@@ -13,6 +15,11 @@ export function NewUserAjax() {
     addPerson();
   });
 
+  const addBen = document.getElementById("add_ben_btn");
+  addBen.addEventListener('click', (event) => {
+    addBeneficiary();
+  });
+
   const btn4 = document.getElementById('next_btn4');
   btn4.addEventListener('click', (event) => {
       event.preventDefault(); // Prevent default form submission behavior
@@ -24,26 +31,30 @@ export function NewUserAjax() {
       event.preventDefault(); // Prevent default form submission behavior
       confirmInfo();
   });
-}
 
-function getValueOfCheckedPlan() {
-  let radio1 = document.getElementById("radio1");
-  let radio2 = document.getElementById("radio2");
-  let radio3 = document.getElementById("radio3");
+  const coverFun = () => {
+    let cover  = document.getElementById("coverRange").value;
+    let pmCost = calcMonthlyCost(cover);
+    document.getElementById("currentRange").innerText = "Cover value E"+Number(cover).toFixed(2)+" for E"+Number(pmCost).toFixed(2)+" p/m.";
+  }
+  coverFun();
+  
+  const range = document.getElementById('coverRange');
+  range.addEventListener('mouseup', (event) => {
+      event.preventDefault(); // Prevent default form submission behavior
+      coverFun();
+  });
 
-  if (radio1.checked) {return radio1.value;}
-  if (radio2.checked) {return radio2.value;}
-  if (radio3.checked) {return radio3.value;}
+  range.addEventListener('touchend', (event) => {
+      event.preventDefault(); // Prevent default form submission behavior
+      coverFun();
+  });
 }
 
 //returns the maximum number of people that can be covered
 //under this plan
 function getCoverLimit() {
-  let plan = getValueOfCheckedPlan();
-
-  if (plan == "Basic"){return 5;}
-  else if (plan == "Flex") {return 10;}
-  else if (plan == "Premium") {return 15}    
+  return 9;  
 }
 
 export function requestSignup() {
@@ -56,6 +67,7 @@ export function requestSignup() {
 
     if (USER_TYPE == "AGENT") {
       raw = JSON.stringify(agentRegisterInfo());
+      console.log("agent id:"+AGENT_ID);
     }
     else if(USER_TYPE == "CLIENT"){
       raw = JSON.stringify(selfRegisterInfo());
@@ -99,18 +111,21 @@ export function requestSignup() {
 }
 
 function addPerson() {
-  console.log("tyhh")
   document.getElementById("max-people").innerText = `This plan covers a maximum of ${getCoverLimit()} people.`;
 
-  let name = document.getElementById("person_name").value;
+  let name = document.getElementById("person_fname").value+" "+document.getElementById("person_lname").value;
   let id   = document.getElementById("person_id").value;
+  let rel  = document.getElementById("person_rel").value;
+  let gen  = document.getElementById("person_gen").value;
 
   if (name != '' && id != '') {
       
     if (coveredPeople.length < getCoverLimit()){
       var coveredPerson = {
         fullname: name, 
-        national_id: id
+        national_id: id,
+        relationship: rel,
+        gender: gen
       };
       coveredPeople.push(coveredPerson); 
     } else {
@@ -123,8 +138,11 @@ function addPerson() {
 
   showCoveredList();
 
-  document.getElementById("person_name").value = '';
+  document.getElementById("person_fname").value = '';
+  document.getElementById("person_lname").value = '';
   document.getElementById("person_id").value   = '';
+  document.getElementById("person_rel").value = '';
+  document.getElementById("person_gen").value = '';
 }
 
 function removePerson(index) {
@@ -145,7 +163,7 @@ function showCoveredList() {
         ${coveredPeople[i].national_id}
         <a href="#" id="${index}" >
           <span class="badge badge-sm bg-gradient-danger">
-            Remove
+              X
           </span>
         </a>
       </li>`);
@@ -157,6 +175,7 @@ function showCoveredList() {
 }
 
 function selfRegisterInfo() {
+  let cover  = document.getElementById("coverRange").value;
   return {
       //general info
       "registration_type": "unassisted",
@@ -164,19 +183,13 @@ function selfRegisterInfo() {
       "phone_number": USER_PHONE,
       "client_fname": document.getElementById("new-user-fn").value,
       "client_lname": document.getElementById("new-user-ln").value,
-      "client_dob": document.getElementById("new-user-dob").value,
+      "client_email": document.getElementById("new-user-email").value,
       "client_pin": document.getElementById("new-user-nid").value,
-      "client_gender": document.getElementById("new-user-g").value,
-      "client_maritalS": document.getElementById("new-user-ms").value,
       //Plan details
-      "policy_plan": getValueOfCheckedPlan(),
+      "cover_value": cover,
+      "monthly_cost": calcMonthlyCost(cover),
       //Beneficiary details
-      "beneficiary_fname": document.getElementById("b-fn").value,
-      "beneficiary_lname": document.getElementById("b-ln").value,
-      "beneficiary_dob": document.getElementById("b-dob").value,
-      "beneficiary_pin": document.getElementById("b-nid").value,
-      "beneficiary_phone": document.getElementById("b-phone").value,
-      "beneficiary_relationship": document.getElementById("b-rel").value,
+      "beneficiary": beneficiaries,
       //covered people
       "covered_people": coveredPeople,
       //Payment details
@@ -186,6 +199,7 @@ function selfRegisterInfo() {
 }
 
 function agentRegisterInfo() {
+  let cover  = document.getElementById("coverRange").value;
   return {
       //general info
       "registration_type": "agent",
@@ -194,19 +208,13 @@ function agentRegisterInfo() {
       "phone_number": USER_PHONE,
       "client_fname": document.getElementById("new-user-fn").value,
       "client_lname": document.getElementById("new-user-ln").value,
-      "client_dob": document.getElementById("new-user-dob").value,
+      "client_email": document.getElementById("new-user-email").value,
       "client_pin": document.getElementById("new-user-nid").value,
-      "client_gender": document.getElementById("new-user-g").value,
-      "client_maritalS": document.getElementById("new-user-ms").value,
       //Plan details
-      "policy_plan": getValueOfCheckedPlan(),
+      "cover_value": cover,
+      "monthly_cost": calcMonthlyCost(cover),
       //Beneficiary details
-      "beneficiary_fname": document.getElementById("b-fn").value,
-      "beneficiary_lname": document.getElementById("b-ln").value,
-      "beneficiary_dob": document.getElementById("b-dob").value,
-      "beneficiary_pin": document.getElementById("b-nid").value,
-      "beneficiary_phone": document.getElementById("b-phone").value,
-      "beneficiary_relationship": document.getElementById("b-rel").value,
+      "beneficiary": beneficiaries,
       //covered people
       "covered_people": coveredPeople,
       //Payment details
@@ -216,25 +224,19 @@ function agentRegisterInfo() {
 }
 
 function confirmInfo() {
-  
   document.getElementById("c1").innerText = document.getElementById("new-user-fn").value;
   document.getElementById("c2").innerText = document.getElementById("new-user-ln").value;
-  document.getElementById("c3").innerText = document.getElementById("new-user-dob").value;
-  document.getElementById("c4").innerText = document.getElementById("new-user-nid").value;
-  document.getElementById("c5").innerText = document.getElementById("new-user-g").value;
-  document.getElementById("c6").innerText = document.getElementById("new-user-ms").value;
+  document.getElementById("c4").innerText = document.getElementById("new-user-email").value;
+  document.getElementById("c3").innerText = document.getElementById("new-user-nid").value;
   
   //Beneficiary details
-  document.getElementById("c7").innerText = document.getElementById("b-fn").value;
-  document.getElementById("c8").innerText = document.getElementById("b-ln").value;
-  document.getElementById("c9").innerText = document.getElementById("b-dob").value;
-  document.getElementById("c10").innerText = document.getElementById("b-nid").value;
-  document.getElementById("c11").innerText = document.getElementById("b-phone").value;
-  document.getElementById("c12").innerText = document.getElementById("b-rel").value;
+  confirmBeneficiaryList();
   //covered people
   confirmCoveredList();
   //Plan details
-  document.getElementById("c14").innerText = getValueOfCheckedPlan();
+  let cover  = document.getElementById("coverRange").value;
+  document.getElementById("c11").innerText = calcMonthlyCost(cover);
+  document.getElementById("c14").innerText = cover;
   //Payment details
   document.getElementById("c15").innerText = document.getElementById("payment-method").value;
   document.getElementById("c16").innerText = document.getElementById("payment-date").value;
@@ -253,6 +255,120 @@ function confirmCoveredList() {
         ${coveredPeople[i].national_id}
       </li>`);
  
+  }
+}
+
+function confirmBeneficiaryList() {
+  let cList = document.getElementById("c12");
+  cList.innerHTML = '';
+
+  for (var i = beneficiaries.length - 1; i >= 0; i--) { 
+    let index = i;
+    cList.insertAdjacentHTML('beforeend', 
+      `<li>
+        ${beneficiaries[i].fullname}
+        ${beneficiaries[i].national_id}
+      </li>`);
+ 
+  }
+}
+
+function addBeneficiary() {
+  let name    = document.getElementById("ben_name").value;
+  let id      = document.getElementById("ben_id").value;
+  let rel     = document.getElementById("ben_rel").value;
+  let phone_n = document.getElementById("ben_phone").value;
+  let email   = document.getElementById("ben_email").value;
+  let percent = document.getElementById("ben_percentage").value;
+
+  if (name != '' && id != '') {
+      
+    var ben = {
+      fullname: name, 
+      national_id: id,
+      relationship: rel,
+      phone: phone_n,
+      email: email,
+      percentage: percent
+    };
+    beneficiaries.push(ben);
+    
+  } else {
+    showErrorMsg("Error", "The name and national id must be entered.");
+    return;
+  }
+
+  showBeneficiaryList();
+
+  document.getElementById("ben_name").value       = '';
+  document.getElementById("ben_id").value         = '';
+  document.getElementById("ben_rel").value        = '';
+  document.getElementById("ben_phone").value      = '';
+  document.getElementById("ben_email").value      = '';
+  document.getElementById("ben_percentage").value = '';
+}
+
+function showBeneficiaryList() {
+  let cList = document.getElementById("beneficiary_list");
+  cList.innerHTML = '';
+
+  for (var i = beneficiaries.length - 1; i >= 0; i--) { 
+    let index = i;
+    cList.insertAdjacentHTML('beforeend', 
+      `<li>
+        ${beneficiaries[i].fullname}
+        ${beneficiaries[i].national_id}
+        <a href="#" id="b-${index}" >
+          <span class="badge badge-sm bg-gradient-danger">
+              X
+          </span>
+        </a>
+      </li>`);
+
+    document.getElementById("b-"+index).addEventListener('click', (event) => {
+      removeBeneficiary("b-"+index);
+    });   
+  }
+}
+
+function removeBeneficiary(index) {
+  event.preventDefault();
+  beneficiaries.splice(index, 1);
+  showBeneficiaryList();
+}
+
+function calcMonthlyCost(value) {
+  switch (Number(value)){
+    case 5000:
+      return 15;
+      break;
+    case 10000:
+      return 20;
+      break;
+    case 15000:
+      return 25;
+      break;
+    case 20000:
+      return 30;
+      break;
+    case 25000:
+      return 35;
+      break;
+    case 30000:
+      return 40;
+      break;
+    case 35000:
+      return 45;
+      break;
+    case 40000:
+      return 50;
+      break;
+    case 45000:
+      return 55;
+      break;
+    case 50000:
+      return 60;
+      break;
   }
 }
 

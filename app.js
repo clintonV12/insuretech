@@ -14,7 +14,6 @@ import { Signup } from './components/client/signup.js';
 import { OTP } from './components/client/otp.js';
 import { SideBar } from './components/client/sidebar.js';
 import { Home } from './components/client/home.js';
-import { Bill } from './components/client/billing.js';
 import { NewUser } from './components/client/new-user.js';
 import { Policy } from './components/client/policy.js';
 import { ClaimSideBar } from './components/client/claim-sidebar.js';
@@ -33,7 +32,8 @@ import { ClientLoginOTPAjax } from './controllers/client/login-otp.js';
 import { ClientSignupAjax } from './controllers/client/signup.js';
 import { ClientSignupOTPAjax } from './controllers/client/signup-otp.js';
 import { NewUserAjax } from './controllers/client/new-user.js';
-import { RequestBillingInfo, SaveNewPhoneNumber } from './controllers/client/billing.js';
+import { RequestBillingInfo, PayNow } from './controllers/client/home.js';
+import { RequestPolicyInfo } from './controllers/client/policy.js';
 
 import { AgentLoginAjax } from './controllers/agent/agent-login.js';
 import { RequestMyClientInfo } from './controllers/agent/agent-dashboard.js';
@@ -163,9 +163,6 @@ export async function router() {
         case 'dashboard':
             content = await Home();
             break;
-        case 'billing':
-            content = await Bill();
-            break;
         case 'new-user':
             content = await NewUser();
             break;
@@ -227,9 +224,6 @@ function setPageTitle() {
         case 'dashboard':
             pageTitle = 'Home'
             break;
-        case 'billing':
-            pageTitle = 'Billing'
-            break;
         case 'new-user':
             pageTitle = 'Policy Registration'
             break;
@@ -276,9 +270,9 @@ function getControllerFunctions(pagename) {
         case 'new-user':
             NewUserAjax();
             break;
-        case 'billing':
+        case 'dashboard':
             RequestBillingInfo();
-            SaveNewPhoneNumber();
+            PayNow();
             break;
         case 'agent-login':
             AgentLoginAjax();
@@ -294,6 +288,9 @@ function getControllerFunctions(pagename) {
             break;
         case 'claim':
             ClaimAjax();
+            break;
+        case 'policy':
+            RequestPolicyInfo();
             break;
     }
 }

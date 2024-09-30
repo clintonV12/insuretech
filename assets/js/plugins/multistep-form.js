@@ -72,10 +72,10 @@ DOMstrings.stepsBar.addEventListener('click', e => {
   	if (!newUserForm1Valid()) {return;}
   }
   else if (eventTarget.id == "step3") {
-  	if (!newUserForm2Valid()) {return;}
+  	
   }
   else if (eventTarget.id == "step4") {
-    if (!newUserForm3Valid()) {return;}
+    
   }
   else if (eventTarget.id == "step5") {
   	
@@ -101,10 +101,10 @@ DOMstrings.stepsForm.addEventListener('click', e => {
   	if (!newUserForm1Valid()) {return;}
   }
   else if (eventTarget.id == "next_btn2") {
-  	if (!newUserForm2Valid()) {return;}
+  	
   }
   else if (eventTarget.id == "next_btn3") {
-  	if (!newUserForm3Valid()) {return;}
+  	
   }
   else if (eventTarget.id == "next_btn4") {
   	if (!newUserForm4Valid()) {return;}

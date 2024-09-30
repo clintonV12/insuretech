@@ -8,11 +8,11 @@
 						<button id="step1" class="multisteps-form__progress-btn js-active" type="button" title="User Info">
 						<span>User Info</span>
 						</button>
-						<button id="step2" class="multisteps-form__progress-btn" type="button" title="Policy Plans">Policy Plans</button>
-						<button id="step3" class="multisteps-form__progress-btn" type="button" title="Beneficiary">Beneficiary</button>
-						<button id="step4" class="multisteps-form__progress-btn" type="button" title="Covered">Covered</button>
-						<button id="step5" class="multisteps-form__progress-btn" type="button" title="Profile">Payment</button>
-						<button id="step6" class="multisteps-form__progress-btn" type="button" title="Confirmation">Confirmation</button>
+						<button id="step2" class="multisteps-form__progress-btn" type="button" title="Your Cover"><span>Your Cover</span></button>
+						<button id="step3" class="multisteps-form__progress-btn" type="button" title="Beneficiary"><span>Beneficiary</span></button>
+						<button id="step4" class="multisteps-form__progress-btn" type="button" title="Covered"><span>Covered</span></button>
+						<button id="step5" class="multisteps-form__progress-btn" type="button" title="Profile"><span>Payment</span></button>
+						<button id="step6" class="multisteps-form__progress-btn" type="button" title="Confirmation"><span>Confirmation</span></button>
 					</div>
 				</div>
 			</div>
@@ -40,8 +40,8 @@
 
 							<div class="row mt-3">
 							<div class="col-12 col-sm-6">
-							<label>Date of Birth</label>
-							<input id="new-user-dob" class="multisteps-form__input form-control" type="date" placeholder="" />
+							<label>Email</label>
+							<input id="new-user-email" class="multisteps-form__input form-control" type="email" placeholder="Enter Email" />
 							</div>
 							<div class="col-12 col-sm-6 mt-3 mt-sm-0">
 							<label>National ID</label>
@@ -49,25 +49,6 @@
 							</div>
 							</div>
 
-							<div class="row mt-3">
-							<div class="col-12 col-sm-6">
-							<label>Gender</label>
-							<select id="new-user-g" class="multisteps-form__input form-control">
-								<option value="">Please Select</option>
-								<option value="Male">Male</option>
-								<option value="Female">Female</option>
-							</select>
-							</div>
-							<div class="col-12 col-sm-6 mt-3 mt-sm-0">
-							<label>Marital Status</label>
-							<select id="new-user-ms" class="multisteps-form__input form-control">
-								<option value="">Please Select</option>
-								<option value="Married">Married</option>
-								<option value="Single">Single</option>
-								<option value="Widowed">Widowed</option>
-							</select>
-							</div>
-							</div>
 							<div class="button-row d-flex mt-4">
 							<button class="btn bg-gradient-dark ms-auto mb-0 js-btn-next" type="button" title="Next" id="next_btn1">Next</button>
 							</div>
@@ -77,202 +58,51 @@
 						<div class="card multisteps-form__panel p-3 border-radius-xl bg-gradient-light" data-animation="FadeIn">
 							<p class="mb-0 text-sm text-danger" id="errorMsg2"></p>
 							<div class="multisteps-form__content">
-					
-								<div class="row">
-									<div class="col-lg-4 mb-lg-0 mb-4">
-										<div class="card">
-											<div class="card-header text-center pt-4 pb-3">
-												<span class="badge rounded-pill bg-light text-dark">Basic</span>
-												<h1 class="font-weight-bold mt-2">
-													<small>E</small>120
-												</h1>
-											</div>
 
-											<div class="card-body text-lg-start text-center pt-0">
-												<div class="d-flex justify-content-lg-start justify-content-center p-2">
-													<div class="icon icon-shape icon-xs rounded-circle bg-gradient-success shadow text-center">
-														<i class="bx bx-check opacity-10"></i>
-													</div>
-													<div>
-														<span class="ps-3">Me & My Direct Family</span>
-													</div>
-												</div>
-												<div class="d-flex justify-content-lg-start justify-content-center p-2">
-													<div class="icon icon-shape icon-xs rounded-circle bg-gradient-danger shadow text-center">
-														<i class="bx bx-x opacity-10"></i>
-													</div>
-													<div>
-														<span class="ps-3">Parents & In-laws</span>
-													</div>
-												</div>
-												<div class="d-flex justify-content-lg-start justify-content-center p-2">
-													<div class="icon icon-shape icon-xs rounded-circle bg-gradient-danger shadow text-center">
-														<i class="bx bx-x opacity-10"></i>
-													</div>
-													<div>
-														<span class="ps-3">Extended Family</span>
-													</div>
-												</div>
-
-												<div class="d-flex justify-content-lg-start justify-content-center p-2">
-													<div class="form-check form-switch">
-			                      <input class="form-check-input" name="plan-choice" type="radio" id="radio1" value="Basic">
-			                      <label class="form-check-label text-bolder" for="radio1">Choose Plan.</label>
-			                    </div>
-		                    </div>
-
-											</div>
-										</div>
-									</div>
-
-									<div class="col-lg-4 mb-lg-0 mb-4">
-										<div class="card">
-											<div class="card-header text-center pt-4 pb-3">
-												<span class="badge rounded-pill bg-light text-dark">Flex</span>
-												<h1 class="font-weight-bold mt-2">
-													<small>E</small>200
-												</h1>
-											</div>
-
-											<div class="card-body text-lg-start text-center pt-0">
-												<div class="d-flex justify-content-lg-start justify-content-center p-2">
-													<div class="icon icon-shape icon-xs rounded-circle bg-gradient-success shadow text-center">
-														<i class="bx bx-check opacity-10"></i>
-													</div>
-													<div>
-														<span class="ps-3">Me & My Direct Family</span>
-													</div>
-												</div>
-												<div class="d-flex justify-content-lg-start justify-content-center p-2">
-													<div class="icon icon-shape icon-xs rounded-circle bg-gradient-success shadow text-center">
-														<i class="bx bx-check opacity-10"></i>
-													</div>
-													<div>
-														<span class="ps-3">Parents & In-laws</span>
-													</div>
-												</div>
-												<div class="d-flex justify-content-lg-start justify-content-center p-2">
-													<div class="icon icon-shape icon-xs rounded-circle bg-gradient-danger shadow text-center">
-														<i class="bx bx-x opacity-10"></i>
-													</div>
-													<div>
-														<span class="ps-3">Extended Family</span>
-													</div>
-												</div>
-
-												<div class="d-flex justify-content-lg-start justify-content-center p-2">
-													<div class="form-check form-switch">
-			                      <input class="form-check-input" name="plan-choice" type="radio" id="radio2" value="Flex">
-			                      <label class="form-check-label text-bolder" for="radio2">Choose Plan.</label>
-			                    </div>
-		                    </div>
-
-											</div>
-										</div>
-									</div>
-
-									<div class="col-lg-4 mb-lg-0 mb-4">
-										<div class="card">
-											<div class="card-header text-center pt-4 pb-3">
-												<span class="badge rounded-pill bg-light text-dark">Premium</span>
-												<h1 class="font-weight-bold mt-2">
-													<small>E</small>300
-												</h1>
-											</div>
-
-											<div class="card-body text-lg-start text-center pt-0">
-												<div class="d-flex justify-content-lg-start justify-content-center p-2">
-													<div class="icon icon-shape icon-xs rounded-circle bg-gradient-success shadow text-center">
-														<i class="bx bx-check opacity-10"></i>
-													</div>
-													<div>
-														<span class="ps-3">Me & My Direct Family</span>
-													</div>
-												</div>
-												<div class="d-flex justify-content-lg-start justify-content-center p-2">
-													<div class="icon icon-shape icon-xs rounded-circle bg-gradient-success shadow text-center">
-														<i class="bx bx-check opacity-10"></i>
-													</div>
-													<div>
-														<span class="ps-3">Parents & In-laws</span>
-													</div>
-												</div>
-												<div class="d-flex justify-content-lg-start justify-content-center p-2">
-													<div class="icon icon-shape icon-xs rounded-circle bg-gradient-success shadow text-center">
-														<i class="bx bx-check opacity-10"></i>
-													</div>
-													<div>
-														<span class="ps-3">Extended Family</span>
-													</div>
-												</div>
-
-												<div class="d-flex justify-content-lg-start justify-content-center p-2">
-													<div class="form-check form-switch">
-			                      <input class="form-check-input" name="plan-choice" type="radio" id="radio3" id="Premium">
-			                      <label class="form-check-label text-bolder" for="radio3">Choose Plan.</label>
-			                    </div>
-		                    </div>
-
-											</div>
-										</div>
-									</div>
-								</div>
+								<div class="row mt-3">
+									<div class="card mb-4 mb-xl-0">
+	                    <h5 class="card-header">Your Cover</h5>
+	                    <div class="card-body">
+	                      <div class="mb-3">
+	                        <label for="coverRange" class="form-label">Adjust the range to select the cover the best suits your needs.</label>
+	                        <input type="range" class="form-range" min="5000" max="50000" id="coverRange" step="5000" />
+	                        <h4 id="currentRange"></h4>
+	                      </div>
+	                    </div>
+	                  </div>
+	                </div>
+	              </div>
 
 								<div class="button-row d-flex mt-4">
 									<button class="btn bg-gradient-light mb-0 js-btn-prev" type="button" title="Prev">Prev</button>
 									<button class="btn bg-gradient-dark ms-auto mb-0 js-btn-next" type="button" title="Next" id="next_btn2">Next</button>
 								</div>
-							</div>
 						</div>
 
 						<div class="card multisteps-form__panel p-3 border-radius-xl bg-white" data-animation="FadeIn">
-							<h5 class="font-weight-bolder mb-0">Beneficiary Details</h5>
-							<p class="mb-0 text-sm">Mandatory information</p>
-							<p class="mb-0 text-sm text-danger" id="errorMsg3"></p>
+              <div class="card-header pb-0 p-3">
+                <div class="row">
+                  <div class="col-6 d-flex align-items-left">
+                    <h5 class="font-weight-bolder mb-0">Beneficiary Details</h5>
+                  </div>
+                  <div class="col-6 text-end">
+                    <a class="btn bg-gradient-dark mb-0" href="javascript:;" data-bs-toggle="modal" data-bs-target="#new_ben"><i class="bx bx-plus"></i>&nbsp;&nbsp;Add Beneficiary</a>
+                  </div>
+                </div>
+              </div>
 
 							<div class="multisteps-form__content">
-							<div class="row mt-3">
-							<div class="col-12 col-sm-6">
-							<label>First Name</label>
-							<input id="b-fn" class="multisteps-form__input form-control" type="text" placeholder="eg. Lusanda" autofocus/>
-							</div>
-							<div class="col-12 col-sm-6 mt-3 mt-sm-0">
-							<label>Last Name</label>
-							<input id="b-ln" class="multisteps-form__input form-control" type="text" placeholder="eg. Zwane" />
-							</div>
-							</div>
+                <div class="row mt-3">
+                  <label id="max-people"></label>
+                  <div class="col-12 col-sm-6">
+                    <ul id="beneficiary_list"></ul>
+                  </div>
+                </div>
 
-							<div class="row mt-3">
-							<div class="col-12 col-sm-6">
-							<label>Date of Birth</label>
-							<input id="b-dob" class="multisteps-form__input form-control" type="date" placeholder="" />
-							</div>
-							<div class="col-12 col-sm-6 mt-3 mt-sm-0">
-							<label>National ID</label>
-							<input id="b-nid" class="multisteps-form__input form-control" type="number" placeholder="eg. 0000 0000 0000" />
-							</div>
-							</div>
-
-							<div class="row mt-3">
-							<div class="col-12 col-sm-6">
-							<label>Phone Number</label>
-							<input id="b-phone" class="multisteps-form__input form-control" type="number" placeholder="Phone number" />
-							</div>
-							<div class="col-12 col-sm-6 mt-3 mt-sm-0">
-							<label>Relationship</label>
-							<select id="b-rel" class="multisteps-form__input form-control">
-								<option value="">Please select</option>
-								<option value="Child">Child</option>
-								<option value="Spouse">Spouse</option>
-								<option value="Sibling">Sibling</option>
-								<option value="Parent">Parent</option>
-							</select>
-							</div>
-							</div>
-							<div class="button-row d-flex mt-4">
-								<button class="btn bg-gradient-light mb-0 js-btn-prev" type="button" title="Prev">Prev</button>
-								<button class="btn bg-gradient-dark ms-auto mb-0 js-btn-next" type="button" title="Next" id="next_btn3">Next</button>
-							</div>
+								<div class="button-row d-flex mt-4">
+									<button class="btn bg-gradient-light mb-0 js-btn-prev" type="button" title="Prev">Prev</button>
+									<button class="btn bg-gradient-dark ms-auto mb-0 js-btn-next" type="button" title="Next" id="next_btn3">Next</button>
+								</div>
 							</div>
 						</div>
 
@@ -365,49 +195,28 @@
 							<div class="multisteps-form__content mt-3">
 								<h6 class="font-weight-bold"><i>Policy Holder</i></h6>
 								<div class="row mt-3 bg-gradient-light">
-									<div class="col-lg-4 col-sm-6">
+									<div class="col col-sm-6">
 										<label>First Name: <b id="c1"></b> </label>
 									</div>
-									<div class="col-lg-4 col-sm-6 mt-3 mt-sm-0">
+									<div class="col col-sm-6 mt-3 mt-sm-0">
 										<label>Last Name: <b id="c2"></b></label>
-									</div>
-									<div class="col-lg-4 col-sm-6 mt-3 mt-sm-0">
-										<label>Date of Birth: <b id="c3"></b></label>
 									</div>
 								</div>
 								<div class="row mt-3 bg-gradient-light">
-									<div class="col-lg-4 col-sm-6">
-										<label>National ID: <b id="c4"></b> </label>
+									<div class="col col-sm-6">
+										<label>National ID: <b id="c3"></b> </label>
 									</div>
-									<div class="col-lg-4 col-sm-6 mt-3 mt-sm-0">
-										<label>Gender: <b id="c5"></b></label>
-									</div>
-									<div class="col-lg-4 col-sm-6 mt-3 mt-sm-0">
-										<label>Marital Status: <b id="c6"></b></label>
+									<div class="col col-sm-6 mt-3 mt-sm-0">
+										<label>Email: <b id="c4"></b></label>
 									</div>
 								</div><br>
 
 								<h6 class="font-weight-bold"><i>Beneficiary</i></h6>
 								<div class="row mt-3 bg-gradient-light">
 									<div class="col-lg-4 col-sm-6">
-										<label>First Name: <b id="c7"></b> </label>
-									</div>
-									<div class="col-lg-4 col-sm-6 mt-3 mt-sm-0">
-										<label>Last Name: <b id="c8"></b></label>
-									</div>
-									<div class="col-lg-4 col-sm-6 mt-3 mt-sm-0">
-										<label>Date of Birth: <b id="c9"></b></label>
-									</div>
-								</div>
-								<div class="row mt-3 bg-gradient-light">
-									<div class="col-lg-4 col-sm-6">
-										<label>National ID: <b id="c10"></b> </label>
-									</div>
-									<div class="col-lg-4 col-sm-6 mt-3 mt-sm-0">
-										<label>Gender: <b id="c11"></b></label>
-									</div>
-									<div class="col-lg-4 col-sm-6 mt-3 mt-sm-0">
-										<label>Relationship: <b id="c12"></b></label>
+										<label>Beneficiary list: 
+											<b><ul id="c12"></ul></b> 
+										</label>
 									</div>
 								</div><br>
 
@@ -422,16 +231,21 @@
 
 								<h6 class="font-weight-bold"><i>Billing</i></h6>
 								<div class="row mt-3 bg-gradient-light">
-									<div class="col-lg-4 col-sm-6">
+									<div class="col col-sm-6">
 										<label>Cover value: <b id="c14"></b> </label>
 									</div>
-									<div class="col-lg-4 col-sm-6 mt-3 mt-sm-0">
-										<label>Payment Method: <b id="c15"></b></label>
-									</div>
-									<div class="col-lg-4 col-sm-6 mt-3 mt-sm-0">
-										<label>Payment Date: <b id="c16"></b></label>
+									<div class="col col-sm-6 mt-3 mt-sm-0">
+										<label>Monthly Premium: <b id="c11"></b></label>
 									</div>
 								</div>
+                <div class="row mt-3 bg-gradient-light">
+                  <div class="col col-sm-6 mt-3 mt-sm-0">
+                    <label>Payment Method: <b id="c15"></b></label>
+                  </div>
+                  <div class="col col-sm-6 mt-3 mt-sm-0">
+                    <label>Payment Date: <b id="c16"></b></label>
+                  </div>
+                </div>
 
 								<div class="button-row d-flex mt-4">
 									<button class="btn bg-gradient-light mb-0 js-btn-prev" type="button" title="Prev">Prev</button>
@@ -484,27 +298,114 @@
     </div>
 </div>
 
-<div class="modal fade" id="new_person" tabindex="-1" role="dialog" aria-labelledby="input-title" aria-hidden="true">
+<div class="modal fade" id="new_ben" tabindex="-1" role="dialog" aria-labelledby="input-title" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="input-title">Covered Individual</h5>
+        <h5 class="modal-title" id="input-title">Beneficiary</h5>
         <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
         </button>
       </div>
       <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label for="person_name" class="col-form-label">Full Legal Name</label>
-            <input type="text" class="form-control" placeholder="Enter full name" id="person_name">
+      	<div class="row g-2">
+          <div class="col-12 col-sm-6 mb-0">
+            <label for="ben_name" class="col-form-label">Full Legal Name</label>
+            <input type="text" class="form-control" placeholder="Enter full name" id="ben_name">
           </div>
+          <div class="col-12 col-sm-6 mb-0">
+            <label for="ben_rel" class="col-form-label">Relationship</label>
+						<select id="ben_rel" class="form-control">
+							<option value="">Please select</option>
+							<option value="Child">Child</option>
+							<option value="Spouse">Spouse</option>
+							<option value="Sibling">Sibling</option>
+							<option value="Parent">Parent</option>
+						</select>
+          </div>
+        </div>
 
-          <div class="form-group">
+        <div class="row g-2">
+          <div class="col-12 col-sm-6 mb-0">
+            <label for="ben_id" class="col-form-label">National ID</label>
+            <input type="text" class="form-control" placeholder="Enter national ID" id="ben_id">
+          </div>
+          <div class="col-12 col-sm-6 mb-0">
+            <label for=ben_phone class="col-form-label">Phone</label>
+            <input type="text" class="form-control" id="ben_phone" placeholder="Enter Phone Number">
+          </div>
+        </div>
+
+        <div class="row g-2">
+          <div class="col-12 col-sm-6 mb-0">
+            <label for=ben_email class="col-form-label">Email</label>
+            <input type="email" class="form-control" id="ben_email" placeholder="Enter Email">
+          </div>
+          <div class="col-12 col-sm-6 mb-0">
+            <label for="ben_percentage" class="col-form-label">Percentage</label>
+            <input type="text" class="form-control" id="ben_percentage" placeholder="Enter Percentage">
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn bg-gradient-dark" data-bs-dismiss="modal">Close
+        </button>
+        <button type="button" id="add_ben_btn" class="btn bg-gradient-info">Enter</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="new_person" tabindex="-1" role="dialog" aria-labelledby="input-title" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="input-title">Family members</h5>
+        <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      	<div class="row g-2">
+          <div class="col-12 col-sm-6 mb-0">
+            <label for="person_fname" class="col-form-label">First Name</label>
+            <input type="text" class="form-control" placeholder="First name" id="person_fname">
+          </div>
+          <div class="col-12 col-sm-6 mb-0">
+            <label for="person_lname" class="col-form-label">Last Name</label>
+            <input type="text" class="form-control" placeholder="Last name" id="person_lname">
+          </div>
+        </div>
+
+        <div class="row g-2">
+          <div class="col-12 col-sm-6 mb-0">
             <label for="person_id" class="col-form-label">National ID</label>
             <input type="text" class="form-control" placeholder="Enter national ID" id="person_id">
           </div>
-        </form>
+          <div class="col-12 col-sm-6 mb-0">
+            <label for="person_rel" class="col-form-label">Relationship</label>
+						<select id="person_rel" class="form-control">
+							<option value="">Please select</option>
+							<option value="Child">Child</option>
+							<option value="Spouse">Spouse</option>
+							<option value="Sibling">Sibling</option>
+							<option value="Parent">Parent</option>
+						</select>
+          </div>
+        </div>
+
+        <div class="row g-2">
+          <div class="col-12 col-sm-6 mb-0">
+            <label for="person_gen" class="col-form-label">Gender</label>
+						<select id="person_gen" class="form-control">
+							<option value="">Please select</option>
+							<option value="Male">Male</option>
+							<option value="Female">Female</option>
+						</select>
+          </div>
+        </div>
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn bg-gradient-dark" data-bs-dismiss="modal">Close

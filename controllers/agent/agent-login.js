@@ -55,7 +55,7 @@ function requestLogin(username, password) {
         USER_TYPE      = "AGENT";
         TOKEN          = data.token;
         AGENT_USERNAME = data.username;
-        AGENT_ID       = data.id;
+        AGENT_ID       = data.agent_id;
         
         pagename = 'agent-dashboard';
         router();
