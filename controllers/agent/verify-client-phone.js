@@ -57,11 +57,10 @@ function requestPhoneVerification(phone) {
     });
 
   req.done(function(data){
-    showInfoMsg("Alert", data.message);
 
     if (data.message == "OTP sent successfully") {
+      showInfoMsg("Alert", `Your OTP is: ${data.OTP}`);
       clientPhone = phone;
-      console.log(data.OTP);
       //change the displayed modal
       $("#client_phone").modal("hide");
       const modal = new bootstrap.Modal('#client_otp');

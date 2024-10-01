@@ -38,6 +38,7 @@ import { RequestPolicyInfo } from './controllers/client/policy.js';
 import { AgentLoginAjax } from './controllers/agent/agent-login.js';
 import { RequestMyClientInfo } from './controllers/agent/agent-dashboard.js';
 import { VerifyClientPhoneAjax } from './controllers/agent/verify-client-phone.js';
+import { ResetPassword } from './controllers/agent/password-recovery.js';
 
 let pageTitle = 'Home';
 
@@ -291,6 +292,9 @@ function getControllerFunctions(pagename) {
             break;
         case 'policy':
             RequestPolicyInfo();
+            break;
+        case 'agent-password-recover':
+            ResetPassword();
             break;
     }
 }

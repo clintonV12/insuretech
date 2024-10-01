@@ -33,19 +33,15 @@ function requestOTP(phone) {
     });
 
   req.done(function(data){
-      showInfoMsg("Alert", data.message);
-
+      
       if (data.message == "OTP sent successfully") {
+        showInfoMsg("Alert", `Your OTP is: ${data.OTP}`);
         USER_PHONE = phone;
-        console.log(data.OTP);
         //change to opt page
         pagename = 'login-otp';
         router();
-      } else if (data.message == "Error sending SMS") {
-        console.log("Error sending sms OTP could not be sent please try again later.");
-        //reomve this later
-        pagename = 'login-otp';
-        router();
+      } else {
+        showErrorMsg("Error", data.message);
       } 
     });
 
