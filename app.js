@@ -115,7 +115,7 @@ function renderPage(content) {
         if (pagename == 'new-user') {
             document.getElementById("policy").classList.add('active');    
         } else {
-            document.getElementById("onboarding").classList.add('active');
+            document.getElementById("agent-dashboard").classList.add('active');
         }
         getMultiStepScript();
     } else {

@@ -4,6 +4,7 @@ export function VerifyClientPhoneAjax() {
   const verifyButton = document.getElementById('verify_client_phone');
   verifyButton.addEventListener('click', (event) => {
       event.preventDefault(); // Prevent default form submission behavior
+      console.log("clicked");
       getPhoneNumberInput();
   });
 
@@ -57,7 +58,8 @@ function requestPhoneVerification(phone) {
     });
 
   req.done(function(data){
-
+    console.log(data);
+    
     if (data.message == "OTP sent successfully") {
       showInfoMsg("Alert", `Your OTP is: ${data.OTP}`);
       clientPhone = phone;
@@ -65,8 +67,8 @@ function requestPhoneVerification(phone) {
       $("#client_phone").modal("hide");
       const modal = new bootstrap.Modal('#client_otp');
       modal.show();
-    } else if (data.message == "Error sending SMS") {
-      console.log("Error sending sms OTP could not be sent please try again later.");
+    } else {
+      showInfoMsg("Alert", data.message);
     } 
   });
 
