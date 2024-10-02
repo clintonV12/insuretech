@@ -23,8 +23,9 @@ import { AgentLogin } from './components/agent/agent-login.js';
 import { AgentPasswordRecovery } from './components/agent/agent-password-recover.js';
 import { AgentSideBar } from './components/agent/agent-sidebar.js';
 import { AgentDashboard } from './components/agent/agent-dashboard.js';
+import { MyClientsInfo } from './components/agent/myclients.js';
 import { OnBoardNewUser } from './components/agent/agent-onboarding.js';
-import { VerifyClientPhone } from './components/agent/verify-client-phone.js';
+import { AgentProfile } from './components/agent/agent-profile.js';
 
 import { ClaimAjax } from './controllers/client/claims.js';
 import { ClientLoginAjax } from './controllers/client/login.js';
@@ -36,9 +37,10 @@ import { RequestBillingInfo, PayNow } from './controllers/client/home.js';
 import { RequestPolicyInfo } from './controllers/client/policy.js';
 
 import { AgentLoginAjax } from './controllers/agent/agent-login.js';
-import { RequestMyClientInfo } from './controllers/agent/agent-dashboard.js';
-import { VerifyClientPhoneAjax } from './controllers/agent/verify-client-phone.js';
+import { VerifyClientPhoneAjax } from './controllers/agent/agent-dashboard.js';
+import { RequestMyClientInfo } from './controllers/agent/myclients.js';
 import { ResetPassword } from './controllers/agent/password-recovery.js';
+import { RequestAgentInfo } from './controllers/agent/agent-profile.js';
 
 let pageTitle = 'Home';
 
@@ -77,7 +79,8 @@ function renderPage(content) {
 
     if (pagename == 'claim') {
         sideBarContent = ClaimSideBar();
-    } else if(pagename == 'agent-dashboard' || pagename == 'agent-onboarding' || pagename == 'onboarding') {
+    } else if(pagename == 'agent-dashboard' || pagename == 'agent-onboarding' 
+        || pagename == 'onboarding' || pagename == 'myclients' || pagename == 'agent-profile') {
         sideBarContent = AgentSideBar();
     } else {
         sideBarContent = SideBar()
@@ -188,11 +191,14 @@ export async function router() {
         case 'agent-dashboard':
             content = await AgentDashboard();
             break;
-        case 'onboarding':
-            content = await VerifyClientPhone();
-            break;
         case 'agent-onboarding':
             content = await OnBoardNewUser();
+            break;
+        case 'myclients':
+            content = await MyClientsInfo();
+            break;
+        case 'agent-profile':
+            content = await AgentProfile();
             break;
         default:
             content = await Login();
@@ -236,8 +242,13 @@ function setPageTitle() {
             break;
         case 'agent-dashboard':
         case 'agent-onboarding':
-        case 'onboarding':
             pageTitle = 'Agent Dashboard'
+            break;
+        case 'myclients':
+            pageTitle = 'My Clients';
+            break;
+        case 'agent-profile':
+            pageTitle = 'Profile';
             break;
         default:
             pageTitle = 'Home';
@@ -279,9 +290,6 @@ function getControllerFunctions(pagename) {
             AgentLoginAjax();
             break;
         case 'agent-dashboard':
-            RequestMyClientInfo();
-            break;
-        case 'onboarding':
             VerifyClientPhoneAjax();
             break;
         case 'agent-onboarding':
@@ -295,6 +303,12 @@ function getControllerFunctions(pagename) {
             break;
         case 'agent-password-recover':
             ResetPassword();
+            break;
+        case 'myclients':
+            RequestMyClientInfo();
+            break;
+        case 'agent-profile':
+            RequestAgentInfo();
             break;
     }
 }

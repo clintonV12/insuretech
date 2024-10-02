@@ -21,9 +21,16 @@ export function AgentSideBar() {
           </li>
 
           <li class="nav-item">
-            <a class="nav-link nav-page " href="#" id="onboarding">
-              <i class="bx bx-user-plus"></i>
-              <span class="nav-link-text ms-1">Client Onboarding</span>
+            <a class="nav-link nav-page " href="#" id="myclients">
+              <i class="bx bx-group"></i>
+              <span class="nav-link-text ms-1">My Clients</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link nav-page " href="#" id="agent-profile">
+              <i class="bx bx-user"></i>
+              <span class="nav-link-text ms-1">Profile</span>
             </a>
           </li>
 

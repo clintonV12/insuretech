@@ -1,69 +1,124 @@
 import { router } from '../../app.js';
 
-export function RequestMyClientInfo() {
-  RequestClientsInfo();
-}
-
-function RequestClientsInfo() {
-  const raw = {
-    "my-clients": "1",
-    "username": AGENT_USERNAME,
-  };
-
-  var table = $('#client_tbl').DataTable({
-    processing: true,
-    serverSide: false,
-    pageLength: 5,
-    responsive: true,
-    bLengthChange: false,
-    bFilter: true,
-    layout: {
-      bottomStart: {
-        buttons: ['copyHtml5','csvHtml5', 'print']
-      }
-    },
-    ajax: {
-      method: "POST",
-      url: SERVER_URL + "agent",
-      data: function(d) {
-        return JSON.stringify(raw);
-      },
-      dataSrc: "",
-      headers: {
-        "Authorization": `Bearer ${TOKEN}`,
-        "Content-Type": "application/json"
-      },
-      error: function(xhr, error, code) {
-        console.error("AJAX Error: ", error, code);
-        console.log(xhr);
-      }
-    },
-
-    columns: [
-      {
-        title: "Phone Number",
-        data: "phone_number"
-      },
-      {
-        title: "First Name",
-        data: "first_name"
-      },
-      {
-        title: "Last Name",
-        data: "last_name"
-      },
-      {
-        title: "Email",
-        data: "email"
-      }
-    ]
-
+export function VerifyClientPhoneAjax() {
+  const verifyButton = document.getElementById('verify_client_phone');
+  verifyButton.addEventListener('click', (event) => {
+      event.preventDefault(); // Prevent default form submission behavior
+      getPhoneNumberInput();
   });
 
-  $("#client_tbl tbody").on("click", "tr", function() {
-      var data = table.row(this).data();
+  const verifyOTP = document.getElementById('verify_client_otp');
+  verifyOTP.addEventListener('click', (event) => {
+      event.preventDefault(); // Prevent default form submission behavior
+      getOTPInput();
+  });
+
+}
+
+var clientPhone = 0;
+
+function getPhoneNumberInput() {
+  let phone = document.getElementById("phone_num").value;
+
+  if (phone.length != 8) {
+    document.getElementById("error1").innerText = "Please enter a valid phone number.";
+    return;
+  } else {
+    requestPhoneVerification(phone);
+  }
+}
+
+function getOTPInput() {
+  let otp = document.getElementById("phone_otp").value;
+
+  if (otp.length != 6) {
+    document.getElementById("error2").innerText = "Please enter a valid OTP.";
+    return;
+  } else {
+    requestOTPVerification(otp, clientPhone);
+  }
+}
+
+function requestPhoneVerification(phone) {
+  const raw = JSON.stringify({
+    "verify_client_phone":1,
+    "client_phone":phone
+  });
+  showSpinner();
+
+  var req = $.ajax({
+    "url": SERVER_URL + "agent",
+    "method": "POST",
+    "data": raw,
+    "headers": {
+      "Authorization": `Bearer ${TOKEN}`,
+      "Content-Type": "application/json"
+      }
     });
 
-  // Debugging: Check if DataTable initialization is successful
-  console.log("DataTable initialized: ", table);
+  req.done(function(data){
+
+    if (data.message == "OTP sent successfully") {
+      showInfoMsg("Alert", `Your OTP is: ${data.OTP}`);
+      clientPhone = phone;
+      //change the displayed modal
+      $("#client_phone").modal("hide");
+      const modal = new bootstrap.Modal('#client_otp');
+      modal.show();
+    } else if (data.message == "Error sending SMS") {
+      console.log("Error sending sms OTP could not be sent please try again later.");
+    } 
+  });
+
+  req.fail(function(jqXHR, textStatus, errorThrown){
+      //if the call is not successful
+      console.log(jqXHR);
+      showErrorMsg("Error", textStatus.toString());
+    });
+
+  req.always(function(){
+    hideSpinner();
+  });
+}
+
+function requestOTPVerification(otp, phone) {
+  const raw = JSON.stringify({
+    "verify_client_otp":1,
+    "client_phone":phone,
+    "client_otp_code":otp
+  });
+  showSpinner();
+
+  var req = $.ajax({
+    "url": SERVER_URL + "agent",
+    "method": "POST",
+    "data": raw,
+    "headers": {
+      "Authorization": `Bearer ${TOKEN}`,
+      "Content-Type": "application/json"
+      }
+    });
+
+  req.done(function(data){
+    console.log(data);
+    if (data.message == "OTP verified") {
+      USER_PHONE = phone;
+      $("#client_otp").modal("hide");
+      pagename = 'agent-onboarding';
+      router();
+    }
+    else{
+      showErrorMsg("Error", data.error);
+    } 
+  });
+
+  req.fail(function(jqXHR, textStatus, errorThrown){
+      //if the call is not successful
+      console.log(jqXHR);
+      showErrorMsg("Error", textStatus.toString());
+    });
+
+  req.always(function(){
+    hideSpinner();
+  });
 }
