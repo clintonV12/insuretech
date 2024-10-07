@@ -10,7 +10,7 @@ function runAfterInactivity() {
     if (USER_TYPE == "AGENT" || USER_TYPE == "CLIENT") {
         initGlobalVars();
         showInfoMsg("Alert", "Sorry your session has timed-out.");
-        pagename = 'welcome';
+        pagename = 'login';
         router();
     }
 }
@@ -22,12 +22,12 @@ function resetTimer() {
 }
 
 // Set up event listeners for user activity
-window.onload = resetTimer;           // When the window loads
-document.onmousemove = resetTimer;    // When the mouse is moved
-document.onkeypress = resetTimer;     // When a key is pressed
-document.ontouchstart = resetTimer;   // For touch devices
-document.onclick = resetTimer;        // On mouse click
-document.onscroll = resetTimer;       // On scroll
+window.onload         = resetTimer;  // When the window loads
+document.onmousemove  = resetTimer;  // When the mouse is moved
+document.onkeypress   = resetTimer;  // When a key is pressed
+document.ontouchstart = resetTimer;  // For touch devices
+document.onclick      = resetTimer;  // On mouse click
+document.onscroll     = resetTimer;  // On scroll
 
 // Initialize the inactivity timer
 resetTimer();

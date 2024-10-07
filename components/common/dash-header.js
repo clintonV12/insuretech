@@ -15,14 +15,9 @@ export function DashHeader(page) {
             <!--Used as placeholder to make sure burger menu moves to end -->
             </div>
             <ul class="navbar-nav  justify-content-end">
-              <li class="nav-item d-flex align-items-center">
-                <a href="#" class="nav-link text-body font-weight-bold px-0 " id="logout">
-                  <i class="bx bx-exit me-sm-1"></i>
-                  <span class="d-sm-inline d-none">Sign Out</span>
-                </a>
-              </li>
+              
               <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
-                <a href="#" class="nav-link text-body p-0" id="iconNavbarSidenav" onclick="toggleSidenav()">
+                <a href="#" class="nav-link text-body p-0" id="iconNavbarSidenav" onclick="">
                   <div class="sidenav-toggler-inner">
                     <i class="sidenav-toggler-line"></i>
                     <i class="sidenav-toggler-line"></i>

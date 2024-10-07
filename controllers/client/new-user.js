@@ -315,14 +315,11 @@ function showBeneficiaryList() {
   for (var i = beneficiaries.length - 1; i >= 0; i--) { 
     let index = i;
     cList.insertAdjacentHTML('beforeend', 
-      `<li>
+      `
+      <li class="list-group-item d-flex justify-content-between align-items-center">
         ${beneficiaries[i].fullname}
         ${beneficiaries[i].national_id}
-        <a href="#" id="b-${index}" >
-          <span class="badge badge-sm bg-gradient-danger">
-              X
-          </span>
-        </a>
+        <span class="badge badge-danger badge-pill" id="b-${index}">X</span>
       </li>`);
 
     document.getElementById("b-"+index).addEventListener('click', (event) => {

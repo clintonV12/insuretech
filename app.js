@@ -1,7 +1,6 @@
 // app.js
 import { About } from './components/about.js';
 import { Price } from './components/price.js';
-import { Welcome } from './components/welcome.js';
 
 import { AuthHeader} from './components/common/auth-header.js';
 import { AuthFooter } from './components/common/auth-footer.js';
@@ -123,6 +122,7 @@ function renderPage(content) {
     }
 
     getControllerFunctions(pagename);
+    toggleNav();
 }
 
 function getMultiStepScript() {
@@ -151,9 +151,6 @@ export async function router() {
         case 'logout':
         case 'home':
             content = await Login();
-            break;
-        case 'welcome':
-            content = await Welcome();
             break;
         case 'signup':
             content = await Signup();
@@ -216,9 +213,9 @@ function pageSelector(pagename, content) {
         case 'signup':
         case 'price':
         case 'login-otp':
-        case 'welcome':
         case 'agent-login':
         case 'agent-password-recover':
+        case 'quote':
             renderAuthPage(content);
             break;
         default:
@@ -310,5 +307,32 @@ function getControllerFunctions(pagename) {
         case 'agent-profile':
             RequestAgentInfo();
             break;
+    }
+}
+
+function toggleNav() {
+    // Toggle Sidenav
+    const iconNavbarSidenav = document.getElementById('iconNavbarSidenav');
+    const iconSidenav = document.getElementById('iconSidenav');
+    const sidenav = document.getElementById('sidenav-main');
+    let body = document.getElementsByTagName('body')[0];
+    let className = 'g-sidenav-pinned';
+
+    if (iconNavbarSidenav) {
+      iconNavbarSidenav.addEventListener("click", toggleSidenav);
+    }
+
+    if (iconSidenav) {
+      iconSidenav.addEventListener("click", toggleSidenav);
+    }
+
+    function toggleSidenav() {
+      if (body.classList.contains(className)) {
+        body.classList.remove(className);
+        console.log("close")
+      } else {
+        body.classList.add(className);
+        console.log("open")
+      }
     }
 }
