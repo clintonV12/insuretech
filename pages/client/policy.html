@@ -2,82 +2,172 @@
 	<div class="col-md-8 col-sm-10 mx-auto">
 		<form class>
 			<div class="card my-sm-5">
-				<div class="card-header text-center">
+				<div class="card-header text-center bg-dark">
 					<div class="row justify-content-between">
 						<div class="col-md-4 text-start">
-							<img class="mb-2 w-25 p-2" src="assets/img/logos/momo.jpg" alt="Logo">
-							<h6>
-							Oracle Life, Eswatini
-							</h6>
-							<p class="d-block text-secondary">tel: +268 2411 7500</p>
+							<h6 class="text-white">Your Policy </h6>
 						</div>
 					</div>
 					
-					<div class="row justify-content-md-between">
-						<div class="col-lg-6 col-md-6 mt-auto">
-							<h6 class="mb-0 text-start text-secondary">
-								Policy ID
-							</h6>
-							<h6 class="text-start mb-0" id="policy_id">
-								Loading...
-							</h6>
-
-							<h6 class="mb-0 text-start text-secondary">
-								Policy Holder
-							</h6>
-							<h6 class="text-start mb-0" id="policy_holder">
-								Loading...
-							</h6>
-						</div>
-						<div class="col-lg-6 col-md-6 mt-auto text-md-end">
-							<div class="row mt-md-5 mt-4 text-md-end">
-								<h6 class="text-secondary mb-0">Registration Date</h6>
-								<h6 class="text-dark mb-0" id="reg_date"></h6>
-							</div>
-						</div>
-					</div>
 				</div>
 
 				<div class="card-body">
 					<div class="row">
 						<div class="col-12">
-							<ul class="list-group">
-			            		<li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
-				                  <div class="d-flex flex-column">
-				                    <h6 class="mb-3 text-sm">Beneficiary</h6>
-				                    <span class="mb-2 text-xs">Full Name: <span class="text-dark font-weight-bold ms-sm-2" id="b-name">Loading...</span></span>
-				                    <span class="mb-2 text-xs">National ID: <span class="text-dark ms-sm-2 font-weight-bold" id="b-id">Loading...</span></span>
-				                    <span class="text-xs">Phone Number: <span class="text-dark ms-sm-2 font-weight-bold" id="b-phone">Loading...</span></span>
-				                  </div>
-				                </li>
-			            	</ul>
-						</div>
-					</div>
+							<div class="row">
+								<div class="row">
+									<div class="col-6">
+										<span class="text-start fw-bold">Policy Number:</span>
+									</div>
+									<div class="col-6">
+										<span class="text-end" id="policy_id">...</span>
+									</div>
+								</div>
 
-					<div class="row">
-						<div class="col-12">
-							<div class="row justify-content-between ">
-								<div class="col-12 text-left">
-									<span class="text-lg font-weight-bolder">
-										Cover Amount:
-										<span class="text-dark ms-sm-2 font-weight-bold" id="cover_value"></span>
-									</span>
+								<div class="row">
+									<div class="col-6">
+										<span class="text-start fw-bold">Total Monthly Premium:</span>
+									</div>
+									<div class="col-6">
+										<span class="text-end" id="monthly_fee">...</span>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-6">
+										<span class="text-start fw-bold">Original Purchase Date:</span>
+									</div>
+									<div class="col-6">
+										<span class="text-end" id="purchase_date">...</span>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-6">
+										<span class="text-start fw-bold">Commencement Date:</span>
+									</div>
+									<div class="col-6">
+										<span class="text-end" id="comm_date">...</span>
+									</div>
 								</div>
 							</div>
+
+							<div class="row mt-3">
+								<h6 class="text-danger">Policy Holder Details</h6>
+								<p class="text-secondary"><span id="policy_holder">...</span>, the policy holder of this policy, was born on <span id="holder_dob">...</span> (yy-mm-dd), is a <span id="holder_gender">..</span>, and is a permanent resident of
+								Eswatini whose identity number is <span id="holder_pin">...</span> (if you plan to or emigrate please let us know as this could
+								affect your policy with us)</p>
+							</div>
+
+							<div class="row mt-3">
+								<h6 class="text-danger">Debit Order Details</h6>
+								<div class="row">
+									<div class="col-6">
+										<span class="text-start fw-bold">Premium Payer Name:</span>
+									</div>
+									<div class="col-6">
+										<span class="text-end" id="policy_hold2">...</span>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-6">
+										<span class="text-start fw-bold">Debit Day:</span>
+									</div>
+									<div class="col-6">
+										<span class="text-end" id="debit_day">...</span>
+									</div>
+								</div>
+							</div>
+
+							<div class="row mt-3">
+								<h6 class="text-danger">Premiums</h6>
+								<p class="text-secondary">Premiums are collected from your mobile money account monthly in advance on your selected debit order date. If, subsequent
+								to commencement of your cover, we do not receive your premium on the due date for any reason, we will notify you
+								and if payment is not received within the next 30 days, your policy may be cancelled. Should there be insufficient
+								funds, we will attempt to collect during the month to ensure that you continue to enjoy cover. If the premium is
+								unpaid, 2 premiums will be payable the following month, failing which the policy will be cancelled.</p>
+							</div>
+
+							<div class="row mt-3">
+								<h6 class="text-danger">Cover Commencement Date</h6>
+								<p class="text-secondary">Your policy will commence when the first payment is collected. The benefit(s) on your policy will commence on <span id="comm_date2"></span> provided that we successfully collect your first monthly payment before then.
+								</p>
+
+								<h6 class="bg-dark text-white">Cover Commencement Date</h6>
+								<div class="table-responsive p-0">
+									<table class="table align-items-center justify-content-center mb-0">
+					                  <thead class="bg-light">
+					                    <tr>
+					                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-10">Benefit</th>
+					                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-10 ps-2">Benefit start date</th>
+					                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-10 ps-2">Benefit Amount</th>
+					                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-10 ps-2">Premium</th>
+					                    </tr>
+					                  </thead>
+					                  <tbody>
+					                  	<tr>
+					                  		<td>
+					                        <p class="text-sm font-weight-bold mb-0">Smart Funeral Cover</p>
+					                      	</td>
+					                      	<td>
+					                        <p class="text-sm mb-0" id="comm_date3">...</p>
+					                      	</td>
+					                      	<td>
+					                        <p class="text-sm mb-0" id="cover_value">...</p>
+					                      	</td>
+					                      	<td>
+					                        <p class="text-sm mb-0" id="monthly_fee2">...</p>
+					                      	</td>
+					                  	</tr>
+					                  	<tr>
+					                  		<td><p class="text-md font-weight-bold mb-0">Total Premium</p></td>
+					                  		<td></td><td></td>
+					                  		<td><p class="text-md font-weight-bold mb-0" id="monthly_fee3">...</p></td>
+					                  	</tr>
+					                  </tbody>
+					                </table>
+								</div>
+								<p class="text-secondary">Benefit and Premium amounts in the table above are effective from <span id="comm_date4"></span>.</p>
+							</div>
+
+							<div class="row mt-3">
+								<h6 class="text-danger">Nominated Beneficiaries (*To whom the benefit is paid)</h6>
+								<div class="table-responsive p-0">
+									<table class="table align-items-center justify-content-center mb-0">
+					                  <thead class="bg-light">
+					                    <tr>
+					                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-10">Name</th>
+					                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-10 ps-2">National ID</th>
+					                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-10 ps-2">Relationship</th>
+					                    </tr>
+					                  </thead>
+					                  <tbody id="ben_tbl">
+					                  </tbody>
+					                </table>
+								</div>
+								<p class="text-secondary">Please note that death benefits are not paid to minors. In the event of death of all policy participants except the main
+								policyholder, the benefit will be paid to the main policyholder.</p>
+							</div>
+
+							<div class="row mt-3">
+								<h6 class="text-danger">Debit Order and Banking Details</h6>
+								<p class="text-secondary">Your premium will be collected by debit order on the <span id="debit_day2"></span> of each month. Your payments are always collected in advance for
+								cover starting on the <span id="debit_day3"></span> of the month following your debit.</p>
+								<p class="text-secondary">You confirmed that you have authority over MTN phone number <span id="holder_phone"></span> and
+								gave permission for it to be debited in terms of the policy and you agreed to allow for tracking of dates to match with
+								cashflow (at no additional cost to yourself). This means that Oracle Life can, in the event of there being insufficient
+								funds available in your account, continue to re-present the payment instruction until payment has been
+								fully satisfied.</p>
+							</div>
+
 						</div>
 					</div>
 				</div>
 
-				<div class="card-footer mt-md-5 mt-4">
+				<div class="card-footer mt-md-3 mt-2">
 					<div class="row">
-						<div class="col-lg-5 text-left">
-							<h5>Thank you!</h5>
-							<p class="text-secondary text-sm">If you encounter any issues related to the policy you can contact us at:</p>
-							<h6 class="text-secondary mb-0">
-							email:
-							<span class="text-dark"><a href="#">info@insuretech.com</a></span>
-							</h6>
-						</div>
+						
 						<div class="col-lg-7 text-md-end mt-md-0 mt-3">
 							<button class="btn bg-gradient-info mt-lg-7 mb-0" onClick="window.print()" type="button" name="button">Print</button>
 						</div>

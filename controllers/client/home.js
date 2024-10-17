@@ -25,6 +25,25 @@ export function RequestBillingInfo() {
       document.getElementById("payment_date").innerText   = data.payment_date;
       document.getElementById("cover_value").innerText    = "E" + data.cover_value;
       document.getElementById("plan_amount").innerText    = "E" + data.plan_price + " p/m";
+
+      if (data.invoices != false) {
+        
+        for (var i = 0; i < data.invoices.length; i++) {
+          const tbl = document.getElementById("invoice_tbl");
+          let row = `
+            <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+              <div class="d-flex flex-column">
+                <h6 class="mb-1 text-dark font-weight-bold text-sm">E ${Number(data.invoices[i].amount).toFixed(2)}</h6>
+              </div>
+              <div class="d-flex align-items-center text-sm">
+                <span class="text-sm text-dark">${data.invoices[i].created_at}</span>
+              </div>
+            </li>
+          `;
+
+          tbl.insertAdjacentHTML('beforeend', row);
+        }
+      }
     });
 
     req.fail(function(jqXHR, textStatus, errorThrown){
@@ -34,7 +53,7 @@ export function RequestBillingInfo() {
     });
 
     req.always(function(){
-      RequestPaymentsInfo();
+      
     });
 }
 
@@ -74,55 +93,4 @@ function requestPayment(phone, amount) {
       console.log(jqXHR);
       showErrorMsg("Error", textStatus.toString());
     });
-}
-
-function RequestPaymentsInfo() {
-  const raw = {
-    "bills-info": 1,
-    "phone_number": USER_PHONE,
-  };
-
-  var table = $('#bills_tbl').DataTable({
-    processing: true,
-    serverSide: false,
-    pageLength: 5,
-    responsive: true,
-    bLengthChange: false,
-    bFilter: false,
-    ajax: {
-      method: "POST",
-      url: SERVER_URL + "client",
-      data: function(d) {
-        return JSON.stringify(raw);
-      },
-      dataSrc: "",
-      headers: {
-        "Authorization": `Bearer ${TOKEN}`,
-        "Content-Type": "application/json"
-      },
-      error: function(xhr, error, code) {
-        console.error("AJAX Error: ", error, code);
-        console.log(xhr);
-      }
-    },
-
-    columns: [
-      {
-        title: "Amount",
-        data: "amount"
-      },
-      {
-        title: "Submited At",
-        data: "created_at",
-      }
-    ]
-  });
-
-  $("#bills_tbl tbody").on("click", "tr", function() {
-    var data = table.row(this).data();
-    
-  });
-
-  // Debugging: Check if DataTable initialization is successful
-  console.log("DataTable initialized: ", table);
 }
