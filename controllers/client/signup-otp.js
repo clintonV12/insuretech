@@ -31,12 +31,7 @@ function verifyOTP(phone, code) {
     });
 
   req.done(function(data){
-      //if the call is successful
-      /*if (KYC_CONSENT) {
-        //get kyc info and auto-fill form
-      } else if(!KYC_CONSENT) {
-        //manual entry of form
-      }*/
+      
       if (data.token) {
         USER_TYPE = "CLIENT";
         TOKEN     = data.token;

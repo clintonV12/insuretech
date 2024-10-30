@@ -8,7 +8,22 @@ function showSpinner() {
 }
 
 function hideSpinner() {
-	var loader = document.getElementById("spinner");
+  var loader = document.getElementById("spinner");
+  loader.innerHTML = ``;
+}
+
+function showLoadingBtn(msg) {
+  var loader = document.getElementById("spinner-btn");
+  loader.innerHTML = `
+    <button class="btn btn-info btn-sm mb-2 text-white" type="button" disabled>
+      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+      ${msg}...
+    </button>
+  `;
+}
+
+function hideLoadingBtn() {
+  var loader = document.getElementById("spinner-btn");
   loader.innerHTML = ``;
 }
 

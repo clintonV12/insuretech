@@ -26,6 +26,18 @@ function isOTPValid(otp) {
   return isValid;
 }
 
+function isNationalIDValid(pin) {
+  isValid = false;
+
+  if (pin.length == 13) {
+    isValid = true;
+  } else {
+    isValid = false;
+  }
+
+  return isValid;
+}
+
 function newUserForm1Valid() {
   let fname    = document.getElementById("new-user-fn").value;
   let lname    = document.getElementById("new-user-ln").value;
@@ -39,6 +51,7 @@ function newUserForm1Valid() {
   if (lname == ""){invalid = invalid + ", Last Name";}
   if (mail == ""){invalid = invalid + ", Email";}
   if (pin == ""){invalid = invalid + ", National ID";}
+  if (!isNationalIDValid(pin)){invalid = invalid + ", You entered an invalid National ID";}
 
   if (invalid != "Fields") {
     error.innerText = "Please enter the following " + invalid;
