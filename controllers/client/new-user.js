@@ -123,7 +123,7 @@ export function requestSignup() {
     req.done(function(data){
         //if the call is successful
         showInfoMsg("Alert", data.message);
-        if (data.message == "Success" || data.message == "success") {
+        if (data.message == "Registration was successful, you will receive your policy document by email.") {
           if (USER_TYPE == "AGENT") {
             pagename = 'agent-dashboard';
             router();
