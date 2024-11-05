@@ -69,7 +69,7 @@ DOMstrings.stepsBar.addEventListener('click', e => {
   }
 
   if (eventTarget.id == "step2") {
-  	if (!newUserForm1Valid()) {return;}
+  	if (!newUserForm1Validator()) {return;}
   }
   else if (eventTarget.id == "step3") {
   	
@@ -81,7 +81,7 @@ DOMstrings.stepsBar.addEventListener('click', e => {
   	
   }
   else if (eventTarget.id == "step6") {
-  	if (!newUserForm4Valid()) {return;}
+  	//if (!newUserForm4Valid()) {return;}
   }
 
   const activeStep = getActiveStep(eventTarget);
@@ -98,7 +98,7 @@ DOMstrings.stepsForm.addEventListener('click', e => {
 
   //defined in controllers/common/validation.js
   if (eventTarget.id == "next_btn1") {
-  	if (!newUserForm1Valid()) {return;}
+  	if (!newUserForm1Validator()) {return;}
   }
   else if (eventTarget.id == "next_btn2") {
   	
@@ -107,7 +107,7 @@ DOMstrings.stepsForm.addEventListener('click', e => {
   	
   }
   else if (eventTarget.id == "next_btn4") {
-  	if (!newUserForm4Valid()) {return;}
+  	//if (!newUserForm4Valid()) {return;}
   }
 
   const activePanel = findParent(eventTarget,`${DOMstrings.stepFormPanelClass}`);

@@ -65,10 +65,10 @@ export function RequestPolicyInfo() {
               <p class="text-sm font-weight-bold mb-0" id="ben_name">${data.beneficiaries[i].full_name} (${data.beneficiaries[i].percentage}%)</p>
               </td>
               <td>
-              <p class="text-sm mb-0">${data.beneficiaries[i].national_id}</p>
+              <p class="text-sm mb-0">${data.beneficiaries[i].phone_number}</p>
               </td>
               <td>
-              <p class="text-sm mb-0">${data.beneficiaries[i].relationship}</p>
+              <p class="text-sm mb-0">${data.beneficiaries[i].date_of_birth}</p>
               </td>
           </tr>
         `;

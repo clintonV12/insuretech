@@ -32,8 +32,8 @@ export function NewUserAjax() {
       confirmInfo();
   });
 
-  const step6 = document.getElementById('step6');
-  step6.addEventListener('click', (event) => {
+  const step5 = document.getElementById('step5');
+  step5.addEventListener('click', (event) => {
       event.preventDefault(); // Prevent default form submission behavior
       confirmInfo();
   });
@@ -148,13 +148,46 @@ export function requestSignup() {
 }
 
 function addPerson() {
-  let name = document.getElementById("person_fname").value+" "+document.getElementById("person_lname").value;
-  let id   = document.getElementById("person_id").value;
-  let rel  = document.getElementById("person_rel").value;
-  let gen  = document.getElementById("person_gen").value;
+  let errorElement = document.getElementById("bErrorMsg2");
+  let errorMessages = [];
 
-  if (name != '' && id != '') {
-      
+  let fname = document.getElementById("person_fname").value;
+  let lname = document.getElementById("person_lname").value;
+  let id    = document.getElementById("person_id").value;
+  let rel   = document.getElementById("person_rel").value;
+  let gen   = document.getElementById("person_gen").value;
+
+  // Validate each field
+  let firstNameValidation = validateName(fname);
+  let lastNameValidation  = validateName(fname);
+  let idNumberValidation  = validateIDNumber(id);
+
+  // Check validation results and gather error messages
+  if (firstNameValidation !== true) {
+    errorMessages.push("First Name: " + firstNameValidation);
+  }
+  if (lastNameValidation !== true) {
+    errorMessages.push("Last Name: " + lastNameValidation);
+  }
+  if (idNumberValidation !== true) {
+    errorMessages.push("ID Number: " + idNumberValidation);
+  }
+  if (rel == "") {
+    errorMessages.push("Relationship: " + "You must select relationship.");
+  }
+  if (gen == "") {
+    errorMessages.push("Gender: " + "You must select gender.");
+  }
+
+  // Display error message or proceed if no errors
+  if (errorMessages.length > 0) {
+    document.getElementById("bErrorMsg2").classList.remove('text-success');
+    document.getElementById("bErrorMsg2").classList.add('text-danger');
+    errorElement.innerText = "Please correct the following errors:\n" + errorMessages.join("\n");
+    return false;
+  } else {
+    errorElement.innerText = ""; // Clear any previous errors
+
     if (coveredPeople.length < getCoverLimit()){
       if (countPerType().Spouse == 1 && rel == "Spouse") {
         showInfoMsg("Alert", "You can only add 1 spouse");
@@ -165,36 +198,30 @@ function addPerson() {
       else if (countPerType().Parent_Inlaw == 2 && rel == "Parent-InLaw") {
         showInfoMsg("Alert", "You can only add 2 Parents in Law");
       } else {
-        if (!isNationalIDValid(id)) {
-          document.getElementById("bErrorMsg2").innerText = "You entered an invalid National ID";
-          return;
-        } else{
-          var coveredPerson = {
-            fullname: name, 
-            national_id: id,
-            relationship: rel,
-            gender: gen
-          };
-          coveredPeople.push(coveredPerson);
-          document.getElementById("bErrorMsg2").innerText = "";
-        }
+        var coveredPerson = {
+          fullname: fname + " " + lname, 
+          national_id: id,
+          relationship: rel,
+          gender: gen
+        };
+        coveredPeople.push(coveredPerson);
+        document.getElementById("bErrorMsg2").classList.remove('text-danger');
+        document.getElementById("bErrorMsg2").classList.add('text-success');
+        document.getElementById("bErrorMsg2").innerText = `${fname.toUpperCase()} ${lname.toUpperCase()} has been added to the list.`;
+
+        showCoveredList();
+        document.getElementById("person_fname").value = '';
+        document.getElementById("person_lname").value = '';
+        document.getElementById("person_id").value    = '';
+        document.getElementById("person_rel").value   = '';
+        document.getElementById("person_gen").value   = '';
+        countPerType();
       }
     } else {
       showErrorMsg("Error", "You have reached the limit of people that can be covered under this plan. Choose another plan if you need to cover more people.");
     }
-  } else {
-    showErrorMsg("Error", "The name and national id must be entered.");
-    return;
+    return true;
   }
-
-  showCoveredList();
-
-  document.getElementById("person_fname").value = '';
-  document.getElementById("person_lname").value = '';
-  document.getElementById("person_id").value   = '';
-  document.getElementById("person_rel").value = '';
-  document.getElementById("person_gen").value = '';
-  countPerType();
 }
 
 function removePerson(index) {
@@ -211,7 +238,7 @@ function showCoveredList() {
     let index = i;
     cList.insertAdjacentHTML('beforeend', 
       `
-      <li class="list-group-item d-flex justify-content-between align-items-center mb-1">
+      <li class="list-group-item d-flex justify-content-between align-items-start mb-1">
         ${coveredPeople[i].fullname}
         ${coveredPeople[i].national_id}
         <span class="badge badge-danger badge-pill" id="${index}">X</span>
@@ -303,7 +330,7 @@ function confirmCoveredList() {
     let index = i;
     cList.insertAdjacentHTML('beforeend', 
       `<li>
-        ${coveredPeople[i].fullname}
+        ${coveredPeople[i].fullname.toUpperCase()}
         ${coveredPeople[i].national_id}
       </li>`);
  
@@ -318,51 +345,63 @@ function confirmBeneficiaryList() {
     let index = i;
     cList.insertAdjacentHTML('beforeend', 
       `<li>
-        ${beneficiaries[i].fullname}
-        ${beneficiaries[i].national_id}
+        ${beneficiaries[i].fullname.toUpperCase()}
+        ${beneficiaries[i].phone}
       </li>`);
  
   }
 }
 
 function addBeneficiary() {
-  let name    = document.getElementById("ben_name").value;
-  let id      = document.getElementById("ben_id").value;
-  let rel     = document.getElementById("ben_rel").value;
-  let phone_n = document.getElementById("ben_phone").value;
-  let email   = document.getElementById("ben_email").value;
-  let percent = document.getElementById("ben_percentage").value;
+  let errorElement = document.getElementById("bErrorMsg");
+  let errorMessages = [];
 
-  if (name != '' && id != '') {
-    if (!isNationalIDValid(id)) {
-      document.getElementById("bErrorMsg").innerText = "You entered an invalid National ID";
-      return;
-    } else{
-        var ben = {
-          fullname: name, 
-          national_id: id,
-          relationship: rel,
-          phone: phone_n,
-          email: email,
-          percentage: percent
-        };
-        beneficiaries.push(ben);
-        document.getElementById("bErrorMsg").innerText = "";
-    }
-        
-  } else {
-    showErrorMsg("Error", "The name and national id must be entered.");
-    return;
+  let name    = document.getElementById("ben_name").value;
+  let phone_n = document.getElementById("ben_phone").value;
+  let dob     = document.getElementById("ben_dob").value;
+
+  // Validate each field
+  let fullNameValidation = validateFullName(name);
+  let phoneValidation    = validatePhoneNumber(phone_n);
+  let dateValidation     = validateDateOfBirth(dob);
+
+  // Check validation results and gather error messages
+  if (fullNameValidation !== true) {
+    errorMessages.push("Full Name: " + fullNameValidation);
+  }
+  if (phoneValidation !== true) {
+    errorMessages.push("Phone Number: " + phoneValidation);
+  }
+  if (dateValidation !== true) {
+    errorMessages.push("Date of Birth: " + dateValidation);
   }
 
-  showBeneficiaryList();
+  // Display error message or proceed if no errors
+  if (errorMessages.length > 0) {
+    document.getElementById("bErrorMsg").classList.remove('text-success');
+    document.getElementById("bErrorMsg").classList.add('text-danger');
+    errorElement.innerText = "Please correct the following errors:\n" + errorMessages.join("\n");
+    return false;
+  } else {
+    errorElement.innerText = ""; // Clear any previous errors
 
-  document.getElementById("ben_name").value       = '';
-  document.getElementById("ben_id").value         = '';
-  document.getElementById("ben_rel").value        = '';
-  document.getElementById("ben_phone").value      = '';
-  document.getElementById("ben_email").value      = '';
-  document.getElementById("ben_percentage").value = '';
+    var ben = {
+      fullname: name, 
+      date_of_birth: dob,
+      phone: phone_n
+    };
+    beneficiaries.push(ben);
+    document.getElementById("bErrorMsg").classList.remove('text-danger');
+    document.getElementById("bErrorMsg").classList.add('text-success');
+    document.getElementById("bErrorMsg").innerText = `${name.toUpperCase()} has been added as a beneficiary.`;
+
+    showBeneficiaryList();
+    document.getElementById("ben_name").value  = '';
+    document.getElementById("ben_phone").value = '';
+    document.getElementById("ben_dob").value   = '';
+
+    return true;
+  }
 }
 
 function showBeneficiaryList() {
@@ -373,9 +412,9 @@ function showBeneficiaryList() {
     let index = i;
     cList.insertAdjacentHTML('beforeend', 
       `
-      <li class="list-group-item d-flex justify-content-between align-items-center mb-1">
+      <li class="list-group-item d-flex justify-content-between align-items-start mb-1">
         ${beneficiaries[i].fullname}
-        ${beneficiaries[i].national_id}
+        ${beneficiaries[i].phone}
         <span class="badge badge-danger badge-pill" id="b-${index}">X</span>
       </li>`);
 

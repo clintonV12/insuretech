@@ -10,9 +10,8 @@
 						</button>
 						<button id="step2" class="multisteps-form__progress-btn" type="button" title="Your Cover"><span>Your Cover</span></button>
 						<button id="step3" class="multisteps-form__progress-btn" type="button" title="Beneficiary"><span>Beneficiary</span></button>
-						<button id="step4" class="multisteps-form__progress-btn" type="button" title="Covered"><span>Covered</span></button>
-						<button id="step5" class="multisteps-form__progress-btn" type="button" title="Profile"><span>Payment</span></button>
-						<button id="step6" class="multisteps-form__progress-btn" type="button" title="Confirmation"><span>Confirmation</span></button>
+						<button id="step4" class="multisteps-form__progress-btn" type="button" title="Profile"><span>Payment</span></button>
+						<button id="step5" class="multisteps-form__progress-btn" type="button" title="Confirmation"><span>Confirmation</span></button>
 					</div>
 				</div>
 			</div>
@@ -69,7 +68,26 @@
 	                        <h6 id="coverType"></h6>
 	                        <h5 id="currentRange"></h5>
 	                      </div>
+
+	                      <div class="row mb-3">
+													<label id="max-people"></label>
+													<div class="col-12 col-sm-6">
+														<ul id="covered_list"></ul>
+													</div>
+												</div>
 	                    </div>
+
+	                    <div class="card-footer pb-0 p-0">
+												<div class="row d-flex flex-wrap mt-2">
+												  <div class="col-12 text-start mt-2 mt-md-0">
+												    <a class="btn bg-gradient-dark mb-3 w-100" href="#" data-bs-toggle="modal" data-bs-target="#new_person">
+												      <i class="bx bx-plus"></i>&nbsp;&nbsp;Add Covered
+												    </a>
+												  </div>
+												</div>
+
+				              </div>
+
 	                  </div>
 	              </div>
 	            </div>
@@ -85,7 +103,7 @@
       
                 <div class="row d-flex flex-wrap mt-2">
 								  <div class="col-sm-12 col-md-6 d-flex justify-content-center justify-content-md-start align-items-start">
-								    <h5 class="font-weight-bolder mb-0 text-uppercase">Beneficiaries</h5>
+								    <h5 class="font-weight-bolder mb-0 text-uppercase">Beneficiary</h5>
 								  </div>
 								  <div class="col-sm-12 col-md-6 text-md-end text-start mt-2 mt-md-0">
 								    <a class="btn bg-gradient-dark mb-3 w-100 w-md-auto" href="#" data-bs-toggle="modal" data-bs-target="#new_ben">
@@ -106,37 +124,6 @@
 								<div class="button-row d-flex mt-4">
 									<button class="btn bg-gradient-light mb-0 js-btn-prev" type="button" title="Prev">Prev</button>
 									<button class="btn bg-gradient-dark ms-auto mb-0 js-btn-next" type="button" title="Next" id="next_btn3">Next</button>
-								</div>
-							</div>
-						</div>
-
-						<div class="card multisteps-form__panel p-3 border-radius-xl bg-white" data-animation="FadeIn">
-							
-							<div class="card-header pb-0 p-0">
-								<div class="row d-flex flex-wrap mt-2">
-								  <div class="col-sm-12 col-md-6 d-flex justify-content-center justify-content-md-start align-items-start">
-								    <h5 class="font-weight-bolder mb-0 text-uppercase">Covered Individuals</h5>
-								  </div>
-								  <div class="col-sm-12 col-md-6 text-md-end text-start mt-2 mt-md-0">
-								    <a class="btn bg-gradient-dark mb-3 w-100 w-md-auto" href="#" data-bs-toggle="modal" data-bs-target="#new_person">
-								      <i class="bx bx-plus"></i>&nbsp;&nbsp;Add
-								    </a>
-								  </div>
-								</div>
-
-              </div>
-							
-							<div class="multisteps-form__content">
-								<div class="row mt-3">
-									<label id="max-people"></label>
-									<div class="col-12 col-sm-6">
-										<ul id="covered_list"></ul>
-									</div>
-								</div>
-
-								<div class="button-row d-flex mt-4">
-									<button class="btn bg-gradient-light mb-0 js-btn-prev" type="button" title="Prev">Prev</button>
-									<button class="btn bg-gradient-dark ms-auto mb-0 js-btn-next" type="button" title="Next">Next</button>
 								</div>
 							</div>
 						</div>
@@ -315,41 +302,20 @@
       <p class="mb-0 px-3 text-sm text-danger" id="bErrorMsg"></p>
       <div class="modal-body">
       	<div class="row g-2">
-          <div class="col-12 col-sm-6 mb-0">
+          <div class="col-12 mb-0">
             <label for="ben_name" class="col-form-label">Full Legal Name</label>
             <input type="text" class="form-control" placeholder="Enter full name" id="ben_name">
-          </div>
-          <div class="col-12 col-sm-6 mb-0">
-            <label for="ben_rel" class="col-form-label">Relationship</label>
-						<select id="ben_rel" class="form-control">
-							<option value="">Please select</option>
-							<option value="Child">Child</option>
-							<option value="Spouse">Spouse</option>
-							<option value="Sibling">Sibling</option>
-							<option value="Parent">Parent</option>
-						</select>
           </div>
         </div>
 
         <div class="row g-2">
           <div class="col-12 col-sm-6 mb-0">
-            <label for="ben_id" class="col-form-label">National ID</label>
-            <input type="text" class="form-control" placeholder="Enter national ID" id="ben_id">
+            <label for="ben_dob" class="col-form-label">Date of Birth</label>
+            <input type="date" class="form-control" placeholder="Enter national ID" id="ben_dob">
           </div>
           <div class="col-12 col-sm-6 mb-0">
             <label for=ben_phone class="col-form-label">Phone</label>
             <input type="text" class="form-control" id="ben_phone" placeholder="Enter Phone Number">
-          </div>
-        </div>
-
-        <div class="row g-2">
-          <div class="col-12 col-sm-6 mb-0">
-            <label for=ben_email class="col-form-label">Email</label>
-            <input type="email" class="form-control" id="ben_email" placeholder="Enter Email">
-          </div>
-          <div class="col-12 col-sm-6 mb-0">
-            <label for="ben_percentage" class="col-form-label">Percentage</label>
-            <input type="text" class="form-control" id="ben_percentage" placeholder="Enter Percentage">
           </div>
         </div>
 
@@ -372,7 +338,7 @@
           <span aria-hidden="true">×</span>
         </button>
       </div>
-      <p class="mb-0 px-3 text-sm text-danger" id="bErrorMsg2"></p>
+      <p class="mb-0 px-3 text-sm" id="bErrorMsg2"></p>
       <div class="modal-body">
       	<div class="row g-2">
           <div class="col-12 col-sm-6 mb-0">

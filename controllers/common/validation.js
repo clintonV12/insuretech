@@ -38,30 +38,6 @@ function isNationalIDValid(pin) {
   return isValid;
 }
 
-function newUserForm1Valid() {
-  let fname    = document.getElementById("new-user-fn").value;
-  let lname    = document.getElementById("new-user-ln").value;
-  let mail     = document.getElementById("new-user-email").value;
-  let pin      = document.getElementById("new-user-nid").value;
-
-  let error    = document.getElementById("errorMsg1");
-  let invalid  = "Fields";
-
-  if (fname == ""){invalid = invalid + ", First Name";}
-  if (lname == ""){invalid = invalid + ", Last Name";}
-  if (mail == ""){invalid = invalid + ", Email";}
-  if (pin == ""){invalid = invalid + ", National ID";}
-  if (!isNationalIDValid(pin)){invalid = invalid + ", You entered an invalid National ID";}
-
-  if (invalid != "Fields") {
-    error.innerText = "Please enter the following " + invalid;
-    return false;
-  } else {
-    error.innerText = "";
-    return true;
-  }
-}
-
 function newUserForm4Valid() {
   let p_method = document.getElementById("payment-method").value;
   let p_date   = document.getElementById("payment-date").value;
