@@ -54,41 +54,82 @@
 							</div>
 						</div>
 
-						<div class="card multisteps-form__panel p-3 border-radius-xl bg-gradient-light" data-animation="FadeIn">
+						<div id="cover_slide" class="card multisteps-form__panel p-3 border-radius-xl bg-gradient-light" data-animation="FadeIn">
 							<p class="mb-0 text-sm text-danger" id="errorMsg2"></p>
 							<div class="multisteps-form__content">
 
 								<div class="row mt-3">
-									<div class="card mb-4 mb-xl-0" style="border-radius: 0%">
-	                    <h5 class="card-header">Your Cover</h5>
-	                    <div class="card-body">
-	                      <div class="mb-3">
-	                        <label for="coverRange" class="form-label mb-5">Adjust the range to select the cover the best suits your needs.</label>
-	                        <input type="range" class="form-range" min="0" max="100" id="coverRange" step="50" />
-	                        <h6 id="coverType"></h6>
-	                        <h5 id="currentRange"></h5>
-	                      </div>
-
-	                      <div class="row mb-3">
-													<label id="max-people"></label>
-													<div class="col-12 col-sm-6">
-														<ul id="covered_list"></ul>
-													</div>
-												</div>
-	                    </div>
-
-	                    <div class="card-footer pb-0 p-0">
-												<div class="row d-flex flex-wrap mt-2">
-												  <div class="col-12 text-start mt-2 mt-md-0">
-												    <a class="btn bg-gradient-dark mb-3 w-100" href="#" data-bs-toggle="modal" data-bs-target="#new_person">
-												      <i class="bx bx-plus"></i>&nbsp;&nbsp;Add Covered
+									<div class="card" style="border-radius: 0%;">
+	                    <div class="card-header">
+	                    	<div class="row d-flex mt-2">
+												  <div class="col-sm-8 col-md-6 text-start">
+												    <h5 class="font-weight-bolder text-uppercase">Your Cover</h5>
+												  </div>
+												  <div id="undo_btn" class="col-sm-4 col-md-6 text-end d-none">
+												    <a class="btn bg-gradient-dark" onclick="undoChooseCover()" href="#" >
+												      <i class="bx bx-undo"></i>
 												    </a>
 												  </div>
 												</div>
+	                    </div>
 
-				              </div>
+	                    <div class="card-body">
+	                    	<!--Cover type selection-->
+	                    	<div class="row d-flex flex-wrap mt-2" id="cover-btns">
+												  <div class="col-sm-12 col-md-6 d-flex justify-content-center justify-content-md-start align-items-start">
+												    <a class="btn bg-gradient-dark mb-3 w-100" onclick="chooseCoverType('MEMBER')" href="#">
+												      <i class="bx bx-user"></i>&nbsp;&nbsp;Member Only Cover
+												    </a>
+												  </div>
+												  <div class="col-sm-12 col-md-6 text-md-end text-start mt-2 mt-md-0">
+												    <a class="btn bg-gradient-dark mb-3 w-100" onclick="chooseCoverType('FAMILY')" href="#">
+												      <i class="bx bx-group"></i>&nbsp;&nbsp;Family Cover
+												    </a>
+												  </div>
+												</div>
+	                    	<!--Cover type selection-->
+	                    	<!--Members additon-->
+	                    	<div class="row d-flex flex-wrap mt-2 d-none" id="extended-cover">
+												  <div class="col-sm-12 col-md-6 d-flex justify-content-center justify-content-md-start align-items-start">
+												    <a class="btn bg-gradient-dark mb-3 w-100" onclick="resetDefaultRelationship()" href="#" data-bs-toggle="modal" data-bs-target="#new_person">
+												      <i class="bx bx-plus"></i>&nbsp;&nbsp;Add: Extended Family Cover
+												    </a>
+												  </div>
+												  <div class="col-sm-12 col-md-6 text-md-end text-start mt-2 mt-md-0">
+												    <a class="btn bg-gradient-dark mb-3 w-100" onclick="setDefaultRelationship('Parent_GrandParent')" href="#" data-bs-toggle="modal" data-bs-target="#new_person">
+												      <i class="bx bx-plus"></i>&nbsp;&nbsp;Add: Parents/Grandparents Cover
+												    </a>
+												  </div>
+												</div>
+	                    	<!--Members additon-->
 
-	                  </div>
+	                    	<div id="family_plan" class="mb-0 d-none">
+		                      <div class="mb-3">
+		                        <label for="coverRange" class="form-label mb-5">Adjust the range to select the cover the best suits your needs.</label>
+		                        <input type="range" class="form-range" min="5000" max="50000" id="coverRange" step="5000" />
+		                        <h6 id="coverType"></h6>
+		                        <h5 id="currentRange"></h5>
+
+		                        <div class="row d-flex flex-wrap">
+														  <div class="col-12 text-start mt-5 mt-md-2">
+														    <a class="btn bg-gradient-dark mb-3 w-100" href="#" id="confirm-plan">
+														      <i class="bx bx-like"></i>&nbsp;&nbsp;Confirm Selection
+														    </a>
+														  </div>
+														</div>
+		                      </div>
+												</div>
+
+												<div id="c-list" class="mb-0 d-none">
+													<div class="row mb-3">
+														<label id="max-people"></label>
+														<div class="col-12 col-sm-6">
+															<ul id="covered_list"></ul>
+														</div>
+													</div>
+												</div>
+	                    </div>
+	                </div>
 	              </div>
 	            </div>
 
@@ -362,9 +403,8 @@
 							<option value="">Please select</option>
 							<option value="Child">Child</option>
 							<option value="Spouse">Spouse</option>
-							<option value="Parent">Parent</option>
-							<option value="Parent-Inlaw">Parent In Law</option>
-							<option value="Sibling">Sibling</option>
+							<option value="Extended">Extended Family</option>
+							<!--<option value="Parent_GrandParent">Parent / Grandparent</option>-->
 						</select>
           </div>
         </div>

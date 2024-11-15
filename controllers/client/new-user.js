@@ -42,7 +42,6 @@ export function NewUserAjax() {
     let range  = document.getElementById("coverRange").value;
     let cover  = coverType(range);
     document.getElementById("currentRange").innerText = "Cover value E"+Number(cover.Cover).toFixed(2)+" for E"+Number(cover.Premium).toFixed(2)+" p/m.";
-    document.getElementById("coverType").innerText = cover.Plan;
     document.getElementById("max-people").innerText = "";
   }
   coverFun();
@@ -62,18 +61,13 @@ export function NewUserAjax() {
 //returns the maximum number of people that can be covered
 //under this plan
 function getCoverLimit() {
-  let range      = document.getElementById("coverRange").value;
-  let cover      = coverType(range);
   let num_people = 0;
 
-  if (cover.Limit == 1) {
-    num_people = 0;
+  if (COVER_TYPE == "MEMBER") {
+    num_people = 1;
   }
-  else if (cover.Limit == 2) {
-    num_people = 5;
-  }
-  else if (cover.Limit == 3) {
-    num_people = 14;
+  else if (COVER_TYPE == "FAMILY") {
+    num_people = 10;
   }
 
   document.getElementById("max-people").innerText = `This plan covers a maximum of ${num_people} people.`;
@@ -82,13 +76,13 @@ function getCoverLimit() {
 }
 
 function countPerType() {
-  let count = {"Spouse":0, "Parent":0, "Parent_Inlaw":0, "Other":0}
+  let count = {"Spouse":0, "Child":0, "Parent_GrandParent":0, "Extended":0}
 
   for (var i = coveredPeople.length - 1; i >= 0; i--) {
     if(coveredPeople[i].relationship == "Spouse") {count.Spouse = count.Spouse + 1;}
-    else if(coveredPeople[i].relationship == "Parent") {count.Parent = count.Parent + 1;}
-    else if(coveredPeople[i].relationship == "Parent_Inlaw") {count.Parent_Inlaw = count.Parent_Inlaw + 1;}
-    else {count.Other = count.Other + 1;}
+    else if(coveredPeople[i].relationship == "Child") {count.Child = count.Child + 1;}
+    else if(coveredPeople[i].relationship == "Parent_GrandParent") {count.Parent_GrandParent = count.Parent_GrandParent + 1;}
+    else {count.Extended = count.Extended + 1;}
   }
 
   return count;
@@ -192,11 +186,14 @@ function addPerson() {
       if (countPerType().Spouse == 1 && rel == "Spouse") {
         showInfoMsg("Alert", "You can only add 1 spouse");
       }
-      else if (countPerType().Parent == 2 && rel == "Parent") {
-        showInfoMsg("Alert", "You can only add 2 Parents");
+      else if (countPerType().Child == 6 && rel == "Child") {
+        showInfoMsg("Alert", "You can only add 6 children");
       }
-      else if (countPerType().Parent_Inlaw == 2 && rel == "Parent-InLaw") {
-        showInfoMsg("Alert", "You can only add 2 Parents in Law");
+      else if (countPerType().Extended == 4 && rel == "Extended") {
+        showInfoMsg("Alert", "You can only add 4 extended family members.");
+      }
+      else if (countPerType().Parent_GrandParent == 4 && rel == "Parent_GrandParent") {
+        showInfoMsg("Alert", "You can only add 2 parents and 2 grandparents");
       } else {
         var coveredPerson = {
           fullname: fname + " " + lname, 
@@ -302,8 +299,8 @@ function agentRegisterInfo() {
 }
 
 function confirmInfo() {
-  document.getElementById("c1").innerText = document.getElementById("new-user-fn").value;
-  document.getElementById("c2").innerText = document.getElementById("new-user-ln").value;
+  document.getElementById("c1").innerText = document.getElementById("new-user-fn").value.toUpperCase();
+  document.getElementById("c2").innerText = document.getElementById("new-user-ln").value.toUpperCase();
   document.getElementById("c4").innerText = document.getElementById("new-user-email").value;
   document.getElementById("c3").innerText = document.getElementById("new-user-nid").value;
   
@@ -432,14 +429,45 @@ function removeBeneficiary(index) {
 
 function coverType(value) {
   switch (Number(value)){
-    case 0:
-      return {"Plan":"Member Only (Only policy holder is covered.)", "Premium":50, "Cover":50000, "Limit":1};
+    case 5000:
+      if (COVER_TYPE == "FAMILY") {return {"Premium":50, "Cover":5000, "Limit":1};}
+      else {return {"Premium":20, "Cover":5000, "Limit":1};}
       break;
-    case 50:
-      return {"Plan":"Family Cover (Policy holder, 1 spouse, children, 4 grandparents.)", "Premium":150, "Cover":75000, "Limit":2};
+    case 10000:
+      if (COVER_TYPE == "FAMILY") {return {"Premium":75, "Cover":10000, "Limit":1};}
+      else {return {"Premium":30, "Cover":10000, "Limit":1};}
       break;
-    case 100:
-      return {"Plan":"Extended Family (Policy holder, 1 spouse, children, 4 grandparents and 9 extendend family members.)", "Premium":200, "Cover":100000, "Limit":3};
+    case 15000:
+      if (COVER_TYPE == "FAMILY") {return {"Premium":100, "Cover":15000, "Limit":1};}
+      else {return {"Premium":40, "Cover":15000, "Limit":1};}
+      break;
+    case 20000:
+      if (COVER_TYPE == "FAMILY") {return {"Premium":125, "Cover":20000, "Limit":1};}
+      else {return {"Premium":50, "Cover":20000, "Limit":1};}
+      break;
+    case 25000:
+      if (COVER_TYPE == "FAMILY") {return {"Premium":150, "Cover":25000, "Limit":1};}
+      else {return {"Premium":60, "Cover":25000, "Limit":1};}
+      break;
+    case 30000:
+      if (COVER_TYPE == "FAMILY") {return {"Premium":175, "Cover":30000, "Limit":1};}
+      else {return {"Premium":70, "Cover":30000, "Limit":1};}
+      break;
+    case 35000:
+      if (COVER_TYPE == "FAMILY") {return {"Premium":200, "Cover":35000, "Limit":1};}
+      else {return {"Premium":80, "Cover":35000, "Limit":1};}
+      break;
+    case 40000:
+      if (COVER_TYPE == "FAMILY") {return {"Premium":225, "Cover":40000, "Limit":1};}
+      else {return {"Premium":90, "Cover":40000, "Limit":1};}
+      break;
+    case 45000:
+      if (COVER_TYPE == "FAMILY") {return {"Premium":250, "Cover":45000, "Limit":1};}
+      else {return {"Premium":100, "Cover":45000, "Limit":1};}
+      break;
+    case 50000:
+      if (COVER_TYPE == "FAMILY") {return {"Premium":275, "Cover":50000, "Limit":1};}
+      else {return {"Premium":110, "Cover":50000, "Limit":1};}
       break;
   }
 }
