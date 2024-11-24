@@ -62,6 +62,7 @@ setFormHeight = () => {
   formHeight(activePanel);
 };
 
+/*
 DOMstrings.stepsBar.addEventListener('click', e => {
   const eventTarget = e.target;
   if(!eventTarget.classList.contains(`${DOMstrings.stepsBtnClass}`)) {
@@ -121,7 +122,7 @@ DOMstrings.stepsForm.addEventListener('click', e => {
   setActiveStep(activePanelNum);
   setActivePanel(activePanelNum);
 });
-
+*/
 window.addEventListener('load',setFormHeight,false);
 window.addEventListener('resize',setFormHeight,false);
 

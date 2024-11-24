@@ -31,7 +31,7 @@ import { ClientLoginAjax } from './controllers/client/login.js';
 import { ClientLoginOTPAjax } from './controllers/client/login-otp.js';
 import { ClientSignupAjax } from './controllers/client/signup.js';
 import { ClientSignupOTPAjax } from './controllers/client/signup-otp.js';
-import { NewUserAjax } from './controllers/client/new-user.js';
+import { NewUserAjax } from './controllers/client/new_user/new-user.js';
 import { RequestBillingInfo, PayNow } from './controllers/client/home.js';
 import { RequestPolicyInfo } from './controllers/client/policy.js';
 
@@ -336,3 +336,13 @@ function toggleNav() {
       }
     }
 }
+/*
+#id number returning
+#no next without picking step
+#add to member only cover the 
+#after adding parent choose cover for that individual 
+#after parent
+#under covered people use show show the cover amount for the people (in the confirm screen)
+#email policy document to user
+#
+*/
