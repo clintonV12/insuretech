@@ -1,7 +1,7 @@
-const SERVER_URL   = "http://localhost/api.insuretech/index.php/";
-//const SERVER_URL   = "https://api.insuretech.centurionbd.com/index.php/"
-const BASE_URL     = "http://localhost/insuretech/";
-//const BASE_URL     = "https://clintonv12.github.io/insuretech/";
+//const SERVER_URL   = "http://localhost/api.insuretech/index.php/";
+const SERVER_URL   = "https://api.insuretech.centurionbd.com/index.php/"
+//const BASE_URL     = "http://localhost/insuretech/";
+const BASE_URL     = "https://clintonv12.github.io/insuretech/";
 let pagename       = 'home'; // Default to 'home' page
 let USER_PHONE     = null;
 let TOKEN          = null;

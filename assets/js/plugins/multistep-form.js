@@ -62,67 +62,6 @@ setFormHeight = () => {
   formHeight(activePanel);
 };
 
-/*
-DOMstrings.stepsBar.addEventListener('click', e => {
-  const eventTarget = e.target;
-  if(!eventTarget.classList.contains(`${DOMstrings.stepsBtnClass}`)) {
-    return;
-  }
-
-  if (eventTarget.id == "step2") {
-  	if (!newUserForm1Validator()) {return;}
-  }
-  else if (eventTarget.id == "step3") {
-  	
-  }
-  else if (eventTarget.id == "step4") {
-    
-  }
-  else if (eventTarget.id == "step5") {
-  	
-  }
-  else if (eventTarget.id == "step6") {
-  	//if (!newUserForm4Valid()) {return;}
-  }
-
-  const activeStep = getActiveStep(eventTarget);
-  setActiveStep(activeStep);
-  setActivePanel(activeStep);
-  
-});
-
-DOMstrings.stepsForm.addEventListener('click', e => {
-  const eventTarget = e.target;
-  if(!(eventTarget.classList.contains(`${DOMstrings.stepPrevBtnClass}`)
-    ||eventTarget.classList.contains(`${DOMstrings.stepNextBtnClass}`)))
-  {return;}
-
-  //defined in controllers/common/validation.js
-  if (eventTarget.id == "next_btn1") {
-  	if (!newUserForm1Validator()) {return;}
-  }
-  else if (eventTarget.id == "next_btn2") {
-  	
-  }
-  else if (eventTarget.id == "next_btn3") {
-  	
-  }
-  else if (eventTarget.id == "next_btn4") {
-  	//if (!newUserForm4Valid()) {return;}
-  }
-
-  const activePanel = findParent(eventTarget,`${DOMstrings.stepFormPanelClass}`);
-  let activePanelNum = Array.from(DOMstrings.stepFormPanels).indexOf(activePanel);
-  if(eventTarget.classList.contains(`${DOMstrings.stepPrevBtnClass}`)){
-    activePanelNum--;
-  } else {
-    activePanelNum++;
-  }
-
-  setActiveStep(activePanelNum);
-  setActivePanel(activePanelNum);
-});
-*/
 window.addEventListener('load',setFormHeight,false);
 window.addEventListener('resize',setFormHeight,false);
 

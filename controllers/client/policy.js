@@ -2,18 +2,22 @@ import { router } from '../../app.js';
 
 function datePostFix(date) {
   date = Number(date);
-  switch (date){
-    case 1:
-      return "st";
-      break;
-    case 2:
-      return "nd";
-      break;
-    case 3:
-      return "rd";
-      break;
-    default:
+
+  // Handle special cases for 11, 12, and 13
+  if (date % 100 >= 11 && date % 100 <= 13) {
       return "th";
+  }
+
+  // Handle other cases based on the last digit
+  switch (date % 10) {
+      case 1:
+          return "st";
+      case 2:
+          return "nd";
+      case 3:
+          return "rd";
+      default:
+          return "th";
   }
 }
 
@@ -50,7 +54,7 @@ export function RequestPolicyInfo() {
       document.getElementById("policy_hold2").innerText  = data.account_holder;
       document.getElementById("holder_dob").innerText    = data.holder_dob;
       document.getElementById("holder_pin").innerText    = data.holder_pin;
-      document.getElementById("holder_gender").innerText = data.holder_gender;
+      document.getElementById("holder_gender").innerText = getDetailsFromIDNumber(data.holder_pin).Gender;
       document.getElementById("holder_phone").innerText  = data.holder_phone;
       document.getElementById("debit_day").innerText     = data.payment_date + datePostFix(data.payment_date) +" of Each Month";
       document.getElementById("debit_day2").innerText    = data.payment_date + datePostFix(data.payment_date);
@@ -62,10 +66,10 @@ export function RequestPolicyInfo() {
         let row = `
           <tr>
             <td>
-              <p class="text-sm font-weight-bold mb-0" id="ben_name">${data.beneficiaries[i].full_name} (${data.beneficiaries[i].percentage}%)</p>
+              <p class="text-sm font-weight-bold mb-0" id="ben_name">${data.beneficiaries[i].full_name}</p>
               </td>
               <td>
-              <p class="text-sm mb-0">${data.beneficiaries[i].phone_number}</p>
+              <p class="text-sm mb-0">(+268) ${data.beneficiaries[i].phone_number}</p>
               </td>
               <td>
               <p class="text-sm mb-0">${data.beneficiaries[i].date_of_birth}</p>

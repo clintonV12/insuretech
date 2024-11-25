@@ -132,6 +132,7 @@ export function requestSignup() {
 }
 
 function selfRegisterInfo() {
+  let userNationalID = document.getElementById("new-user-nid").value;
   return {
       //general info
       "registration_type": "unassisted",
@@ -140,13 +141,15 @@ function selfRegisterInfo() {
       "client_fname": document.getElementById("new-user-fn").value,
       "client_lname": document.getElementById("new-user-ln").value,
       "client_email": document.getElementById("new-user-email").value,
-      "client_pin": document.getElementById("new-user-nid").value,
+      "client_pin": userNationalID,
+      "client_gender": getDetailsFromIDNumber(userNationalID).Gender,
       //Plan details
       "cover_value": schemeMemberCover.Cover,
       "monthly_cost": schemeMemberCover.Premium,
       "plan_name":schemeMemberCover.Plan,
       "total_monthly_cost":calculatePremiumSum(),
       "cover_category":COVER_TYPE,
+      "total_cover_amount":calculateBenefitSum(),
       //Beneficiary details
       "beneficiary": beneficiaries,
       //covered people
@@ -158,6 +161,7 @@ function selfRegisterInfo() {
 }
 
 function agentRegisterInfo() {
+  let userNationalID = document.getElementById("new-user-nid").value;
   return {
       //general info
       "registration_type": "agent",
@@ -167,13 +171,15 @@ function agentRegisterInfo() {
       "client_fname": document.getElementById("new-user-fn").value,
       "client_lname": document.getElementById("new-user-ln").value,
       "client_email": document.getElementById("new-user-email").value,
-      "client_pin": document.getElementById("new-user-nid").value,
+      "client_pin": userNationalID,
+      "client_gender": getDetailsFromIDNumber(userNationalID).Gender,
       //Plan details
       "cover_value": schemeMemberCover.Cover,
       "monthly_cost": schemeMemberCover.Premium,
       "plan_name":schemeMemberCover.Plan,
       "total_monthly_cost":calculatePremiumSum(),
       "cover_category":COVER_TYPE,
+      "total_cover_amount":calculateBenefitSum(),
       //Beneficiary details
       "beneficiary": beneficiaries,
       //covered people
@@ -281,6 +287,16 @@ function calculatePremiumSum() {
 
   for (var i = 0; i < coveredPeople.length; i++) {
     sum += coveredPeople[i].monthly_premium;
+  }
+
+  return sum;
+}
+
+function calculateBenefitSum() {
+  let sum = schemeMemberCover.Cover;
+
+  for (var i = 0; i < coveredPeople.length; i++) {
+    sum += coveredPeople[i].benefit_amount;
   }
 
   return sum;
