@@ -22,6 +22,7 @@ export function NewUserAjax() {
     if (result == true) {
       $("#new_person").modal("hide");
       const modal = new bootstrap.Modal('#cover_value_selector');
+      getFamilyCoverSliderInfo();
       modal.show();
 
       chooseCoverLevel();
@@ -33,8 +34,6 @@ export function NewUserAjax() {
           addPerson();
       });
 
-    } else {
-      console.log("It is false")
     }
     
   });

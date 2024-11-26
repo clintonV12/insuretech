@@ -78,7 +78,7 @@ function undoChooseCover() {
   extended.classList.add("d-none");
 
   //reset slider information
-  document.getElementById("currentRange").innerText = "";
+  //document.getElementById("currentRange").innerText = "";
   document.getElementById("max-people").innerText = "";
 }
 
@@ -377,7 +377,12 @@ function relationshipResolver(relationship, national_id) {
         return "Child aged 1 - 5";
       } else if (age == 0 ) {
         return "Stillborn";
+      } else if (age > 21 ) {
+        return "Extended Family Member";
       }
+      break;
+    case "Spouse":
+        return "Spouse";
       break;
     case "Additional_Spouse":
     case "Brother_Sister":
