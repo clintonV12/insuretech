@@ -30,7 +30,7 @@ function showSchemeMemberCoverSlider() {
   familyPlan.classList.toggle("d-none"); //show cover slider
 
   coverSlide.addEventListener('click', (event) => {
-      event.preventDefault(); // Prevent default form submission behavior
+      //event.preventDefault(); // Prevent default form submission behavior
       if (coverBtns.classList.contains("d-none")) { 
         undoBtn.classList.remove("d-none");
       } else {
@@ -57,6 +57,13 @@ function confirmSchemeMemberCoverSelection() {
           extended.classList.toggle("d-none");
           coverPeopleList.classList.toggle("d-none");
           familyPlan.classList.add("d-none");
+        }
+
+        var addDependants = document.getElementById("add_dependants").checked;
+        if (addDependants) {
+          toggleRelationshipSelect("Dependants");
+          const modal = new bootstrap.Modal('#new_person');
+          modal.show();
         }
       }
   });
@@ -125,19 +132,25 @@ function validateToAddPerson() {
     errorElement.innerText = ""; // Clear any previous errors
     
     if (countPerType().Spouse == MAX_SPOUSE && rel == "Spouse") {
-      showInfoMsg("Alert", `You can only add ${MAX_SPOUSE} spouse`);
+      showInfoMsg("Alert", `You can only add ${MAX_SPOUSE} spouse, select additional spouse if you wish to proceed.`);
     }
     else if (countPerType().Additional_Spouse == MAX_ADDED_SPOUSES && rel == "Additional_Spouse") {
       showInfoMsg("Alert", `You can only add a maximum of ${MAX_ADDED_SPOUSES} additional spouses.`);
     }
-    else if (countPerType().Child == 6 && rel == "Child") {
-      showInfoMsg("Alert", "You can only add 6 children");
+    else if (countPerType().Domestic_Worker == 4 && rel == "Domestic_Worker") {
+      showInfoMsg("Alert", "You can only add 4 domestic workers");
+    }
+    else if (countPerType().Parent == 2 && rel == "Parent") {
+      showInfoMsg("Alert", "You can only add 2 parents");
+    }
+    else if (countPerType().Inlaw == 2 && rel == "Inlaw") {
+      showInfoMsg("Alert", "You can only add 2 Inlaws");
     }
     else if (countPerType().Extended == MAX_EXTENDED_FAMILY && rel == "Extended") {
       showInfoMsg("Alert", `You can only add ${MAX_EXTENDED_FAMILY} extended family members.`);
     }
-    else if (countPerType().Parent_GrandParent == MAX_GRAND_PARENTS && rel == "Parent_GrandParent") {
-      showInfoMsg("Alert", `You can only add ${MAX_GRAND_PARENTS} parents and grandparents`);
+    else if (countPerType().GrandParent == MAX_GRAND_PARENTS && rel == "GrandParent") {
+      showInfoMsg("Alert", `You can only add ${MAX_GRAND_PARENTS} grandparents`);
     } else {
       //add person here
       document.getElementById("bErrorMsg2").classList.remove('text-danger');
@@ -176,13 +189,17 @@ function addPerson() {
   };
 
   coveredPeople.push(coveredPerson);
-  
+ 
   showCoveredList();
   document.getElementById("person_fname").value = '';
   document.getElementById("person_lname").value = '';
   document.getElementById("person_id").value    = '';
   document.getElementById("person_rel").value   = '';
   countPerType();
+
+  //show new person form
+  const modal = new bootstrap.Modal('#new_person');
+  modal.show();
 }
 
 function removePerson(index) {
@@ -202,9 +219,16 @@ function showCoveredList() {
       <li>
         <span class="text-sm">
           ${coveredPeople[i].fullname.toUpperCase()}
-          ${coveredPeople[i].national_id}
-          <span class="badge badge-danger badge-pill" id="${index}">X</span>
+          (<a href="#" class="text-danger text-sm icon-move-right my-auto" id="${index}">
+            Delete
+            <i class="bx bx-trash text-xs ms-1" aria-hidden="true"></i>
+          </a>)
         </span>
+        <ul>
+          <li>ID: ${coveredPeople[i].national_id}</li>
+          <li>Premium: E${Number(coveredPeople[i].monthly_premium).toFixed(2)} p/m</li>
+          <li>Benefit: E${Number(coveredPeople[i].benefit_amount).toFixed(2)}</li>
+        </ul>
       </li>`);
 
     document.getElementById(index).addEventListener('click', (event) => {
@@ -258,12 +282,22 @@ function policyInfo(value, relationship) {
         return {"Premium":14.75, "Cover":1000, "Plan":"FA", "Relationship_Details":"Child aged 1 - 5"};
       } else if (relationship == "Stillborn") {
         return {"Premium":14.75, "Cover":500, "Plan":"FA", "Relationship_Details":"Stillborn"};
-      } else if (relationship == "Parents and Grandparents under 70") {
-        return {"Premium":7.00, "Cover":5000, "Plan":"PEA", "Relationship_Details":"Parents and Grandparents under 70"};
-      } else if (relationship == "Parents and Grandparents Over 70") {
-        return {"Premium":42.50, "Cover":5000, "Plan":"PA", "Relationship_Details":"Parents and Grandparents Over 70"};
+      } else if (relationship == "Grandparents under 70") {
+        return {"Premium":7.00, "Cover":5000, "Plan":"PEA", "Relationship_Details":"Grandparents under 70"};
+      } else if (relationship == "Grandparents Over 70") {
+        return {"Premium":42.50, "Cover":5000, "Plan":"PA", "Relationship_Details":"Grandparents Over 70"};
       } else if (relationship == "Extended Family Member") {
         return {"Premium":7.00, "Cover":5000, "Plan":"EFA", "Relationship_Details":"Extended Family Member"};
+      } else if (relationship == "Child over 21") {
+        return {"Premium":7.00, "Cover":5000, "Plan":"EFA", "Relationship_Details":"Child over 21"};
+      } else if (relationship == "Parent") {
+        return {"Premium":7.00, "Cover":5000, "Plan":"EFA", "Relationship_Details":"Parent"};
+      } else if (relationship == "Inlaw") {
+        return {"Premium":7.00, "Cover":5000, "Plan":"EFA", "Relationship_Details":"Inlaw"};
+      } else if (relationship == "Domestic_Worker") {
+        return {"Premium":7.00, "Cover":5000, "Plan":"EFA", "Relationship_Details":"Domestic_Worker"};
+      } else if (relationship == "Additional_Spouse") {
+        return {"Premium":7.00, "Cover":5000, "Plan":"EFA", "Relationship_Details":"Additional_Spouse"};
       }
       break;
     case 2:
@@ -277,12 +311,22 @@ function policyInfo(value, relationship) {
         return {"Premium":29.50, "Cover":2000, "Plan":"FB", "Relationship_Details":"Child aged 1 - 5"};
       } else if (relationship == "Stillborn") {
         return {"Premium":29.50, "Cover":1000, "Plan":"FB", "Relationship_Details":"Stillborn"};
-      } else if (relationship == "Parents and Grandparents under 70") {
-        return {"Premium":14.00, "Cover":10000, "Plan":"PEB", "Relationship_Details":"Parents and Grandparents under 70"};
-      } else if (relationship == "Parents and Grandparents Over 70") {
-        return {"Premium":85.00, "Cover":10000, "Plan":"PB", "Relationship_Details":"Parents and Grandparents Over 70"};
+      } else if (relationship == "Grandparents under 70") {
+        return {"Premium":14.00, "Cover":10000, "Plan":"PEB", "Relationship_Details":"Grandparents under 70"};
+      } else if (relationship == "Grandparents Over 70") {
+        return {"Premium":85.00, "Cover":10000, "Plan":"PB", "Relationship_Details":"Grandparents Over 70"};
       } else if (relationship == "Extended Family Member") {
         return {"Premium":14.00, "Cover":10000, "Plan":"EFB", "Relationship_Details":"Extended Family Member"};
+      } else if (relationship == "Child over 21") {
+        return {"Premium":14.00, "Cover":10000, "Plan":"EFA", "Relationship_Details":"Child over 21"};
+      } else if (relationship == "Parent") {
+        return {"Premium":14.00, "Cover":10000, "Plan":"EFB", "Relationship_Details":"Parent"};
+      } else if (relationship == "Inlaw") {
+        return {"Premium":14.00, "Cover":10000, "Plan":"EFB", "Relationship_Details":"Inlaw"};
+      } else if (relationship == "Domestic_Worker") {
+        return {"Premium":14.00, "Cover":10000, "Plan":"EFB", "Relationship_Details":"Domestic_Worker"};
+      } else if (relationship == "Additional_Spouse") {
+        return {"Premium":14.00, "Cover":10000, "Plan":"EFB", "Relationship_Details":"Additional_Spouse"};
       }
       break;
     case 3:
@@ -296,12 +340,22 @@ function policyInfo(value, relationship) {
         return {"Premium":59.00, "Cover":4000, "Plan":"FC", "Relationship_Details":"Child aged 1 - 5"};
       } else if (relationship == "Stillborn") {
         return {"Premium":59.00, "Cover":2000, "Plan":"FC", "Relationship_Details":"Stillborn"};
-      } else if (relationship == "Parents and Grandparents under 70") {
-        return {"Premium":14.00, "Cover":10000, "Plan":"PEB", "Relationship_Details":"Parents and Grandparents under 70"};
-      } else if (relationship == "Parents and Grandparents Over 70") {
-        return {"Premium":85.00, "Cover":10000, "Plan":"PB", "Relationship_Details":"Parents and Grandparents Over 70"};
+      } else if (relationship == "Grandparents under 70") {
+        return {"Premium":14.00, "Cover":10000, "Plan":"PEB", "Relationship_Details":"Grandparents under 70"};
+      } else if (relationship == "Grandparents Over 70") {
+        return {"Premium":85.00, "Cover":10000, "Plan":"PB", "Relationship_Details":"Grandparents Over 70"};
       } else if (relationship == "Extended Family Member") {
         return {"Premium":14.00, "Cover":10000, "Plan":"EFB", "Relationship_Details":"Extended Family Member"};
+      } else if (relationship == "Child over 21") {
+        return {"Premium":14.00, "Cover":10000, "Plan":"EFA", "Relationship_Details":"Child over 21"};
+      } else if (relationship == "Parent") {
+        return {"Premium":14.00, "Cover":10000, "Plan":"EFB", "Relationship_Details":"Parent"};
+      } else if (relationship == "Inlaw") {
+        return {"Premium":14.00, "Cover":10000, "Plan":"EFB", "Relationship_Details":"Inlaw"};
+      } else if (relationship == "Domestic_Worker") {
+        return {"Premium":14.00, "Cover":10000, "Plan":"EFB", "Relationship_Details":"Domestic_Worker"};
+      } else if (relationship == "Additional_Spouse") {
+        return {"Premium":14.00, "Cover":10000, "Plan":"EFB", "Relationship_Details":"Additional_Spouse"};
       }
       break;
     case 4:
@@ -315,12 +369,22 @@ function policyInfo(value, relationship) {
         return {"Premium":88.50, "Cover":6000, "Plan":"FD", "Relationship_Details":"Child aged 1 - 5"};
       } else if (relationship == "Stillborn") {
         return {"Premium":88.50, "Cover":3000, "Plan":"FD", "Relationship_Details":"Stillborn", };
-      } else if (relationship == "Parents and Grandparents under 70") {
-        return {"Premium":14.00, "Cover":10000, "Plan":"PEB", "Relationship_Details":"Parents and Grandparents under 70"};
-      } else if (relationship == "Parents and Grandparents Over 70") {
-        return {"Premium":85.00, "Cover":10000, "Plan":"PB", "Relationship_Details":"Parents and Grandparents Over 70"};
+      } else if (relationship == "Grandparents under 70") {
+        return {"Premium":14.00, "Cover":10000, "Plan":"PEB", "Relationship_Details":"Grandparents under 70"};
+      } else if (relationship == "Grandparents Over 70") {
+        return {"Premium":85.00, "Cover":10000, "Plan":"PB", "Relationship_Details":"Grandparents Over 70"};
       } else if (relationship == "Extended Family Member") {
         return {"Premium":14.00, "Cover":10000, "Plan":"EFB", "Relationship_Details":"Extended Family Member"};
+      } else if (relationship == "Child over 21") {
+        return {"Premium":14.00, "Cover":10000, "Plan":"EFA", "Relationship_Details":"Child over 21"};
+      } else if (relationship == "Parent") {
+        return {"Premium":14.00, "Cover":10000, "Plan":"EFB", "Relationship_Details":"Parent"};
+      } else if (relationship == "Inlaw") {
+        return {"Premium":14.00, "Cover":10000, "Plan":"EFB", "Relationship_Details":"Inlaw"};
+      } else if (relationship == "Domestic_Worker") {
+        return {"Premium":14.00, "Cover":10000, "Plan":"EFB", "Relationship_Details":"Domestic_Worker"};
+      } else if (relationship == "Additional_Spouse") {
+        return {"Premium":14.00, "Cover":10000, "Plan":"EFB", "Relationship_Details":"Additional_Spouse"};
       }
       break;
     case 5:
@@ -334,12 +398,22 @@ function policyInfo(value, relationship) {
         return {"Premium":118.00, "Cover":8000, "Plan":"FE", "Relationship_Details":"Child aged 1 - 5"};
       } else if (relationship == "Stillborn") {
         return {"Premium":118.00, "Cover":4000, "Plan":"FE", "Relationship_Details":"Stillborn"};
-      } else if (relationship == "Parents and Grandparents under 70") {
-        return {"Premium":14.00, "Cover":10000, "Plan":"PEB", "Relationship_Details":"Parents and Grandparents under 70"};
-      } else if (relationship == "Parents and Grandparents Over 70") {
-        return {"Premium":85.00, "Cover":10000, "Plan":"PB", "Relationship_Details":"Parents and Grandparents Over 70"};
+      } else if (relationship == "Grandparents under 70") {
+        return {"Premium":14.00, "Cover":10000, "Plan":"PEB", "Relationship_Details":"Grandparents under 70"};
+      } else if (relationship == "Grandparents Over 70") {
+        return {"Premium":85.00, "Cover":10000, "Plan":"PB", "Relationship_Details":"Grandparents Over 70"};
       } else if (relationship == "Extended Family Member") {
         return {"Premium":14.00, "Cover":10000, "Plan":"EFB", "Relationship_Details":"Extended Family Member"};
+      } else if (relationship == "Child over 21") {
+        return {"Premium":14.00, "Cover":10000, "Plan":"EFA", "Relationship_Details":"Child over 21"};
+      } else if (relationship == "Parent") {
+        return {"Premium":14.00, "Cover":10000, "Plan":"EFB", "Relationship_Details":"Parent"};
+      } else if (relationship == "Inlaw") {
+        return {"Premium":14.00, "Cover":10000, "Plan":"EFB", "Relationship_Details":"Inlaw"};
+      } else if (relationship == "Domestic_Worker") {
+        return {"Premium":14.00, "Cover":10000, "Plan":"EFB", "Relationship_Details":"Domestic_Worker"};
+      } else if (relationship == "Additional_Spouse") {
+        return {"Premium":14.00, "Cover":10000, "Plan":"EFB", "Relationship_Details":"Additional_Spouse"};
       }
       break;
     case 6:
@@ -353,12 +427,22 @@ function policyInfo(value, relationship) {
         return {"Premium":147.50, "Cover":10000, "Plan":"FF", "Relationship_Details":"Child aged 1 - 5"};
       } else if (relationship == "Stillborn") {
         return {"Premium":147.50, "Cover":5000, "Plan":"FF", "Relationship_Details":"Stillborn"};
-      } else if (relationship == "Parents and Grandparents under 70") {
-        return {"Premium":14.00, "Cover":10000, "Plan":"PEB", "Relationship_Details":"Parents and Grandparents under 70"};
-      } else if (relationship == "Parents and Grandparents Over 70") {
-        return {"Premium":85.00, "Cover":10000, "Plan":"PB", "Relationship_Details":"Parents and Grandparents Over 70"};
+      } else if (relationship == "Grandparents under 70") {
+        return {"Premium":14.00, "Cover":10000, "Plan":"PEB", "Relationship_Details":"Grandparents under 70"};
+      } else if (relationship == "Grandparents Over 70") {
+        return {"Premium":85.00, "Cover":10000, "Plan":"PB", "Relationship_Details":"Grandparents Over 70"};
       } else if (relationship == "Extended Family Member") {
         return {"Premium":14.00, "Cover":10000, "Plan":"EFB", "Relationship_Details":"Extended Family Member"};
+      } else if (relationship == "Child over 21") {
+        return {"Premium":14.00, "Cover":10000, "Plan":"EFB", "Relationship_Details":"Child over 21"};
+      } else if (relationship == "Parent") {
+        return {"Premium":14.00, "Cover":10000, "Plan":"EFB", "Relationship_Details":"Parent"};
+      } else if (relationship == "Inlaw") {
+        return {"Premium":14.00, "Cover":10000, "Plan":"EFB", "Relationship_Details":"Inlaw"};
+      } else if (relationship == "Domestic_Worker") {
+        return {"Premium":14.00, "Cover":10000, "Plan":"EFB", "Relationship_Details":"Domestic_Worker"};
+      } else if (relationship == "Additional_Spouse") {
+        return {"Premium":14.00, "Cover":10000, "Plan":"EFB", "Relationship_Details":"Additional_Spouse"};
       }
       break;
   }
@@ -378,26 +462,36 @@ function relationshipResolver(relationship, national_id) {
       } else if (age == 0 ) {
         return "Stillborn";
       } else if (age > 21 ) {
-        return "Extended Family Member";
+        return "Child over 21";
       }
       break;
     case "Spouse":
         return "Spouse";
       break;
     case "Additional_Spouse":
+      return "Additional_Spouse";
+      break;
     case "Brother_Sister":
     case "Uncle_Aunt":
     case "Nephew_Niece":
     case "Grandchild":
-    case "Domestic_Worker":
       return "Extended Family Member";
       break;
-    case "Parent_GrandParent":
+    case "GrandParent":
       if (age <= 70) {
-        return "Parents and Grandparents under 70";
+        return "Grandparents under 70";
       } else if (age > 70) {
-        return "Parents and Grandparents Over 70";
+        return "Grandparents Over 70";
       }
+      break;
+    case "Parent":
+      return "Parent";
+      break;
+    case "Inlaw":
+      return "Inlaw";
+      break;
+    case "Domestic_Worker":
+      return "Domestic_Worker";
       break;
   }
 }
@@ -407,15 +501,21 @@ function countPerType() {
     "Spouse":0, 
     "Additional_Spouse":0, 
     "Child":0, 
-    "Parent_GrandParent":0, 
-    "Extended":0
+    "GrandParent":0, 
+    "Extended":0,
+    "Domestic_Worker":0,
+    "Parent":0,
+    "Inlaw":0
   }
 
   for (var i = coveredPeople.length - 1; i >= 0; i--) {
     if(coveredPeople[i].relationship == "Spouse") {count.Spouse = count.Spouse + 1;}
     else if(coveredPeople[i].relationship == "Additional_Spouse") {count.Additional_Spouse = count.Additional_Spouse + 1;}
     else if(coveredPeople[i].relationship == "Child") {count.Child = count.Child + 1;}
-    else if(coveredPeople[i].relationship == "Parent_GrandParent") {count.Parent_GrandParent = count.Parent_GrandParent + 1;}
+    else if(coveredPeople[i].relationship == "GrandParent") {count.GrandParent = count.GrandParent + 1;}
+    else if(coveredPeople[i].relationship == "Domestic_Worker") {count.Domestic_Worker = count.Domestic_Worker + 1;}
+    else if(coveredPeople[i].relationship == "Parent") {count.Parent = count.Parent + 1;}
+    else if(coveredPeople[i].relationship == "Inlaw") {count.Inlaw = count.Inlaw + 1;}
     else {count.Extended = count.Extended + 1;}
   }
 
@@ -462,6 +562,7 @@ function isWithinValidAgeRestriction(relationship, national_id) {
       break;
     case "Spouse":
     case "Additional_Spouse":
+    case "Inlaw":
     case "Brother_Sister":
     case "Uncle_Aunt":
     case "Nephew_Niece":
@@ -471,7 +572,8 @@ function isWithinValidAgeRestriction(relationship, national_id) {
         return false;
       }
       break;
-    case "Parent_GrandParent":
+    case "Parent":
+    case "GrandParent":
       if (age > MAX_GRANDPARENT_AGE) {
         return false;
       }
@@ -482,23 +584,124 @@ function isWithinValidAgeRestriction(relationship, national_id) {
 }
 
 function toggleRelationshipSelect(value){
-  let selectVal = document.getElementById("def_grandparent");
-  const rel     = document.getElementById("person_rel");
+  const rel       = document.getElementById("person_rel");
+  let grandParent = document.getElementById("def_grandparent");
+
+  let title = document.getElementById("p_input_title");
 
   if(value == "ExtendedFamily"){
-    selectVal.classList.remove("d-block");
-    selectVal.classList.add("d-none");
+    title.innerText = "Extended Family";
 
+    showExtendedFamily();
+    hideCloseFamily();
+
+    grandParent.classList.remove("d-block");
+    grandParent.classList.add("d-none");
     rel.value    = "";
     rel.disabled = false;
   }
-  else if(value == "GrandParents"){
-    selectVal.classList.add("d-block");
-    selectVal.classList.remove("d-none");
+  else if(value == "GrandParent"){
+    title.innerText = "Grandparents";
 
-    rel.value    = "Parent_GrandParent";
+    hideExtendedFamily();
+    hideCloseFamily();
+
+    grandParent.classList.add("d-block");
+    grandParent.classList.remove("d-none");
+    rel.value    = "GrandParent";
     rel.disabled = true;
   }
+  else if(value == "Dependants"){
+    title.innerText = "Dependants";
+    
+    showCloseFamily();
+    hideExtendedFamily();
+
+    grandParent.classList.remove("d-block");
+    grandParent.classList.add("d-none");
+    rel.value    = "";
+    rel.disabled = false;
+  }
+}
+
+function showExtendedFamily() {
+  let extendedBS = document.getElementById("extended_bs");
+  let extendedUA = document.getElementById("extended_ua");
+  let extendedNN = document.getElementById("extended_nn");
+  let extendedGC = document.getElementById("extended_gc");
+  let extendedDW = document.getElementById("extended_dw");
+
+  extendedBS.classList.remove("d-none");
+  extendedUA.classList.remove("d-none");
+  extendedNN.classList.remove("d-none");
+  extendedGC.classList.remove("d-none");
+  extendedDW.classList.remove("d-none");
+
+  extendedBS.classList.add("d-block");
+  extendedUA.classList.add("d-block");
+  extendedNN.classList.add("d-block");
+  extendedGC.classList.add("d-block");
+  extendedDW.classList.add("d-block");
+}
+
+function hideExtendedFamily() {
+  let extendedBS = document.getElementById("extended_bs");
+  let extendedUA = document.getElementById("extended_ua");
+  let extendedNN = document.getElementById("extended_nn");
+  let extendedGC = document.getElementById("extended_gc");
+  let extendedDW = document.getElementById("extended_dw");
+
+  extendedBS.classList.add("d-none");
+  extendedUA.classList.add("d-none");
+  extendedNN.classList.add("d-none");
+  extendedGC.classList.add("d-none");
+  extendedDW.classList.add("d-none");
+
+  extendedBS.classList.remove("d-block");
+  extendedUA.classList.remove("d-block");
+  extendedNN.classList.remove("d-block");
+  extendedGC.classList.remove("d-block");
+  extendedDW.classList.remove("d-block");
+}
+
+function hideCloseFamily() {
+  let child   = document.getElementById("dep_child");
+  let spouse  = document.getElementById("dep_spouse");
+  let aSpouse = document.getElementById("dep_a_spouse");
+  let inlaw   = document.getElementById("dep_inlaw");
+  let parent  = document.getElementById("dep_parent");
+
+  child.classList.add("d-none");
+  spouse.classList.add("d-none");
+  aSpouse.classList.add("d-none");
+  inlaw.classList.add("d-none");
+  parent.classList.add("d-none");
+
+  child.classList.remove("d-block");
+  spouse.classList.remove("d-block");
+  aSpouse.classList.remove("d-block");
+  inlaw.classList.remove("d-block");
+  parent.classList.remove("d-block");
+}
+
+function showCloseFamily() {
+  let child   = document.getElementById("dep_child");
+  let spouse  = document.getElementById("dep_spouse");
+  let aSpouse = document.getElementById("dep_a_spouse");
+  let inlaw   = document.getElementById("dep_inlaw");
+  let parent  = document.getElementById("dep_parent");
+
+  child.classList.add("d-block");
+  spouse.classList.add("d-block");
+  aSpouse.classList.add("d-block");
+  inlaw.classList.add("d-block");
+  parent.classList.add("d-block");
+
+  child.classList.remove("d-none");
+  spouse.classList.remove("d-none");
+  aSpouse.classList.remove("d-none");
+  inlaw.classList.remove("d-none");
+  parent.classList.remove("d-none");
 }
 
 function getCoverType() {

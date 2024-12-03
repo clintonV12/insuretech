@@ -193,6 +193,19 @@ function getAgeFromIDNumber(idNumber) {
     return age;
 }
 
+function getBirthDayFromIDNumber(idNumber) {
+    let year    = parseInt(idNumber.substring(0, 2));
+    const month = parseInt(idNumber.substring(2, 4)) - 1; //Months are 0 indexed
+    const day   = parseInt(idNumber.substring(4, 6));
+
+    const currentYear = new Date().getFullYear();
+    const century = Math.floor(currentYear/100) * 100;
+    year += (year + century) <= currentYear ? century : century - 100;
+    const birthDate = new Date(year, month, day);
+
+    return birthDate.getDay()+"-"+birthDate.getMonth()+"-"+birthDate.getFullYear();
+}
+
 function getDetailsFromIDNumber(idNumber) {
     const categoryCode = idNumber.substring(6, 8);
 

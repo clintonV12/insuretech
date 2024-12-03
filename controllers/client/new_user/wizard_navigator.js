@@ -33,8 +33,14 @@ function doSlideNavigation(newSlide, currentSlide) {
                 }
                 break;
             case 5:
-                window.currentSlide = newSlide;
-                goToStepN(newSlide);
+                let result2 = newUserForm1Validator();
+                if(result2 && hasConfirmedCover && beneficiaries.length >= 1) {
+                    window.currentSlide = newSlide;
+                    goToStepN(newSlide);
+                } else {
+                    showWarningMsg("Incomplete", "Please complete all the other steps first.");
+                }
+                
                 break;
         }
     }

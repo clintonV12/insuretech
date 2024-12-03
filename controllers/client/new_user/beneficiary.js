@@ -11,8 +11,8 @@ function confirmBeneficiaryList() {
         ${beneficiaries[i].fullname.toUpperCase()}
         
         <ul>
+          <li>ID: ${beneficiaries[i].national_id}</li>
           <li>Phone Number: ${beneficiaries[i].phone}</li>
-          <li>Date of Birth: ${beneficiaries[i].date_of_birth}</li>
         </ul>
       </li>`);
  
@@ -25,12 +25,13 @@ function addBeneficiary() {
 
   let name    = document.getElementById("ben_name").value;
   let phone_n = document.getElementById("ben_phone").value;
-  let dob     = document.getElementById("ben_dob").value;
+  let id      = document.getElementById("ben_id").value;
+  let rel     = document.getElementById("ben_rel").value;
 
   // Validate each field
   let fullNameValidation = validateFullName(name);
   let phoneValidation    = validatePhoneNumber(phone_n);
-  let dateValidation     = validateDateOfBirth(dob);
+  let idValidation       = validateIDNumber(id);
 
   // Check validation results and gather error messages
   if (fullNameValidation !== true) {
@@ -39,8 +40,11 @@ function addBeneficiary() {
   if (phoneValidation !== true) {
     errorMessages.push("Phone Number: " + phoneValidation);
   }
-  if (dateValidation !== true) {
-    errorMessages.push("Date of Birth: " + dateValidation);
+  if (idValidation !== true) {
+    errorMessages.push("National ID: " + idValidation);
+  }
+  if (rel == "") {
+    errorMessages.push("Relationship: " + "You must select relationship.");
   }
 
   // Display error message or proceed if no errors
@@ -54,8 +58,9 @@ function addBeneficiary() {
 
     var ben = {
       fullname: name, 
-      date_of_birth: dob,
-      phone: phone_n
+      national_id: id,
+      phone: phone_n,
+      relationship: rel
     };
     beneficiaries.push(ben);
     document.getElementById("bErrorMsg").classList.remove('text-danger');
@@ -65,7 +70,8 @@ function addBeneficiary() {
     showBeneficiaryList();
     document.getElementById("ben_name").value  = '';
     document.getElementById("ben_phone").value = '';
-    document.getElementById("ben_dob").value   = '';
+    document.getElementById("ben_id").value   = '';
+    document.getElementById("ben_rel").value   = '';
 
     return true;
   }
@@ -81,10 +87,16 @@ function showBeneficiaryList() {
       `
       <li>
         <span class="text-sm">
-          ${beneficiaries[i].fullname}
-          ${beneficiaries[i].phone}
-          <span class="badge badge-danger badge-pill" id="b-${index}">X</span>
+          ${beneficiaries[i].fullname.toUpperCase()}
+          (<a href="#" class="text-danger text-sm icon-move-right my-auto" id="b-${index}">
+            Delete
+            <i class="bx bx-trash text-xs ms-1" aria-hidden="true"></i>
+          </a>)
         </span>
+        <ul>
+          <li>ID: ${beneficiaries[i].national_id}</li>
+          <li>Phone Number: ${beneficiaries[i].phone}</li>
+        </ul>
       </li>`);
 
     document.getElementById("b-"+index).addEventListener('click', (event) => {

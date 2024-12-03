@@ -55,7 +55,7 @@
 							<div class="row mt-3">
 								<h6 class="text-danger">Policy Holder Details</h6>
 								<p class="text-secondary"><span id="policy_holder">...</span>, the policy holder of this policy, was born on <span id="holder_dob">...</span> , is a <span id="holder_gender">..</span>, and is a permanent resident of
-								Eswatini whose identity number is <span id="holder_pin">...</span> (if you plan to or emigrate please let us know as this could
+								Eswatini whose identity number is <span id="holder_pin">...</span> (if you plan to emigrate please let us know as this could
 								affect your policy with us)</p>
 							</div>
 
@@ -78,6 +78,15 @@
 										<span class="text-end" id="debit_day">...</span>
 									</div>
 								</div>
+								
+								<div class="row">
+									<div class="col-6">
+										<span class="text-start fw-bold">MOMO Number:</span>
+									</div>
+									<div class="col-6">
+										<span class="text-end" id="momo_number">...</span>
+									</div>
+								</div>
 							</div>
 
 							<div class="row mt-3">
@@ -91,7 +100,7 @@
 
 							<div class="row mt-3">
 								<h6 class="text-danger">Cover Commencement Date</h6>
-								<p class="text-secondary">Your policy will commence when the first payment is collected. The benefit(s) on your policy will commence on <span id="comm_date2"></span> provided that we successfully collect your first monthly payment before then.
+								<p class="text-secondary">Your policy will commence when the first payment is collected. The benefit(s) on your policy will commence on <span id="comm_date2"></span> provided that we successfully collect your first monthly premium.
 								</p>
 
 								<h6 class="bg-dark text-white">Cover Commencement Date</h6>
@@ -105,26 +114,9 @@
 					                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-10 ps-2">Premium</th>
 					                    </tr>
 					                  </thead>
-					                  <tbody>
-					                  	<tr>
-					                  		<td>
-					                        <p class="text-sm font-weight-bold mb-0">Smart Funeral Cover</p>
-					                      	</td>
-					                      	<td>
-					                        <p class="text-sm mb-0" id="comm_date3">...</p>
-					                      	</td>
-					                      	<td>
-					                        <p class="text-sm mb-0" id="cover_value">...</p>
-					                      	</td>
-					                      	<td>
-					                        <p class="text-sm mb-0" id="monthly_fee2">...</p>
-					                      	</td>
-					                  	</tr>
-					                  	<tr>
-					                  		<td><p class="text-md font-weight-bold mb-0">Total Premium</p></td>
-					                  		<td></td><td></td>
-					                  		<td><p class="text-md font-weight-bold mb-0" id="monthly_fee3">...</p></td>
-					                  	</tr>
+					                  <tbody id="covered_tbl">
+					                  	
+					                  	
 					                  </tbody>
 					                </table>
 								</div>
@@ -139,13 +131,14 @@
 					                    <tr>
 					                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-10">Name</th>
 					                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-10 ps-2">Phone Number</th>
-					                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-10 ps-2">D.O.B</th>
+					                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-10 ps-2">ID</th>
+					                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-10 ps-2">Relationship</th>
 					                    </tr>
 					                  </thead>
 					                  <tbody id="ben_tbl">
 					                  </tbody>
 					                </table>
-								</div>
+								</div><br>
 								<p class="text-secondary text-sm">
 									*Please note that the benefit will be paid to the first beneficiary (if more than one was added), if they are not available, it will be paid to the following on the list.
 									<br>
@@ -160,7 +153,7 @@
 								cover starting on the <span id="debit_day3"></span> of the month following your debit.</p>
 								<p class="text-secondary">You confirmed that you have authority over MTN phone number (+268) <span id="holder_phone"></span> and
 								gave permission for it to be debited in terms of the policy and you agreed to allow for tracking of dates to match with
-								cashflow (at no additional cost to yourself). This means that Oracle Life can, in the event of there being insufficient
+								cashflow (at no additional cost to yourself). This means that MTN MOMO can, in the event of there being insufficient
 								funds available in your account, continue to re-present the payment instruction until payment has been
 								fully satisfied.</p>
 							</div>

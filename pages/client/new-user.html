@@ -19,7 +19,6 @@
 			<div class="row">
 				<div class="col-12 col-lg-12 m-auto">
 					<form class="multisteps-form__form mb-8">
-
 						<div class="card multisteps-form__panel p-3 border-radius-xl bg-white js-active" data-animation="FadeIn">
 							<h5 class="font-weight-bolder mb-0">About me</h5>
 							<p class="mb-0 text-sm">Mandatory information</p>
@@ -96,7 +95,7 @@
 												    </a>
 												  </div>
 												  <div class="col-sm-12 col-md-6 text-md-end text-start mt-2 mt-md-0">
-												    <a class="btn bg-gradient-dark mb-3 w-100" onclick="toggleRelationshipSelect('GrandParents')" href="#" data-bs-toggle="modal" data-bs-target="#new_person">
+												    <a class="btn bg-gradient-dark mb-3 w-100" onclick="toggleRelationshipSelect('GrandParent')" href="#" data-bs-toggle="modal" data-bs-target="#new_person">
 												      <i class="bx bx-plus"></i>&nbsp;&nbsp;Add: Parents/Grandparents Cover
 												    </a>
 												  </div>
@@ -112,6 +111,16 @@
 
 		                        <div class="row d-flex flex-wrap">
 														  <div class="col-12 text-start mt-5 mt-md-2">
+														  	
+<ul class="list-group">
+  <li class="list-group-item border-0 px-0">
+    <div class="form-check form-switch ps-0">
+      <input class="form-check-input ms-auto" type="checkbox" id="add_dependants" checked>
+      <label class="form-check-label text-bold ms-3 mb-0" for="add_dependants">Add Dependants</label>
+    </div>
+  </li>
+</ul>
+
 														    <a class="btn bg-gradient-dark mb-3 w-100" href="#" id="confirm-plan">
 														      <i class="bx bx-like"></i>&nbsp;&nbsp;Confirm Selection
 														    </a>
@@ -124,7 +133,7 @@
 													<div class="row mb-3">
 														<label id="max-people"></label>
 														<div class="col-12 col-sm-6">
-															<ul class="text-muted ps-4 mb-0 float-start" id="covered_list"></ul>
+															<ol class="text-muted ps-4 mb-0 float-start" id="covered_list"></ol>
 														</div>
 													</div>
 												</div>
@@ -158,7 +167,7 @@
 							<div class="multisteps-form__content">
                 <div class="row mt-3">
                   <div class="col-12 col-sm-6">
-                    <ul class="text-muted ps-4 mb-0 float-start" id="beneficiary_list"></ul>
+                    <ol class="text-muted ps-4 mb-0 float-start" id="beneficiary_list"></ol>
                   </div>
                 </div>
 
@@ -212,6 +221,9 @@
 										<option value="26">26</option>
 										<option value="27">27</option>
 										<option value="28">28</option>
+										<option value="29">29</option>
+										<option value="30">30</option>
+										<option value="31">31</option>
 									</select>
 								</div>
 								</div>
@@ -343,16 +355,34 @@
       <p class="mb-0 px-3 text-sm text-danger" id="bErrorMsg"></p>
       <div class="modal-body">
       	<div class="row g-2">
-          <div class="col-12 mb-0">
+          <div class="col-12 col-sm-6 mb-0">
             <label for="ben_name" class="col-form-label">Full Legal Name</label>
             <input type="text" class="form-control" placeholder="Enter full name" id="ben_name">
           </div>
+
+          <div class="col-12 col-sm-6 mb-0">
+	          <label for="person_rel" class="col-form-label">Relationship</label>
+						<select id="ben_rel" class="form-control">
+							<option value="">Please select</option>
+							<option value="Child">Child</option>
+							<option value="Spouse">Spouse</option>
+							<option value="Parent">Parent</option>
+							<option value="Inlaw">Inlaw</option>
+							<option value="Additional_Spouse">Additional Spouse</option>
+							<option value="Brother_Sister">Brother / Sister</option>
+							<option value="Uncle_Aunt">Uncle / Aunt</option>
+							<option value="Nephew_Niece">Nephew / Niece</option>
+							<option value="Grandchild">Grandchild</option>
+							<option value="Domestic_Worker">Domestic Worker</option>
+							<option id="def_grandparent" value="GrandParent">Grandparent</option>
+						</select>
+	        </div>
         </div>
 
         <div class="row g-2">
           <div class="col-12 col-sm-6 mb-0">
-            <label for="ben_dob" class="col-form-label">Date of Birth</label>
-            <input type="date" class="form-control" placeholder="Enter national ID" id="ben_dob">
+            <label for="ben_dob" class="col-form-label">National ID</label>
+            <input type="number" class="form-control" placeholder="Enter national ID" id="ben_id">
           </div>
           <div class="col-12 col-sm-6 mb-0">
             <label for=ben_phone class="col-form-label">Phone</label>
@@ -374,7 +404,9 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="input-title">Family members</h5>
+        <h5 class="modal-title" id="p_input_title">
+        	Family members
+      	</h5>
         <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
           <span aria-hidden="true"><i class="bx bx-x"></i></span>
         </button>
@@ -401,15 +433,19 @@
             <label for="person_rel" class="col-form-label">Relationship</label>
 						<select id="person_rel" class="form-control">
 							<option value="">Please select</option>
-							<option value="Child">Child</option>
-							<option value="Spouse">Spouse</option>
-							<option value="Additional_Spouse">Additional Spouse</option>
-							<option value="Brother_Sister">Brother / Sister;</option>
-							<option value="Uncle_Aunt">Uncle / Aunt</option>
-							<option value="Nephew_Niece">Nephew / Niece</option>
-							<option value="Grandchild">Grandchild</option>
-							<option value="Domestic_Worker">Domestic Worker</option>
-							<option id="def_grandparent" value="Parent_GrandParent">Parent / Grandparent</option>
+							<option id="dep_child" value="Child">Child</option>
+							<option id="dep_spouse" value="Spouse">Spouse</option>
+							<option id="dep_parent" value="Parent">Parent</option>
+							<option id="dep_inlaw" value="Inlaw">Inlaw</option>
+							<option id="dep_a_spouse" value="Additional_Spouse">Additional Spouse</option>
+
+							<option class="d-none" id="extended_bs" value="Brother_Sister">Brother / Sister</option>
+							<option class="d-none" id="extended_ua" value="Uncle_Aunt">Uncle / Aunt</option>
+							<option class="d-none" id="extended_nn" value="Nephew_Niece">Nephew / Niece</option>
+							<option class="d-none" id="extended_gc" value="Grandchild">Grandchild</option>
+							<option class="d-none" id="extended_dw" value="Domestic_Worker">Domestic Worker</option>
+
+							<option class="d-none" id="def_grandparent" value="GrandParent">Grandparent</option>
 						</select>
           </div>
         </div>

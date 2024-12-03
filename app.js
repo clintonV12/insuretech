@@ -336,13 +336,3 @@ function toggleNav() {
       }
     }
 }
-/*
-#id number returning
-#no next without picking step
-#add to member only cover the 
-#after adding parent choose cover for that individual 
-#after parent
-#under covered people use show show the cover amount for the people (in the confirm screen)
-#email policy document to user
-#
-*/
