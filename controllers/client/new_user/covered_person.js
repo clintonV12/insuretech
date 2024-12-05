@@ -59,12 +59,13 @@ function confirmSchemeMemberCoverSelection() {
           familyPlan.classList.add("d-none");
         }
 
+        /*
         var addDependants = document.getElementById("add_dependants").checked;
         if (addDependants) {
           toggleRelationshipSelect("Dependants");
           const modal = new bootstrap.Modal('#new_person');
           modal.show();
-        }
+        }*/
       }
   });
 }
@@ -593,7 +594,8 @@ function toggleRelationshipSelect(value){
     title.innerText = "Extended Family";
 
     showExtendedFamily();
-    hideCloseFamily();
+    showCloseFamily();
+    //hideCloseFamily();
 
     grandParent.classList.remove("d-block");
     grandParent.classList.add("d-none");
@@ -610,7 +612,7 @@ function toggleRelationshipSelect(value){
     grandParent.classList.remove("d-none");
     rel.value    = "GrandParent";
     rel.disabled = true;
-  }
+  }/*
   else if(value == "Dependants"){
     title.innerText = "Dependants";
     
@@ -621,7 +623,7 @@ function toggleRelationshipSelect(value){
     grandParent.classList.add("d-none");
     rel.value    = "";
     rel.disabled = false;
-  }
+  }*/
 }
 
 function showExtendedFamily() {
