@@ -1,9 +1,9 @@
 import { router } from '../../app.js';
 
 let timeout;
-const inactivityTime = 10 * 60 * 1000; // 30 minutes in milliseconds
+const inactivityTime = 40 * 60 * 1000; // 10 minutes in milliseconds
 
-// Function to run after 30 minutes of inactivity
+// Function to run after 10 minutes of inactivity
 function runAfterInactivity() {
     console.log("Running function due to inactivity.");
     // Your logic here

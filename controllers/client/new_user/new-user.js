@@ -115,6 +115,8 @@ export function requestSignup() {
             pagename = 'dashboard';
             router();
           }
+        } else if (data.error) {
+          showErrorMsg("Error", data.error);
         }
       });
 
