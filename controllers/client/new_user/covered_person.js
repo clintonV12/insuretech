@@ -291,9 +291,11 @@ function policyInfo(value, relationship) {
         return {"Premium":7.00, "Cover":5000, "Plan":"EFA", "Relationship_Details":"Extended Family Member"};
       } else if (relationship == "Child over 21") {
         return {"Premium":7.00, "Cover":5000, "Plan":"EFA", "Relationship_Details":"Child over 21"};
-      } else if (relationship == "Parent") {
+      } else if (relationship == "Parent under 70") {
         return {"Premium":7.00, "Cover":5000, "Plan":"EFA", "Relationship_Details":"Parent"};
-      } else if (relationship == "Inlaw") {
+      }  else if (relationship == "Parent Over 70") {
+        return {"Premium":42.50, "Cover":5000, "Plan":"EFA", "Relationship_Details":"Parent"};
+      }  else if (relationship == "Inlaw") {
         return {"Premium":7.00, "Cover":5000, "Plan":"EFA", "Relationship_Details":"Inlaw"};
       } else if (relationship == "Domestic_Worker") {
         return {"Premium":7.00, "Cover":5000, "Plan":"EFA", "Relationship_Details":"Domestic_Worker"};
@@ -320,9 +322,11 @@ function policyInfo(value, relationship) {
         return {"Premium":14.00, "Cover":10000, "Plan":"EFB", "Relationship_Details":"Extended Family Member"};
       } else if (relationship == "Child over 21") {
         return {"Premium":14.00, "Cover":10000, "Plan":"EFA", "Relationship_Details":"Child over 21"};
-      } else if (relationship == "Parent") {
+      } else if (relationship == "Parent under 70") {
         return {"Premium":14.00, "Cover":10000, "Plan":"EFB", "Relationship_Details":"Parent"};
-      } else if (relationship == "Inlaw") {
+      }  else if (relationship == "Parent Over 70") {
+        return {"Premium":85.00, "Cover":10000, "Plan":"EFB", "Relationship_Details":"Parent"};
+      }  else if (relationship == "Inlaw") {
         return {"Premium":14.00, "Cover":10000, "Plan":"EFB", "Relationship_Details":"Inlaw"};
       } else if (relationship == "Domestic_Worker") {
         return {"Premium":14.00, "Cover":10000, "Plan":"EFB", "Relationship_Details":"Domestic_Worker"};
@@ -342,21 +346,23 @@ function policyInfo(value, relationship) {
       } else if (relationship == "Stillborn") {
         return {"Premium":59.00, "Cover":2000, "Plan":"FC", "Relationship_Details":"Stillborn"};
       } else if (relationship == "Grandparents under 70") {
-        return {"Premium":14.00, "Cover":10000, "Plan":"PEB", "Relationship_Details":"Grandparents under 70"};
+        return {"Premium":28.00, "Cover":20000, "Plan":"PEC", "Relationship_Details":"Grandparents under 70"};
       } else if (relationship == "Grandparents Over 70") {
         return {"Premium":85.00, "Cover":10000, "Plan":"PB", "Relationship_Details":"Grandparents Over 70"};
       } else if (relationship == "Extended Family Member") {
-        return {"Premium":14.00, "Cover":10000, "Plan":"EFB", "Relationship_Details":"Extended Family Member"};
+        return {"Premium":28.00, "Cover":20000, "Plan":"EFC", "Relationship_Details":"Extended Family Member"};
       } else if (relationship == "Child over 21") {
-        return {"Premium":14.00, "Cover":10000, "Plan":"EFA", "Relationship_Details":"Child over 21"};
-      } else if (relationship == "Parent") {
-        return {"Premium":14.00, "Cover":10000, "Plan":"EFB", "Relationship_Details":"Parent"};
-      } else if (relationship == "Inlaw") {
-        return {"Premium":14.00, "Cover":10000, "Plan":"EFB", "Relationship_Details":"Inlaw"};
+        return {"Premium":28.00, "Cover":20000, "Plan":"EFA", "Relationship_Details":"Child over 21"};
+      } else if (relationship == "Parent under 70") {
+        return {"Premium":28.00, "Cover":20000, "Plan":"EFC", "Relationship_Details":"Parent"};
+      }  else if (relationship == "Parent Over 70") {
+        return {"Premium":85.00, "Cover":10000, "Plan":"EFC", "Relationship_Details":"Parent"};
+      }  else if (relationship == "Inlaw") {
+        return {"Premium":28.00, "Cover":20000, "Plan":"EFC", "Relationship_Details":"Inlaw"};
       } else if (relationship == "Domestic_Worker") {
-        return {"Premium":14.00, "Cover":10000, "Plan":"EFB", "Relationship_Details":"Domestic_Worker"};
+        return {"Premium":28.00, "Cover":20000, "Plan":"EFC", "Relationship_Details":"Domestic_Worker"};
       } else if (relationship == "Additional_Spouse") {
-        return {"Premium":14.00, "Cover":10000, "Plan":"EFB", "Relationship_Details":"Additional_Spouse"};
+        return {"Premium":28.00, "Cover":20000, "Plan":"EFC", "Relationship_Details":"Additional_Spouse"};
       }
       break;
     case 4:
@@ -371,21 +377,23 @@ function policyInfo(value, relationship) {
       } else if (relationship == "Stillborn") {
         return {"Premium":88.50, "Cover":3000, "Plan":"FD", "Relationship_Details":"Stillborn", };
       } else if (relationship == "Grandparents under 70") {
-        return {"Premium":14.00, "Cover":10000, "Plan":"PEB", "Relationship_Details":"Grandparents under 70"};
+        return {"Premium":42.00, "Cover":30000, "Plan":"PED", "Relationship_Details":"Grandparents under 70"};
       } else if (relationship == "Grandparents Over 70") {
         return {"Premium":85.00, "Cover":10000, "Plan":"PB", "Relationship_Details":"Grandparents Over 70"};
       } else if (relationship == "Extended Family Member") {
-        return {"Premium":14.00, "Cover":10000, "Plan":"EFB", "Relationship_Details":"Extended Family Member"};
+        return {"Premium":42.00, "Cover":30000, "Plan":"EFD", "Relationship_Details":"Extended Family Member"};
       } else if (relationship == "Child over 21") {
-        return {"Premium":14.00, "Cover":10000, "Plan":"EFA", "Relationship_Details":"Child over 21"};
-      } else if (relationship == "Parent") {
-        return {"Premium":14.00, "Cover":10000, "Plan":"EFB", "Relationship_Details":"Parent"};
+        return {"Premium":42.00, "Cover":30000, "Plan":"EFA", "Relationship_Details":"Child over 21"};
+      } else if (relationship == "Parent under 70") {
+        return {"Premium":42.00, "Cover":30000, "Plan":"EFD", "Relationship_Details":"Parent"};
+      }  else if (relationship == "Parent Over 70") {
+        return {"Premium":85.00, "Cover":10000, "Plan":"EFD", "Relationship_Details":"Parent"};
       } else if (relationship == "Inlaw") {
-        return {"Premium":14.00, "Cover":10000, "Plan":"EFB", "Relationship_Details":"Inlaw"};
+        return {"Premium":42.00, "Cover":30000, "Plan":"EFD", "Relationship_Details":"Inlaw"};
       } else if (relationship == "Domestic_Worker") {
-        return {"Premium":14.00, "Cover":10000, "Plan":"EFB", "Relationship_Details":"Domestic_Worker"};
+        return {"Premium":42.00, "Cover":30000, "Plan":"EFD", "Relationship_Details":"Domestic_Worker"};
       } else if (relationship == "Additional_Spouse") {
-        return {"Premium":14.00, "Cover":10000, "Plan":"EFB", "Relationship_Details":"Additional_Spouse"};
+        return {"Premium":42.00, "Cover":30000, "Plan":"EFD", "Relationship_Details":"Additional_Spouse"};
       }
       break;
     case 5:
@@ -400,21 +408,23 @@ function policyInfo(value, relationship) {
       } else if (relationship == "Stillborn") {
         return {"Premium":118.00, "Cover":4000, "Plan":"FE", "Relationship_Details":"Stillborn"};
       } else if (relationship == "Grandparents under 70") {
-        return {"Premium":14.00, "Cover":10000, "Plan":"PEB", "Relationship_Details":"Grandparents under 70"};
+        return {"Premium":42.00, "Cover":30000, "Plan":"PED", "Relationship_Details":"Grandparents under 70"};
       } else if (relationship == "Grandparents Over 70") {
         return {"Premium":85.00, "Cover":10000, "Plan":"PB", "Relationship_Details":"Grandparents Over 70"};
       } else if (relationship == "Extended Family Member") {
-        return {"Premium":14.00, "Cover":10000, "Plan":"EFB", "Relationship_Details":"Extended Family Member"};
+        return {"Premium":42.00, "Cover":30000, "Plan":"EFD", "Relationship_Details":"Extended Family Member"};
       } else if (relationship == "Child over 21") {
-        return {"Premium":14.00, "Cover":10000, "Plan":"EFA", "Relationship_Details":"Child over 21"};
-      } else if (relationship == "Parent") {
-        return {"Premium":14.00, "Cover":10000, "Plan":"EFB", "Relationship_Details":"Parent"};
+        return {"Premium":42.00, "Cover":30000, "Plan":"EFA", "Relationship_Details":"Child over 21"};
+      } else if (relationship == "Parent under 70") {
+        return {"Premium":42.00, "Cover":30000, "Plan":"EFD", "Relationship_Details":"Parent"};
+      }  else if (relationship == "Parent Over 70") {
+        return {"Premium":85.00, "Cover":10000, "Plan":"EFD", "Relationship_Details":"Parent"};
       } else if (relationship == "Inlaw") {
-        return {"Premium":14.00, "Cover":10000, "Plan":"EFB", "Relationship_Details":"Inlaw"};
+        return {"Premium":42.00, "Cover":30000, "Plan":"EFD", "Relationship_Details":"Inlaw"};
       } else if (relationship == "Domestic_Worker") {
-        return {"Premium":14.00, "Cover":10000, "Plan":"EFB", "Relationship_Details":"Domestic_Worker"};
+        return {"Premium":42.00, "Cover":30000, "Plan":"EFD", "Relationship_Details":"Domestic_Worker"};
       } else if (relationship == "Additional_Spouse") {
-        return {"Premium":14.00, "Cover":10000, "Plan":"EFB", "Relationship_Details":"Additional_Spouse"};
+        return {"Premium":42.00, "Cover":30000, "Plan":"EFD", "Relationship_Details":"Additional_Spouse"};
       }
       break;
     case 6:
@@ -429,21 +439,23 @@ function policyInfo(value, relationship) {
       } else if (relationship == "Stillborn") {
         return {"Premium":147.50, "Cover":5000, "Plan":"FF", "Relationship_Details":"Stillborn"};
       } else if (relationship == "Grandparents under 70") {
-        return {"Premium":14.00, "Cover":10000, "Plan":"PEB", "Relationship_Details":"Grandparents under 70"};
+        return {"Premium":42.00, "Cover":30000, "Plan":"PED", "Relationship_Details":"Grandparents under 70"};
       } else if (relationship == "Grandparents Over 70") {
         return {"Premium":85.00, "Cover":10000, "Plan":"PB", "Relationship_Details":"Grandparents Over 70"};
       } else if (relationship == "Extended Family Member") {
-        return {"Premium":14.00, "Cover":10000, "Plan":"EFB", "Relationship_Details":"Extended Family Member"};
+        return {"Premium":42.00, "Cover":30000, "Plan":"EFD", "Relationship_Details":"Extended Family Member"};
       } else if (relationship == "Child over 21") {
-        return {"Premium":14.00, "Cover":10000, "Plan":"EFB", "Relationship_Details":"Child over 21"};
-      } else if (relationship == "Parent") {
-        return {"Premium":14.00, "Cover":10000, "Plan":"EFB", "Relationship_Details":"Parent"};
+        return {"Premium":42.00, "Cover":30000, "Plan":"EFA", "Relationship_Details":"Child over 21"};
+      } else if (relationship == "Parent under 70") {
+        return {"Premium":42.00, "Cover":30000, "Plan":"EFD", "Relationship_Details":"Parent"};
+      }  else if (relationship == "Parent Over 70") {
+        return {"Premium":85.00, "Cover":10000, "Plan":"EFD", "Relationship_Details":"Parent"};
       } else if (relationship == "Inlaw") {
-        return {"Premium":14.00, "Cover":10000, "Plan":"EFB", "Relationship_Details":"Inlaw"};
+        return {"Premium":42.00, "Cover":30000, "Plan":"EFD", "Relationship_Details":"Inlaw"};
       } else if (relationship == "Domestic_Worker") {
-        return {"Premium":14.00, "Cover":10000, "Plan":"EFB", "Relationship_Details":"Domestic_Worker"};
+        return {"Premium":42.00, "Cover":30000, "Plan":"EFD", "Relationship_Details":"Domestic_Worker"};
       } else if (relationship == "Additional_Spouse") {
-        return {"Premium":14.00, "Cover":10000, "Plan":"EFB", "Relationship_Details":"Additional_Spouse"};
+        return {"Premium":42.00, "Cover":30000, "Plan":"EFD", "Relationship_Details":"Additional_Spouse"};
       }
       break;
   }
@@ -486,7 +498,11 @@ function relationshipResolver(relationship, national_id) {
       }
       break;
     case "Parent":
-      return "Parent";
+      if (age <= 70) {
+        return "Parent under 70";
+      } else if (age > 70) {
+        return "Parent Over 70";
+      }
       break;
     case "Inlaw":
       return "Inlaw";
